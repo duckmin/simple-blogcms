@@ -12,7 +12,7 @@
 		
 		public function getHomePagePostsByTime( $time ){
 			$str="";
-			$posts_from_db = $this->mongo_getter->getHomePagePreviewsFromDbAfterDate( (int)$time );
+			$posts_from_db = $this->mongo_getter->getHomePagePostsAfterDate( (int)$time );
 			$L = $posts_from_db->count(true);
 			if( $L === 0 ){ 
 				//no results return false and we will send them to 404 (paginator logic should not allow this to happen)
@@ -29,16 +29,16 @@
 			}else{
 				$paginator = "";
 			}
-			$post_template = file_get_contents( TEMPLATE_DIR."/blog_post_preview.txt" );		
+			$post_template = file_get_contents( TEMPLATE_DIR."/blog_post.txt" );		
 			foreach( $post_array as $single ){		
-				$post_html = $this->post_views->makePostPreviewHtmlFromData( $single, $post_template ); //pass in cat because post can have multiple cats and we want to know which one we are looking at				$str .= $post_html;
+				$post_html = $this->post_views->makePostHtmlFromData( $single, $post_template ); //pass in cat because post can have multiple cats and we want to know which one we are looking at				$str .= $post_html;
 			}
 			return $str.$paginator;
 		}
 		
 		public function getHashtagPostsByTime( $time, $hashtag ){
 			$str="";
-			$posts_from_db = $this->mongo_getter->getHashtagPreviewsAfterDate( (int)$time, $hashtag );
+			$posts_from_db = $this->mongo_getter->getHashtagPostsAfterDate( (int)$time, $hashtag );
 			$L = $posts_from_db->count(true);
 			if( $L === 0 ){ 
 				//no results return false and send to 404 (paginator logic should not allow this to happen)
@@ -55,9 +55,9 @@
 			}else{
 				$paginator = "";
 			}
-			$post_template = file_get_contents( TEMPLATE_DIR."/blog_post_preview.txt" );		
+			$post_template = file_get_contents( TEMPLATE_DIR."/blog_post.txt" );		
 			foreach( $post_array as $single ){		
-				$post_html = $this->post_views->makePostPreviewHtmlFromData( $single, $post_template ); 				$str .= $post_html;
+				$post_html = $this->post_views->makePostHtmlFromData( $single, $post_template ); 				$str .= $post_html;
 			}
 			return $str.$paginator;
 		}
@@ -84,9 +84,9 @@
 			}else{
 				$paginator = "";
 			}
-			$post_template = file_get_contents( TEMPLATE_DIR."/blog_post_preview.txt" );		
+			$post_template = file_get_contents( TEMPLATE_DIR."/blog_post.txt" );		
 			foreach( $post_array as $single ){		
-				$post_html = $this->post_views->makePostPreviewHtmlFromData( $single, $post_template ); //pass in cat because post can have multiple cats and we want to know which one we are looking at				$str .= $post_html;
+				$post_html = $this->post_views->makePostHtmlFromData( $single, $post_template ); //pass in cat because post can have multiple cats and we want to know which one we are looking at				$str .= $post_html;
 			}
 			return $str.$paginator;
 		}

@@ -345,31 +345,6 @@
 		gEBI('template').removeChildren();
 	}
 	
-	templateaction.selectAndCreateThumbnail = function(){
-		//take the info from the popup and bind to the template form 
-		var picture_popup = gEBI("picture-popup"),
-		popup_form_class = new FormClass( picture_popup ),
-		vals = popup_form_class.getValues();
-		
-		//take the filename and path of image and create a thumbnail and store in mongo (if it does not exist)
-		var picture_path = vals.picture_path,
-		thumbnail_key = vals.thumbkey,
-		send = {
-			path:picture_path,
-			thumbname:thumbnail_key
-		};
-		
-		controller.callApi( 'ManagerResourcesMake_thumbnail_if_not_exist', send, function(data){
-			var resp = JSON.parse(data),
-			thumbnail_space = gEBI("thumbnail-space"),
-    		thumbnail_form_class = new FormClass( thumbnail_space );
-    		thumbnail_form_class.bindValues({thumbnail:vals.thumbkey});
-    		picture_popup.addClass("hide");
-    		window.location.hash = "#template";
-    		popup_form_class.clearForm();
-		})
-	}
-	
 	addEvent( window, "load", function(){
 		attributeActions( document.body, "data-templateaction", {
 			
@@ -408,9 +383,6 @@
 					window.location.hash = "#template";
 					popup_form_class.clearForm();
 				})
-			},
-			"make-image-thumbnail":function(elm){
-				elm.addEvent( "click", templateaction.selectAndCreateThumbnail )
 			},
 			"close-popup":function(elm){
 				elm.addEvent( "click", function(e){
@@ -459,30 +431,14 @@
 						md_popup.removeClass("hide")
 					}
 				})
-			},
-			"thumbnail-input":function(elm){
-				elm.addEvent( "change", function(e){
-					var next = this.nextElementSibling,
-					has_img = ( next !== null && next.nodeName === "IMG" )? true : false;
-					if( has_img ){
-						if( this.value !== "" ){
-							//when value has been changed change existing src 
-							next.src = "/thumb/"+this.value;
-						}else{
-							//if input set to "" use default no thumbail 
-							next.src = "/style/resources/no-thumbnail.png";
-						}
-					}
-				})
-			//end last method
-			}
+			} //end last method
 		})
 	})
 
 //POSTS TAB EDIT FUNCS -----------------------------------------------------------------------------------------------------
 
 	window.POSTS_TABLE_PAGENUM = 1;
-	var edit_table_template="<div><img src='/thumb/{{ thumbnail }}' alt='no thumb' >"+
+	var edit_table_template="<div>"+
 	"<table class='manage-table' >"+
 	"<thead>"+
     	"<tr>"+

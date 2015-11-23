@@ -19,7 +19,7 @@ define("MONGO_CONNECTION_STRING", "");
 define("MANAGER_KEYWORD", "manager");
 
 //where page cache saves txt files 
-define("CACHE_DIR", SERVER_PATH."/page_cache");
+define("CACHE_DIR", "/tmp");
 
 //folder where mustache {{ prop }} templates are stored  
 define("TEMPLATE_DIR", SERVER_PATH."/templates");
@@ -39,7 +39,7 @@ $GLOBALS["upload_vars"] = array(
 $GLOBALS["upload_vars"]["allowed_extensions"] = array_merge ( $GLOBALS["upload_vars"]["allowed_image_extensions"], $GLOBALS["upload_vars"]["allowed_audio_extensions"] );
 
 //# of posts that show up per page
-define("AMOUNT_ON_MAIN_PAGE", 8);
+define("AMOUNT_ON_MAIN_PAGE", 2);
 
 //# of post previews that show up underneath post when viewing post url 
 define("AMOUNT_OF_NEXT_POSTS", 4);

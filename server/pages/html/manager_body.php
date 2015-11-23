@@ -93,12 +93,6 @@
 		<div class='tmplt-forum-container' id='save-preview-popup' >
 			<h5>Category:</h5>
 			
-			<div id="thumbnail-space">
-    			<h5>Thumbnail:<span></span></h5>
-    			<input type="hidden" name="thumbnail" data-templateaction="thumbnail-input" readonly="" >
-    			<img src="/style/resources/no-thumbnail.png" alt="" >
-			</div>
-			
 			<h5>Title:</h5>
 			<input type="text" name="title" >
 			
@@ -206,9 +200,6 @@
 		<ul class="button-list" >
 			<li data-templateaction="add-pictue-to-template" >
 				Add Picture To Template
-			</li>
-			<li data-templateaction="make-image-thumbnail" >
-				Make Picture Thumbnail
 			</li>
 			<li class="red-button" data-templateaction="close-popup" >
 				Cancel			

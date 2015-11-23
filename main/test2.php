@@ -38,7 +38,7 @@ include_once $server."/configs.php";
 	$img_p = imagecreatetruecolor( $aspect_width, $aspect_height ); //frame for img to be copied into
 	$img = imagecreatefromjpeg( $src );
 	imagecopyresampled($img_p, $img, 0, 0, 0, 0, $aspect_width, $aspect_height, $width, $height);
-	imagejpeg($img_p, INDEX_PATH."/pics/amazon/dove-thumb.jpg", 100); //save resized img canvas to new src
+	imagejpeg($img_p, INDEX_PATH."/pics/amazon/dove-t.jpg", 100); //save resized img canvas to new src
 	*/
 	
 	/*$initial_date = "2015-4-02";

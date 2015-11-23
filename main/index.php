@@ -21,11 +21,7 @@
 			case "hashtag":
 				$file = '/server/pages/html/hashtag.php';
 				break;
-				
-			case "ajax":
-				$file = '/server/pages/ajax.php';
-				break;
-				
+			
 			case "api":
 				$file = '/server/pages/api_router.php';
 				break;
@@ -42,10 +38,6 @@
 				$file = '/server/pages/logout.php';
 				break;
 				
-			case "thumb":
-				$file = '/server/pages/thumbnail_view.php';
-				break;
-						
 			default:
 				$file = "";
 				break;

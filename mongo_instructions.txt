@@ -8,9 +8,6 @@ db.posts.ensureIndex({"post_data.text":"text","title":"text","description":"text
 #index on time field used for pagination
 db.posts.ensureIndex({lastModified:1})
 
-#index on thumbnail store to ensure unique filename 
-db.fs.files.createIndex( { "filename": 1 }, { unique: true } )
-
 #index on users to ensure unique username
 db.users.createIndex({"username":1},{unique:true})
 

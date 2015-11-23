@@ -1,6 +1,6 @@
 <?php
 	$server = dirname(__FILE__)."/../server";
-	
+	echo "TTTTT";
 	include_once $server."/configs.php";
 	/*$db = MongoConnection();
 	$id = new MongoId( "56056409ce95181c26aa05db" );  //long post with plenty of text

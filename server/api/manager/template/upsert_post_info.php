@@ -12,7 +12,6 @@
 
 		$title = trim( strip_tags( $json["title"] ) );
 		$desc = trim( strip_tags( $json["description"] ) );
-		$thumbnail_path = trim($json["thumbnail"]);
 		
 		$title_length = strlen( $title );
 		$desc_length = strlen( $desc );
@@ -24,11 +23,6 @@
 	if( $valid_inputs && $title_length < 1 ){
 		$valid_inputs = false;
 		$message = "Title must not be blank";
-	}
-	
-	if( $valid_inputs && strlen($thumbnail_path) < 1 ){
-		$valid_inputs = false;
-		$message = "Please Select a thumbnail from the 'Resources' tab";
 	}
 	
 	if( $valid_inputs && $title_length > MAX_TITLE_LENGTH ){
@@ -62,7 +56,7 @@
 		$blogdown = new Parsedown();
 		$post_views = new PostViews( $blogdown );
 		$hashtags = $post_views->extractHashtagsFromPostData( $post_data );  //any #hash in markdown block will get saved so it can be searched on
-		$preview_text = $post_views->getPreviewTextFromMarkdown( $post_data ); //takes all paragraphs from markdown blocks of post_data and returns a 150 word string for use in preview
+		//$preview_text = $post_views->getPreviewTextFromMarkdown( $post_data ); //takes all paragraphs from markdown blocks of post_data and returns a 150 word string for use in preview
 		
 		try {
 			
@@ -82,10 +76,8 @@
 			   		'description'=>$desc,
 			   		'post_data'=> $post_data,
 			   		'lastModified'=>new MongoDate(),
-			   		'thumbnail'=>$thumbnail_path,
 			   		'author'=>$author,
-			   		'hashtags'=>$hashtags,
-			   		'preview_text'=>$preview_text
+			   		'hashtags'=>$hashtags
 				);
 				$write_result = $collection->insert($document);				
 				$written = ( $write_result['ok'] >= 1 )? true : false;			
@@ -101,9 +93,7 @@
 						"title"=>$title, 
 						"description"=>$desc, 
 						"post_data"=>$post_data, 
-						"thumbnail"=>$thumbnail_path,
-						"hashtags"=>$hashtags,
-						'preview_text'=>$preview_text
+						"hashtags"=>$hashtags
 					) 
 				);	
 				$write_result = $collection->update( array( "_id"=>$mongo_id ), $update_array );

@@ -24,23 +24,21 @@
 			$this->db = $this->mongo_conn->$db_name;
 		}
 		
-		public function getHomePagePreviewsFromDbAfterDate( $after ){ //only select info for previews
+		public function getHomePagePostsAfterDate( $after ){ //only select info for previews
 			$start_d = new MongoDate( $after );
 			$count = AMOUNT_ON_MAIN_PAGE+1; //get one extra so we can tell if there is a next page
-			$collection = $this->db->posts;	
-		    $fields = $this->preview_fields;				
-			$cursor = $collection->find( array( "lastModified"=>array( '$lt'=>$start_d ) ), $fields )
+			$collection = $this->db->posts;				
+			$cursor = $collection->find( array( "lastModified"=>array( '$lt'=>$start_d ) ), array() )
 			->limit($count)
 			->sort( array( 'lastModified' => -1 ) );
 			return $cursor;
 		}
 		
-		public function getHashtagPreviewsAfterDate( $after, $hashtag ){ //only select info for previews
+		public function getHashtagPostsAfterDate( $after, $hashtag ){ //only select info for previews
 			$start_d = new MongoDate( $after );
 			$count = AMOUNT_ON_MAIN_PAGE+1; //get one extra so we can tell if there is a next page
-			$collection = $this->db->posts;	
-		    $fields = $this->preview_fields;				
-			$cursor = $collection->find( array( "hashtags"=>$hashtag, "lastModified"=>array( '$lt'=>$start_d ) ), $fields )
+			$collection = $this->db->posts;					
+			$cursor = $collection->find( array( "hashtags"=>$hashtag, "lastModified"=>array( '$lt'=>$start_d ) ), array() )
 			->limit($count)
 			->sort( array( 'lastModified' => -1 ) );
 			return $cursor;
@@ -50,9 +48,8 @@
 			$start_d = new MongoDate( $after );
 			$count = AMOUNT_ON_MAIN_PAGE+1; //get one extra so we can tell if there is a next page
 			$collection = $this->db->posts;	
-			$fields = $this->preview_fields;
 			$q = array( '$text'=>array( '$search'=>$search ), "lastModified"=>array( '$lt'=>$start_d ) );
-			$cursor = $collection->find( $q, $fields )
+			$cursor = $collection->find( $q, array() )
 			->limit($count)
 			->sort( array( 'lastModified' => -1 ) );
 			return $cursor;
