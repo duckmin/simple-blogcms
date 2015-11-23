@@ -232,7 +232,7 @@ section[data-tab='analytics'] > ul.inline-list {
 }
 
 section[data-tab='posts'] > ul.inline-list {
-	margin:15px 0 2rem 0;
+	margin:2rem 0 2rem 0;
 }
 
 section[data-tab='posts'] > ul.button-list {
@@ -374,7 +374,7 @@ section[data-tab='posts'] article.post + div > img {
 
 /* reduce the margin of .ain first-child (post) */
 div#post-space > article:first-child{
-    margin-top:0.5rem;    
+    margin-top:0;    
 }
 
 div#post-space > article:last-of-type{
@@ -674,4 +674,12 @@ ul.login-bar > li:hover{
     animation-name: editFade;
     animation-duration: 1.5s;
 } 
+
+section[data-tab="posts"] #post-space{
+	height:100vh;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+
+
 	

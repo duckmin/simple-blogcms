@@ -3,12 +3,12 @@ TEST PHASE, COOL FUNCS TO TEST NOT READY FOR PRIME TIME YET
 */
 //WHEN ELEMENT WITH SCROLLBAR
 function atBottomScroll( element, callback ){   
-    var fire=element.clientHeight+60;
+    
     element.onscroll=function(){
+    	  var fire=element.clientHeight;
         var current=element.scrollHeight-element.scrollTop;
-        console.log( current );
-
-          console.log( fire );
+        //console.log( current );
+        //console.log( fire );
         if( current<=fire ){
             callback( element ); 
         }

@@ -12,9 +12,7 @@
 		"description"=>true, 
 		"lastModified"=>true, 
 		"author"=>true, 
-		"hashtags"=>true, 
-		"thumbnail"=>true, 
-		"preview_text"=>true
+		"hashtags"=>true
 		);				
 		
 		public function __construct( $mongo_conn )

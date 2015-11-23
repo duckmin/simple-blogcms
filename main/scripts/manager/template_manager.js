@@ -400,29 +400,40 @@
 					}
 				})
 			},
-			"select-post-filter":function(elm){
+			/*"select-post-filter":function(elm){
 				elm.addEvent( "click", function(e){
 					POSTS_TABLE_PAGENUM = 1;
 					this.parentElement.querySelector("input[type='radio']").checked = true;
 					this.nearestParent("ul").querySelector("input[name='search']").value = ""; //blank out seach so its not used in loadTablePage
 					loadTablePage();
 				})
-			},
+			},*/
 			"post-search-input":function(elm){
-				elm.addEvent( "focus", function(e){
-					POSTS_TABLE_PAGENUM = 1;
-					this.parentElement.querySelector("input[type='radio']").checked = true;
-				});
-				
 				elm.addEvent( "keyup", function(e){
-					if( this.value.length > 0 ){
-                        searcher.searchAction();
-				    }
+               searcher.searchAction();
+				});
+			},
+			"reset-search":function(elm){
+				elm.addEvent( "click", function(e){
+               var target = e.currentTarget,
+               parent_ul = target.nearestParent("ul"),
+               input = parent_ul.querySelector("input[name='search']");
+               input.value = "";
+               posts_action.clearPosts();
+               posts_action.loadTablePage( Date.now() );
 				});
 			},
 			"date-picker":function(elm){
 				//initialize date picks in calendar.js
 				setDatePickers(elm)
+			},
+			"post-scroll":function(elm){
+				elm.addEvent( "mouseover", function(e){
+					atBottomScroll( elm, function(element){ //defined in element_extender.js
+						var last_post_timestamp = posts_action.getLastShownPostTimeStamp();
+						posts_action.loadTablePage( last_post_timestamp );				
+					})
+				});	
 			},
 			"show-markdown-help":function(elm){
 				elm.addEvent( "click", function(e){
@@ -465,18 +476,67 @@
 	window.searcher = {
 	    "frozen":false,
 	    "searchAction":function(){
-	        if( !this.frozen ){
-                var self = this;	           
-	            loadTablePage(function(json){
-	               self.frozen = true;
+	        if( !this.frozen ){           
+	            posts_action.clearPosts();
+	            posts_action.loadTablePage( Date.now(), function(json){
+	               this.frozen = true;
 	               setTimeout(function(){
-                        self.frozen = false;	               
-	               },250)
-	            });
+                        this.frozen = false;	               
+	               }.bind(this),250);
+	            }.bind(this));
 	        }
 	    }
 	       
 	};
+	
+	window.posts_action = {
+		"clearPosts":function(){
+			document.querySelector("section[data-tab='posts'] #post-space").removeChildren();
+	   },
+		"getLastShownPostTimeStamp":function(){
+			var last_post = document.querySelector("section[data-tab='posts'] #post-space > article:last-of-type");
+			if( last_post !== null ){
+				var form_class = new FormClass( last_post ),
+				vals = form_class.getValues();
+				return vals.created;
+			}
+		}
+	};
+	
+	posts_action.loadTablePage = function( timestamp, callback ){
+		var cb = callback || function(){},
+		section = document.querySelector('section[data-tab=posts]'),
+		post_space = section.querySelector('#post-space'),
+		category_selection = section.querySelector('ul.inline-list'),
+		nav_body = documentFragment(),
+		cat_form_class = new FormClass( category_selection ),
+		//get value of the radio filter and add to URL so mongo can sort					
+		cat_form_values = cat_form_class.getValues();
+		cat_value = cat_form_values.blog_grid_sort;	
+		//if search is set append this to the URL and cat will be "",  the get_post_info service knows when search isset to bring back search results
+		//and the cat must be blank to use categories from the post_info and not the URL
+		//var search_str = ( cat_form_values.search.length > 0 )? "&search="+cat_form_values.search : "";	
+		var send = {ts:timestamp};
+		if(cat_form_values.search.length > 0){ send.search = cat_form_values.search }
+		
+		controller.callApi( 'ManagerPostsGet_posts_page_info', send, function(d){
+			if( d.length > 0 ){
+				var json = JSON.parse( d );
+				cb(json); //run callback (only used for search)
+				if( json.result === true ){
+					var post_data = json.data.posts,
+					inside_main = "";
+					post_data.forEach( function( single_row ){
+						inside_main += single_row.post_html;
+						inside_main += bindMustacheString( edit_table_template, single_row.post_data );
+					})
+					post_space.innerHTML += inside_main;
+				}else{
+					showAlertMessage( json.message, json.result );
+				}
+			}
+		})
+	}
 	
 	window.loadTablePage = function( callback ){
 		var cb = callback || function(){},

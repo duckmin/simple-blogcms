@@ -58,6 +58,18 @@
 		$hashtags = $post_views->extractHashtagsFromPostData( $post_data );  //any #hash in markdown block will get saved so it can be searched on
 		//$preview_text = $post_views->getPreviewTextFromMarkdown( $post_data ); //takes all paragraphs from markdown blocks of post_data and returns a 150 word string for use in preview
 		
+		/*  need to thunk about this more this would inc hashtags every edit not what we want
+		foreach($hashtags as $hashtag ){
+			$db_name = MONGO_DB_NAME;
+			$write_re = $db->$db_name->hashtags->update( 
+				array("hashtag"=>$hashtag ), 
+				array( '$inc'=>array('count'=>1) ), //increment 'count' by one so we can gauge most used hashtags
+				array('upsert'=>true) 
+			);
+			$su = ( $write_re['n'] === 1 )? true : false;	
+		}	
+		*/	
+		
 		try {
 			
 			$m = MongoConnection();

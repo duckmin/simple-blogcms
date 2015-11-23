@@ -41,7 +41,8 @@ addEvent( window, "load", function(){
 		},	
 		"posts":function( tab, panel ){
 			//load table page once then overwrite this funtion and check for a post being edited and scroll to it 
-			loadTablePage(); //tab_manager.js
+			//loadTablePage(); //tab_manager.js
+			posts_action.loadTablePage( Date.now() );
 			this.posts = managerExtraActions.posts_tab_action;
 		},
 		"analytics":function( panel, tab ){
