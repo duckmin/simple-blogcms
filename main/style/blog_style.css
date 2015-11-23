@@ -80,7 +80,7 @@ main.wrapper > * { /* only blog pages have main.wrapper manager user div.wrapper
 }
 
 article.post, article.preview{
-	border-top:1px solid lightgray;
+	border-top:2px solid lightgray;
 	background-color:white;
 	overflow:hidden;
 	padding-top:1.5rem;

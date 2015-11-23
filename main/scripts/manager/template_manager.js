@@ -429,10 +429,7 @@
 			},
 			"post-scroll":function(elm){
 				elm.addEvent( "mouseover", function(e){
-					atBottomScroll( elm, function(element){ //defined in element_extender.js
-						var last_post_timestamp = posts_action.getLastShownPostTimeStamp();
-						posts_action.loadTablePage( last_post_timestamp );				
-					})
+					
 				});	
 			},
 			"show-markdown-help":function(elm){
@@ -509,13 +506,9 @@
 		post_space = section.querySelector('#post-space'),
 		category_selection = section.querySelector('ul.inline-list'),
 		nav_body = documentFragment(),
-		cat_form_class = new FormClass( category_selection ),
-		//get value of the radio filter and add to URL so mongo can sort					
+		cat_form_class = new FormClass( category_selection ),				
 		cat_form_values = cat_form_class.getValues();
-		cat_value = cat_form_values.blog_grid_sort;	
 		//if search is set append this to the URL and cat will be "",  the get_post_info service knows when search isset to bring back search results
-		//and the cat must be blank to use categories from the post_info and not the URL
-		//var search_str = ( cat_form_values.search.length > 0 )? "&search="+cat_form_values.search : "";	
 		var send = {ts:timestamp};
 		if(cat_form_values.search.length > 0){ send.search = cat_form_values.search }
 		
@@ -531,6 +524,20 @@
 						inside_main += bindMustacheString( edit_table_template, single_row.post_data );
 					})
 					post_space.innerHTML += inside_main;
+					
+					if( json.data.next===true ){
+						var next = createElement('nav',{
+                     text:"More Posts",
+                     events:{
+								"click":function(){
+									this.remove(); //remove button when clicked 
+									var last_post_timestamp = posts_action.getLastShownPostTimeStamp();
+									posts_action.loadTablePage( last_post_timestamp );
+								}
+							}						
+						});
+						post_space.appendChild(next);
+					}
 				}else{
 					showAlertMessage( json.message, json.result );
 				}
@@ -538,6 +545,7 @@
 		})
 	}
 	
+	/* NOT USED ANYMORE KEEP AROUND FOR NOW FOR REFERENCE
 	window.loadTablePage = function( callback ){
 		var cb = callback || function(){},
 		section = document.querySelector('section[data-tab=posts]'),
@@ -607,6 +615,7 @@
 			}
 		})
 	}
+	*/
 	
 	var table_actions = {
 		getTrValues:function( element ){

@@ -676,10 +676,15 @@ ul.login-bar > li:hover{
 } 
 
 section[data-tab="posts"] #post-space{
+	border-top:1px dotted black;
 	height:100vh;
 	overflow-y:auto;
 	overflow-x:hidden;
 }
+
+section[data-tab="posts"] #post-space > article:first-of-type{
+	border-top:none;
+} 
 
 
 	

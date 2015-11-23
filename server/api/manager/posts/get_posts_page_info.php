@@ -16,9 +16,12 @@
 			    $cursor = $db_getter->getHomePagePostsAfterDate( $time_stamp );
 			}
 			$posts = iterator_to_array( $cursor );
-
+			$data = array();
 			if( count( $posts ) > AMOUNT_ON_MAIN_PAGE ){
 				array_pop( $posts );  //if we have one extra remove it ( one extra is given because same query used for pagination on other pages, deos not matter here so just remove it 
+				$data["next"] = true;
+			}else{
+				$data["next"] = false;
 			}
 			
 			$parsedown = new Parsedown();				
@@ -32,7 +35,7 @@
 				array_push( $modified_array, array("post_data"=>$modified_row, "post_html"=>$post_html) );		
 			}
 			
-			$data=array( "posts"=>$modified_array );
+			$data["posts"] = $modified_array;
 			
 			header('Content-Type: application/json; charset=utf-8');
 			echo json_encode( array( "result"=>true, "data"=>$data ) );
