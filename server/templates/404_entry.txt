@@ -1,0 +1,4 @@
+<article class='post'>
+	<ul class='post-head' style='border-bottom:none' ></ul>							
+	<p>Sorry the page <span style="font-weight:700;color:blue" >&ldquo;{{ bad_url }}&rdquo;</span> does not exist</p>
+</article>

@@ -1,0 +1,677 @@
+.wrapper{
+	margin-bottom:20px;
+}
+
+ul.folders {
+	padding-left:10px;
+}
+
+form ul.folders {
+	padding-left:0;
+}
+
+ul.folders > li {
+	margin-top:4px;	
+}
+
+form ul.folders > li {
+    margin-top:0;
+} 
+
+.folders > li input[type='file'] {
+	max-width:185px;
+}
+
+.folders > li.dir > img:nth-of-type(2).open{
+    transform: rotate(180deg);
+}
+
+.folders > li.dir > img:nth-child(2) + img  {
+    display:none;
+}
+
+.folders > li.dir > img:nth-child(2).open + img  {
+    display:inline;
+}
+
+.folders > li > img[src='/style/resources/folder-open.png'] ~ span  {
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.folders > li > span {
+	color:#190087;	
+	vertical-align: baseline;
+}
+
+.folders > li > img {
+	margin-right:5px;
+	vertical-align: sub;
+}
+
+.folders, #template {
+	list-style-type:none;
+}
+
+#template {
+	padding-top:10px;
+}
+
+#template > li  {
+	position:relative;
+	background-color:white;
+	border-bottom:1px solid black;
+	/*padding:4px 10px 10px 10px;*/
+}
+
+#template > li:nth-child(1){
+	border-top:1px solid black;
+}
+
+#template > li > ul {
+	position:absolute;
+	top:4px;
+	right:4px;
+}
+
+#template > li > ul > li {
+	display:inline-block;
+	height:16px;
+	width:16px;
+	
+	margin-left:4px;
+	background-repeat:no-repeat;
+	border-radius:3px;
+}
+
+#template > li > ul > li:hover{
+	background-color:yellow;
+	cursor:pointer;
+}
+
+.tmplt-forum-container{
+	padding-bottom:10px;
+	background-color: lemonchiffon;
+}
+
+.tmplt-forum-container h5, .tmplt-forum-container h6 {
+	padding:4px 0 5px 10px;
+}
+
+.tmplt-forum-container textarea, .tmplt-forum-container input {
+	margin:0 0 0 10px;
+	border:1px solid black;
+	border-radius:3px;
+	font-size:1.3em;
+	padding:3px;
+}
+
+.tmplt-forum-container ul.multi-replace{
+	margin-left:10px;
+}
+
+/* for save post form */
+[data-tab='template'] > div.tmplt-forum-container {
+	border-top:1px solid black;
+}
+
+#template > li:last-child {
+	border-bottom:none;
+}
+
+#thumbnail-space > img {
+	margin-top:0px;
+	height:auto;
+	border:none;
+}
+
+.tmplt-forum-container textarea{
+	width:75%;
+	height:205px;
+}
+
+.tmplt-forum-container textarea[name='description']{
+	height:120px;
+}
+
+.tmplt-forum-container input{
+	width:75%;
+}
+
+.tmplt-forum-container .button-list{
+	margin-top:10px;
+}
+
+.tmplt-forum-container img{
+	height:100px;
+	margin:10px 0 0 10px;
+	display:block;
+	border:4px solid black;
+}
+
+.tmplt-forum-container iframe{
+	margin:10px 0 0 10px;
+	display:block;
+}
+
+.up-arrow {
+	background-image:url('../style/resources/arrow_top.png');
+}
+
+.down-arrow {
+	background-image:url('../style/resources/arrow_down.png');
+}
+
+.remove-item {
+	background-image:url('../style/resources/action_delete.png');
+}
+
+section[data-tab='pictures']{
+    padding-bottom:0px;    
+}
+
+section[data-tab='pictures'] form {
+	margin:10px;
+}
+
+section[data-tab='pictures'] > div {
+	display: inline-block;
+	min-height:300px;
+	max-height:600px;
+	overflow-x:hidden;
+	overflow-y:auto;
+	vertical-align: top;
+	border-style:solid;
+	border-width:1px;
+	border-color:black;
+	border-bottom:none;
+}
+
+section[data-tab='pictures'] > div:nth-of-type(1){
+    width:calc( 30% - 1px );
+	border-left:none;
+}
+
+section[data-tab='pictures'] > div:nth-of-type(2){
+    width:70%;
+	border-right:none;
+	/* so border between 2 divs is not 2px wide, they overlap */
+	margin-left:-1px;
+}
+
+section[data-tab='template'] > ul:first-child{
+	margin-top:10px;
+}
+
+section[data-tab='preview'], section[data-tab='posts']{
+	background-color: #F8F8F8;
+	padding:0 1em 0 1em;
+}
+
+section[data-tab='preview'] ul.button-list {
+	margin:1rem 0;
+}
+
+section[data-tab='preview'], section[data-tab='posts'], section[data-tab='analytics']{
+	border-left:none;
+	border-right:none;
+	border-bottom:none;
+}
+
+section[data-tab='preview'] section.main > article:first-of-type {
+    border-top: 2px solid tomato;
+    margin: 2rem 0;
+}
+
+section[data-tab='analytics']{
+	background-color:white;
+}
+
+section[data-tab='analytics'] > ul.inline-list {
+	margin:10px;
+}
+
+section[data-tab='posts'] > ul.inline-list {
+	margin:15px 0 2rem 0;
+}
+
+section[data-tab='posts'] > ul.button-list {
+	margin-left:10px;
+}
+
+section[data-tab='analytics'] div.left{
+	width:25%;
+}
+
+section[data-tab='analytics'] div.left > ul.multi-replace {
+	width:100%;
+	min-height:100%;
+	max-height:500px;
+	margin:0;
+}
+
+#views-graph{
+	height:400px;
+	max-width:95%;
+	margin:auto;
+}
+
+section[data-tab='analytics'] div.right{
+	width:75%;
+
+}
+
+section[data-tab='analytics'] > div{
+	float:left;
+	min-height:300px;
+	
+}
+
+ul.form-list > li {
+	vertical-align: top;
+}
+
+section[data-tab='posts'] ul.form-list > li {
+	vertical-align: baseline;
+}
+
+section[data-tab='posts'] ul.form-list > li > span {
+    font-size: 1.1em;
+}
+
+ul.form-list > li > span {
+    font-size: 0.9em;
+}
+
+ul.form-list > li > span + input {
+    margin:0 5px;
+}
+
+section[data-tab='pictures'] ul.form-list > li:nth-of-type(1) input{  
+    font-size: 0.9em;
+}
+
+section[data-tab='posts'] ul.form-list > li > span {
+   padding:5px 10px;
+   font-weight: 700; 
+   margin-right:5px;
+}
+
+ul.form-list > li > input[type='radio'] {
+    display:none;
+}
+
+ul.form-list > li > input[type='radio']:checked + span, section[data-tab='posts'] ul.form-list > li > span:hover {
+    background-color: black;
+    border-radius:4px;
+    color:white;
+    cursor: pointer;
+}
+
+ul.form-list > li > input[name='search']{
+    font-size:1.0em;
+    font-weight: 700;
+    
+    border:none;
+    border-radius:4px;
+    border-color:white;
+    border-width:7px;
+    border-style:solid;
+}
+
+ul.form-list > li > input[type='radio']:checked + input[name='search'] {
+    border-color:black;
+    padding:0 5px;
+}
+
+ul.form-list > li > input[type='text'] {
+   
+}
+
+section[data-tab="template"] {
+	padding-bottom:0;
+}
+
+.save-preview-popup{
+	padding:0 10px 10px 10px;
+	border:1px solid black;
+	border-bottom:none;
+	border-left:none;
+	margin-top:10px;
+	background-color:lemonchiffon;
+	border-top-right-radius:5px;
+}
+
+section[data-tab='template'] .save-preview-popup{
+	width:50%;
+}
+
+.save-preview-popup ul.multi-replace {
+	margin-top:0;
+}
+
+.save-preview-popup ul.button-list {
+	margin-left:-10px;
+}
+
+/*no shadow on posts tab so table can align underneath*/
+section[data-tab='posts'] article.post {
+    box-shadow:none;   
+    border:2px solid tomato;
+    border-left:none;
+    border-right:none;
+    margin-top:4rem;
+}
+
+section[data-tab='posts'] article.post + div {
+    overflow:auto;
+}
+
+section[data-tab='posts'] article.post + div > img {
+    float:left;    
+    margin:0 10px;
+}
+
+/* reduce the margin of .ain first-child (post) */
+div#post-space > article:first-child{
+    margin-top:0.5rem;    
+}
+
+div#post-space > article:last-of-type{
+    margin-bottom:0;    
+}
+
+.main > nav.current{
+    background-color:salmon;   
+}
+
+.main > nav {
+	margin-top:2rem;
+	border-top:1px dotted black !important;
+}
+
+.manage-table, .popup-table {
+	border-collapse:collapse;
+	border:1px solid black;
+	border-top:none;
+	background-color: lightgoldenrodyellow;
+}
+
+.manage-table + canvas {
+	display:block;
+	margin-top:1rem;
+}
+
+
+.manage-table tr td{
+	text-align: left;
+	vertical-align: bottom;
+	padding:0.5em 1rem;	
+}
+
+.manage-table td.categories{
+    
+    vertical-align:bottom;    
+}
+
+.manage-table td.categories li{
+    list-style-type:none;  
+    font-size:0.8em; 
+}
+
+.manage-table td.categories li.current-cat{
+    text-decoration:underline;
+}
+
+section > table.manage-table {
+	margin-top:0.5rem;
+}
+
+.manage-table input, .manage-table textarea{
+	width:96%;
+}
+
+.manage-table textarea{
+	min-height:100px;
+}
+
+td.date {
+	font-size:0.75em;
+}
+
+.manage-table thead th{
+	font-weight:600;
+	color:black;
+	font-size:0.8em; 
+	text-align: left; 
+	padding:0 1rem; 
+	border-bottom:1px solid black;
+	border-right:1px solid black;
+}
+
+.manage-table tbody tr td:last-child img{
+	margin-right:10px;
+}
+
+.manage-table tbody tr td:last-child img:hover{
+    cursor:pointer;
+}
+
+.list-nav, .inline-list{
+	list-style-type:none;
+}
+
+.list-nav > li, .inline-list > li{
+	display:inline-block;
+}
+
+.list-nav li{
+	
+	margin-left:10px;
+	font-size:1.5em;
+	color:blue;
+}
+
+.list-nav li:hover{
+	cursor:pointer;
+	color:green;
+}
+
+/*for multi select*/
+select[multiple]{
+	display:none;	
+}
+
+td ul.multi-replace{
+	margin:auto;
+}
+
+ul.multi-replace{
+	max-height:100px;
+	width:200px;
+	overflow-y:auto;
+	border:1px solid black;
+	margin-top:15px;
+	list-style-type:none;
+	border-radius:3px;
+}
+
+ul.multi-replace > li{
+	border-top:1px solid black;
+	text-align:center;
+	padding:2px 0;
+	background-color:white;
+}
+
+ul.multi-replace > li:first-child{
+	border-top:none;
+}
+   
+ul.multi-replace > li.selected-multi{
+	background-color:blue;
+	color:white;
+}
+
+ul.multi-replace > li:hover{
+	cursor:pointer;
+}
+
+/*resources manager file uploads when multiple files*/
+li.add-folder-li {
+	padding-bottom:4px;
+}
+
+#uploads-list > li:first-child {
+   padding-bottom:0; 
+}
+
+#uploads-list > li:first-child ~ li {
+   padding-bottom:0; 
+   margin-top:7px;
+}
+
+/* add upload button */
+#img-upload-form ul.inline-list > li:nth-child(2) > img {
+    margin:0 10px 0 15px;
+    vertical-align: middle;;   
+}
+
+li.add-folder-li > *{
+	vertical-align: middle;
+}
+
+li.add-folder-li img{
+	margin-right:4px;
+}
+
+/* code for pop up boxes */
+.backshade{
+	position:fixed;
+	height:100%;
+	width:100%;
+	top:0;
+	left:0;
+	background-color:rgba(0,0,0,0.5);
+}
+
+.backshade > div{
+	background-color:white;
+	position:fixed;
+	top:50%;
+	left:50%;
+	z-index:9000;
+	border:1px solid black;
+	border-radius:5px;
+	padding:0 10px 10px 10px;
+	max-width:400px;
+}
+
+.backshade > div > p{
+ 	font-size:1.5em;
+ 	text-align:center;
+}
+
+.backshade > div > img{
+	display:block;
+	margin:0 auto 0 auto;
+}
+
+.backshade > div > ul{
+	list-style-type:none;
+	text-align:center;
+	margin-top:10px;
+}
+
+.backshade > div > ul > li{
+	display:inline-block;
+	padding:5px 10px;
+	border:1px solid black;
+	border-radius:5px;
+	font-size:1.1em;
+}
+
+.backshade > div > ul > li:hover{
+	cursor:pointer;
+}
+
+.backshade > div > ul > li:nth-child(1){
+	margin-left:0px;
+}
+
+.backshade > div > ul > li:nth-child(2){
+	margin-left:40px;
+}
+
+/*blogdown explanation table*/
+#blogdown-popup > div{
+	margin-top:0;
+	height:calc( 100vh - 10px );
+	overflow-y:auto;
+	width:35%;
+	margin:auto;
+}
+   
+.popup-table {
+	margin:10px 0;
+}
+
+.popup-table td, .popup-table th {
+	border:1px solid black;
+	padding:5px;
+}
+
+li#edit-mode-form{
+	background-image: none;
+	background-color: orangered;
+	color:white;
+	font-weight:bold;
+}
+
+li#edit-mode-form.hide{
+	display:none;
+}
+
+ul.login-bar{
+	list-style-type:none;
+	text-align:right;
+	padding: 0.5rem 0;
+}
+
+ul.login-bar > li form {
+	display:none;
+}
+
+ul.login-bar > li{
+	display:inline-block;
+	margin-left:11px;
+	background-repeat: no-repeat;
+	background-position:right center;
+	padding-right:20px;
+	color:gray;
+}
+
+ul.login-bar > li:first-child{
+	background-image: url('resources/user.png');
+}
+
+ul.login-bar > li:nth-child(2){
+	background-image: url('resources/logout.png');
+}
+
+ul.login-bar > li:hover{
+	color:black;
+	cursor:pointer;
+}
+
+/* animation for when an edited post is selected */
+@keyframes editFade {
+    from {background-color: orangered;}
+    to {background-color: none;}
+}
+
+/* The element to apply the animation to */
+.highlight-edit {
+    animation-name: editFade;
+    animation-duration: 1.5s;
+} 
+	

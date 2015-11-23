@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ title }}</title>
+	<meta charset="utf-8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta content="General" name="rating"/>
+	<meta content="English" name="language"/>
+	<meta name="description" content="{{ description }}" >
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel='stylesheet' type='text/css' href='{{ base }}/style/global_style.css'>
+	<link rel='stylesheet' type='text/css' href='{{ base }}/style/blog_style.css'>
+	<link rel='stylesheet' type='text/css' href='{{ base }}/style/blog_extra.css'>
+	{{ styles }}
+	<script src='{{ base }}/scripts/element_extender.js' ></script>
+	<script src='{{ base }}/scripts/forms.js' ></script>
+	<script src='{{ base }}/scripts/globals.js' ></script>
+	<script src='{{ base }}/scripts/page_actions/blog_actions.js' ></script>
+	{{ scripts }}
+</head>
+
+<body>
+	<main class='wrapper' >
+		<header>
+			<h1><a href="{{ base }}">Duckmins BlogCMS</a></h1>
+			<form method="GET" action="{{ base }}/submit-search/" >						
+				<input type="text" name="search" placeholder="search" value="{{ search_value }}" />
+				<input type="submit" value="" />
+			</form>
+			<ul>
+				<!-- add hard coded <li> inline here -->
+				{{ header }}<li><a href="#">Link 1</a></li><li><a href="#">Link 2</a></li>
+			</ul>
+		</header>
+		<section class='main'>		
+			{{ body }}
+			##extra_posts
+			<div class="extra-posts-block" id="next-posts">
+				<h3>Next Posts:</h3>
+			</div>
+			<div class="extra-posts-block" id="related-hashtags">
+				<h3>Related Hashtags:</h3>
+			</div>
+			extra_posts##
+		</section>
+	</main>
+</body>
+</html>

@@ -1,0 +1,58 @@
+*{
+	margin:0;
+	padding:0;
+}
+
+input, textarea, select, button{
+	border:1px solid black;
+	border-radius:3px;
+	padding:2px;
+}
+ 
+fieldset{
+	border:none;
+}
+ 
+fieldset > div{
+	display:inline-block;
+	padding:10px;
+	vertical-align: text-top;
+}
+ 
+label, legend{
+	display:block;
+}
+ 
+label{
+	margin-bottom:3px;
+}
+ 
+legend{
+	font-size:0.9em;
+	font-weight:900;
+	padding:10px 10px 0 10px;
+}
+ 
+fieldset > div > input[type='radio']{
+	display:inline-block;
+}
+
+label ~ input[type='radio'], label ~ input[type='checkbox']{
+	position:relative;
+	top:6.5px;
+}   
+ 
+input[type='radio'] + span {
+	font-size:0.7em;
+	position:relative;
+	top:4px;
+	margin:0 3px 0 2px;
+}
+ 
+label{
+	font-size:0.8em;
+}
+ 
+input{
+	padding:2px;
+}

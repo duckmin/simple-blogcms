@@ -1,0 +1,35 @@
+/*section.main, aside{
+	display:inline-block;
+	vertical-align:top;
+}
+
+section.main {
+	width:70%;
+}
+
+aside {
+	width:calc( 30% - 2rem - 1px );
+	height:400px;
+	background-color:white;
+	margin-left:2rem;
+	border-left: 1px dotted black;
+    border-top: 1px dotted black;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+}*/
+
+div.extra-posts-block {
+	margin-top:2rem;
+}
+
+div.extra-posts-block > h3 {
+	color:navy;
+	margin-bottom:0.25em;
+}
+
+div.extra-posts-block:last-of-type {
+	margin-top:1rem;
+}
+
+div.extra-posts-block > article.preview {
+
+}

@@ -1,0 +1,3 @@
+<article class='post'>						
+	<p>no posts found for search &ldquo;{{ search_term }}&rdquo;</p>
+</article>
