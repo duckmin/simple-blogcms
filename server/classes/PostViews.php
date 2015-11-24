@@ -164,6 +164,11 @@
 		
 		public function makePostPreviewHtmlFromData( $row, $template ){		
 			$structure = $this->convertRowValues( $row );
+			if( array_key_exists("post_data", $row) ){
+				$structure["inner"] = $this->formatSinglePost( $row["post_data"] );
+			}else{
+				$structure["inner"] = "";
+			}
 			$structure["time_stamp"] = $structure["lastModified"]->sec * 1000; //for js accurrate UTC conversion
 			$structure["base"] = BASE_URL;
 			$structure["hashtag_links"] = $this->generateHashtagsLinksForPreview( $row["hashtags"] );

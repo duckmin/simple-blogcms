@@ -56,7 +56,7 @@
 		$blogdown = new Parsedown();
 		$post_views = new PostViews( $blogdown );
 		$hashtags = $post_views->extractHashtagsFromPostData( $post_data );  //any #hash in markdown block will get saved so it can be searched on
-		//$preview_text = $post_views->getPreviewTextFromMarkdown( $post_data ); //takes all paragraphs from markdown blocks of post_data and returns a 150 word string for use in preview
+		$preview_text = $post_views->getPreviewTextFromMarkdown( $post_data ); //takes all paragraphs from markdown blocks of post_data and returns a 150 word string for use in preview
 		
 		/*  need to thunk about this more this would inc hashtags every edit not what we want
 		foreach($hashtags as $hashtag ){
@@ -89,7 +89,8 @@
 			   		'post_data'=> $post_data,
 			   		'lastModified'=>new MongoDate(),
 			   		'author'=>$author,
-			   		'hashtags'=>$hashtags
+			   		'hashtags'=>$hashtags,
+			   		'preview_text'=>$preview_text
 				);
 				$write_result = $collection->insert($document);				
 				$written = ( $write_result['ok'] >= 1 )? true : false;			
@@ -105,7 +106,8 @@
 						"title"=>$title, 
 						"description"=>$desc, 
 						"post_data"=>$post_data, 
-						"hashtags"=>$hashtags
+						"hashtags"=>$hashtags,
+						'preview_text'=>$preview_text
 					) 
 				);	
 				$write_result = $collection->update( array( "_id"=>$mongo_id ), $update_array );

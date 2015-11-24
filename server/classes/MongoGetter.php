@@ -12,7 +12,9 @@
 		"description"=>true, 
 		"lastModified"=>true, 
 		"author"=>true, 
-		"hashtags"=>true
+		"hashtags"=>true,
+		"preview_text"=>true,
+		"post_data"=>array('$elemMatch'=>array('data-posttype'=>'image'))
 		);				
 		
 		public function __construct( $mongo_conn )
@@ -27,6 +29,17 @@
 			$count = AMOUNT_ON_MAIN_PAGE+1; //get one extra so we can tell if there is a next page
 			$collection = $this->db->posts;				
 			$cursor = $collection->find( array( "lastModified"=>array( '$lt'=>$start_d ) ), array() )
+			->limit($count)
+			->sort( array( 'lastModified' => -1 ) );
+			return $cursor;
+		}
+		
+		public function getHomePagePostPreviewsAfterDate( $after ){ //only select info for previews
+			$start_d = new MongoDate( $after );
+			$count = AMOUNT_ON_MAIN_PAGE+1; //get one extra so we can tell if there is a next page
+			$collection = $this->db->posts;	
+			$fields = $this->preview_fields;			
+			$cursor = $collection->find( array( "lastModified"=>array( '$lt'=>$start_d ) ), $fields )
 			->limit($count)
 			->sort( array( 'lastModified' => -1 ) );
 			return $cursor;
@@ -53,6 +66,8 @@
 			return $cursor;
 		}
 		
+		/*  
+		OLD PAGINATION CODE NOT CURRENTLY USED KEEP FOR REFERENCE 
 		//used for manager tab search query - get_post_info.php
 		public function getPostsFromDbBySearch( $page_num, $search ){
 			$count = ( $page_num-1 )*AMOUNT_ON_MANAGER_TAB;
@@ -72,6 +87,7 @@
 			$cursor = $collection->find( $filter )->limit($skip)->skip($count)->sort( array( 'lastModified' => -1 ) );
 			return $cursor;
 		}
+		*/
 		
 		//not used currently
 		public function getSinglePostDataById( $id ){ 

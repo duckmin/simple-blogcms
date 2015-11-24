@@ -83,7 +83,7 @@ article.post, article.preview{
 	border-top:2px solid lightgray;
 	background-color:white;
 	overflow:hidden;
-	padding-top:1.5rem;
+	padding-top:0.75rem;
 	padding-bottom:1rem;
 }
 
@@ -97,24 +97,13 @@ article.preview{
 	overflow:hidden;
 }
 
-article.preview > ul {
-
-    list-style-type: none;
+article.preview > img{
+	margin-top:0.3rem;
 }
 
-article.preview > ul > li {
-    display:table-cell;
-    vertical-align: top;
-}
-
-article.preview > ul > li:last-of-type {
-    padding-left: 1rem;   
-}
-
-article.preview > ul > li:last-of-type .title {
-    font-size: 1.1em;
+article.preview > p.title {
+    font-size: 1.5em;
     font-weight: 100;
-    line-height: 1.1em;
 }
 
 article.preview > ul > li:last-of-type p:first-of-type {
@@ -122,14 +111,18 @@ article.preview > ul > li:last-of-type p:first-of-type {
     font-weight:600;*/
 }
 
-article.preview > ul > li:last-of-type p:nth-child(2) {
-	font-size: 1em;
+article.preview > p.preview-text {
+	 font-size: 1em;
     color:dimgray;
+}
+
+article.preview > p.preview-text, article.preview > img {
+	 margin-top:0.5rem
 }
 
 article.preview div.hashtags {
 	font-size:0.9em;
-	margin-top:0.3rem;
+	margin-top:0.5rem;
 	
 }
 
@@ -184,6 +177,7 @@ article.preview a {
 }
 
 article.preview p.post-time {
+
 }
 
 .main article.post > p.post-time > b, article.preview p.post-time > b {
@@ -208,8 +202,8 @@ article.post > embed {
 	height:22px;	
 }
 
-article.post img{
-	
+article.post > img, article.preview > img{
+	display:block;
 }
 
 .main article.post p{
