@@ -1,4 +1,4 @@
-/*section.main, aside{
+section.main, aside{
 	display:inline-block;
 	vertical-align:top;
 }
@@ -7,15 +7,16 @@ section.main {
 	width:70%;
 }
 
-aside {
-	width:calc( 30% - 2rem - 1px );
+.wrapper > aside {
+	width:calc( 30% - 3rem );
 	height:400px;
 	background-color:white;
-	margin-left:2rem;
+	margin-left:0;
+	/*margin-left:2rem;
 	border-left: 1px dotted black;
     border-top: 1px dotted black;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
-}*/
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);*/
+}
 
 div.extra-posts-block {
 	margin-top:2rem;
@@ -33,3 +34,22 @@ div.extra-posts-block:last-of-type {
 div.extra-posts-block > article.preview {
 
 }
+
+@media only screen and (max-width: 750px) {
+	
+	.wrapper > aside, section.main { 
+		display:block;
+		width:auto;
+	}
+	
+	.wrapper > aside {
+		margin-left:0.5rem;
+		margin-top:2rem;
+	}
+	
+	section.main { 
+		
+	}
+	
+}   
+

@@ -41,8 +41,17 @@
 			<div class="extra-posts-block" id="related-hashtags">
 				<h3>Related Hashtags:</h3>
 			</div>
-			extra_posts##
-		</section>
+		   extra_posts##
+		</section><!--
+		--><aside>
+			<ul>
+				<li>#hello</li>
+				<li>#goodbye</li>
+				<li>#TebowTime</li>
+				<li>#OutKast</li>
+				<li>#WiddjaDiddja</li>
+			</ul>
+		</aside>
 	</main>
 </body>
 </html>

@@ -45,22 +45,24 @@
 			return $cursor;
 		}
 		
-		public function getHashtagPostsAfterDate( $after, $hashtag ){ //only select info for previews
+		public function getHashtagPostPreviewsAfterDate( $after, $hashtag ){ //only select info for previews
 			$start_d = new MongoDate( $after );
 			$count = AMOUNT_ON_MAIN_PAGE+1; //get one extra so we can tell if there is a next page
-			$collection = $this->db->posts;					
-			$cursor = $collection->find( array( "hashtags"=>$hashtag, "lastModified"=>array( '$lt'=>$start_d ) ), array() )
+			$collection = $this->db->posts;		
+			$fields = $this->preview_fields;				
+			$cursor = $collection->find( array( "hashtags"=>$hashtag, "lastModified"=>array( '$lt'=>$start_d ) ), $fields )
 			->limit($count)
 			->sort( array( 'lastModified' => -1 ) );
 			return $cursor;
 		}
 		
-		public function getHomePagePostsFromSearchAfterDate( $after, $search ){		
+		public function getHomePagePostPreviewsFromSearchAfterDate( $after, $search ){		
 			$start_d = new MongoDate( $after );
 			$count = AMOUNT_ON_MAIN_PAGE+1; //get one extra so we can tell if there is a next page
-			$collection = $this->db->posts;	
+			$collection = $this->db->posts;
+			$fields = $this->preview_fields;		
 			$q = array( '$text'=>array( '$search'=>$search ), "lastModified"=>array( '$lt'=>$start_d ) );
-			$cursor = $collection->find( $q, array() )
+			$cursor = $collection->find( $q, $fields )
 			->limit($count)
 			->sort( array( 'lastModified' => -1 ) );
 			return $cursor;

@@ -164,10 +164,9 @@
 		
 		public function makePostPreviewHtmlFromData( $row, $template ){		
 			$structure = $this->convertRowValues( $row );
-			if( array_key_exists("post_data", $row) ){
+			if( array_key_exists("post_data", $row) ){  //query will bring back 'post_data' only if image exists,  if post has no image no post data will bein returned row in preview query
+				$structure["has_inner"] = true;
 				$structure["inner"] = $this->formatSinglePost( $row["post_data"] );
-			}else{
-				$structure["inner"] = "";
 			}
 			$structure["time_stamp"] = $structure["lastModified"]->sec * 1000; //for js accurrate UTC conversion
 			$structure["base"] = BASE_URL;

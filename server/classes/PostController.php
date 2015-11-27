@@ -38,7 +38,7 @@
 		
 		public function getHashtagPostsByTime( $time, $hashtag ){
 			$str="";
-			$posts_from_db = $this->mongo_getter->getHashtagPostsAfterDate( (int)$time, $hashtag );
+			$posts_from_db = $this->mongo_getter->getHashtagPostPreviewsAfterDate( (int)$time, $hashtag );
 			$L = $posts_from_db->count(true);
 			if( $L === 0 ){ 
 				//no results return false and send to 404 (paginator logic should not allow this to happen)
@@ -55,9 +55,9 @@
 			}else{
 				$paginator = "";
 			}
-			$post_template = file_get_contents( TEMPLATE_DIR."/blog_post.txt" );		
+			$post_template = file_get_contents( TEMPLATE_DIR."/post_preview.txt" );		
 			foreach( $post_array as $single ){		
-				$post_html = $this->post_views->makePostHtmlFromData( $single, $post_template ); 				$str .= $post_html;
+				$post_html = $this->post_views->makePostPreviewHtmlFromData( $single, $post_template ); 				$str .= $post_html;
 			}
 			return $str.$paginator;
 		}
@@ -65,7 +65,7 @@
 		public function getSearchPagePostsAfterTime( $time, $search ){
 			$str="";
 			$search = trim( $search );
-			$posts_from_db = $this->mongo_getter->getHomePagePostsFromSearchAfterDate( (int)$time, $search );
+			$posts_from_db = $this->mongo_getter->getHomePagePostPreviewsFromSearchAfterDate( (int)$time, $search );
 			$L = $posts_from_db->count(true);
 			if( $L === 0 ){
 				$empty_search_template = file_get_contents( TEMPLATE_DIR."/empty_search.txt" );				
@@ -84,9 +84,9 @@
 			}else{
 				$paginator = "";
 			}
-			$post_template = file_get_contents( TEMPLATE_DIR."/blog_post.txt" );		
+			$post_template = file_get_contents( TEMPLATE_DIR."/post_preview.txt" );		
 			foreach( $post_array as $single ){		
-				$post_html = $this->post_views->makePostHtmlFromData( $single, $post_template ); //pass in cat because post can have multiple cats and we want to know which one we are looking at				$str .= $post_html;
+				$post_html = $this->post_views->makePostPreviewHtmlFromData( $single, $post_template ); //pass in cat because post can have multiple cats and we want to know which one we are looking at				$str .= $post_html;
 			}
 			return $str.$paginator;
 		}

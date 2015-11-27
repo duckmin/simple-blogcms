@@ -293,7 +293,7 @@ blockquote {
 	background-color:azure;
 }
 
-.wrapper > *:last-child {
+.wrapper > section.main:last-of-type {
 	margin-bottom:2rem !important;
 }
 

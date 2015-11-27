@@ -3,7 +3,11 @@
 		<a class="title" href="{{ post_url }}">{{ title }}</a>
 	</p>
 	<p class="post-time" ><b>by: {{ author }}</b>&nbsp;&nbsp;<time data-ts="{{ time_stamp }}" >{{ created }}</time></p>
-	{{ inner }}
+	##has_inner
+	<a class="title" href="{{ post_url }}">
+		{{ inner }}
+	</a>
+	has_inner##
 	<p class="preview-text" >{{ preview_text }}</p>
 	<div class="hashtags">{{ hashtag_links }}</div>
 </article>
