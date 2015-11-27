@@ -9,13 +9,23 @@ section.main {
 
 .wrapper > aside {
 	width:calc( 30% - 3rem );
-	height:400px;
 	background-color:white;
 	margin-left:0;
+	padding-top:1rem;
 	/*margin-left:2rem;
 	border-left: 1px dotted black;
     border-top: 1px dotted black;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);*/
+}
+
+aside > ul {
+	list-style-type:none;
+	margin-bottom:1rem;
+}
+
+aside > ul > li:first-child{
+	font-weight:700;
+	color:navy;
 }
 
 div.extra-posts-block {
@@ -44,7 +54,12 @@ div.extra-posts-block > article.preview {
 	
 	.wrapper > aside {
 		margin-left:0.5rem;
-		margin-top:2rem;
+		margin-top:1rem;
+	}
+	
+	.wrapper > aside > ul {
+		display:inline-block;
+		margin-right:1rem;
 	}
 	
 	section.main { 

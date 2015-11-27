@@ -44,13 +44,7 @@
 		   extra_posts##
 		</section><!--
 		--><aside>
-			<ul>
-				<li>#hello</li>
-				<li>#goodbye</li>
-				<li>#TebowTime</li>
-				<li>#OutKast</li>
-				<li>#WiddjaDiddja</li>
-			</ul>
+			{{ aside_content }}
 		</aside>
 	</main>
 </body>

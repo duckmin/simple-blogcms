@@ -320,7 +320,7 @@ blockquote {
 /*1000px width and below*/		  
 @media only screen and (max-width: 1000px) {
 	
-	.main article.post img{
+	.main article.post img, .main article.preview img{
 		max-width:100%;
 	}
 	

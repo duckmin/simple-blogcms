@@ -178,6 +178,36 @@
 			$cursor = $collection->find( array( 'url'=>$url, 'date'=>$date_array ) )->sort( array( 'date'=>1 ) );	
 			return $cursor;
 		}
+		
+		public function getMostRecentPostTimestamp(){  //for aside hashtag operation 
+			$collection = $this->db->posts;	
+			$q = array('$query'=>array(), '$orderby'=>array('lastModified'=>-1 ) );
+			$fields = array( 'lastModified'=>1 );
+			$find = $collection->findOne( $q, $fields );
+			return $find;
+		}
+		
+		//give 2 (int)timestamps and get distinct hashtags for date range
+		public function getDistinctHashtagsForDateRange( $start, $end ){  //for aside hashtag operation 
+			$start_date = new MongoDate( $start );
+			$end_date = new MongoDate( $end );
+			$collection = $this->db->posts;	
+			$q = array( 'lastModified'=>array( '$lte'=>$start_date, '$gte'=>$end_date ) );
+			$find = $collection->distinct( 'hashtags', $q );
+			return $find;
+		}
+		
+		public function getAllDistinctHashtags(){  //for aside hashtag operation 
+			$collection = $this->db->posts;	
+			$find = $collection->distinct( 'hashtags');
+			return $find;
+		}
+		
+		public function getPostsWithHashtagCount( $hashtag ){  //for aside hashtag operation 
+			$collection = $this->db->posts;	
+			$find = $collection->count( array('hashtags'=>$hashtag) );
+			return $find;
+		}
 			
 	};
 	

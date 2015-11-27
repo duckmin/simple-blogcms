@@ -52,13 +52,17 @@ define("AMOUNT_ON_MANAGER_TAB", 1);
 define("MAX_PAGE_CACHE_MINS", -5);//turned off for dev turn on for prod to reasonable amount of mins
 
 //minutes until cache file expires (long version)
-define("LONG_PAGE_CACHE_MINS", 15);
+//3 days this is used for costly DB operations that do not need to be constantly updated
+define("LONG_PAGE_CACHE_MINS", (3*24*60) );
 
 //max # of characters in post title 
 define("MAX_TITLE_LENGTH", 500);
 
 //max # of characters in post description
 define("MAX_DESC_LENGTH", 500);
+
+//max # of characters in post description
+define("MAX_POPULAR_HASHTAG_LIMIT", 1000);  //limits list size of most popular hashtags *1000 is for debug set to sane limit*
 
 //autoload any class in /server/classes naming scheme with this function
 spl_autoload_register('myAutoloader');
