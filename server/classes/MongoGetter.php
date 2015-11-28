@@ -12,7 +12,7 @@
 		"description"=>true, 
 		"lastModified"=>true, 
 		"author"=>true, 
-		"hashtags"=>true,
+		"display_hashtags"=>true,
 		"preview_text"=>true,
 		"post_data"=>array('$elemMatch'=>array('data-posttype'=>'image'))
 		);				
@@ -193,13 +193,13 @@
 			$end_date = new MongoDate( $end );
 			$collection = $this->db->posts;	
 			$q = array( 'lastModified'=>array( '$lte'=>$start_date, '$gte'=>$end_date ) );
-			$find = $collection->distinct( 'hashtags', $q );
+			$find = $collection->distinct( 'display_hashtags', $q );
 			return $find;
 		}
 		
 		public function getAllDistinctHashtags(){  //for aside hashtag operation 
 			$collection = $this->db->posts;	
-			$find = $collection->distinct( 'hashtags');
+			$find = $collection->distinct( 'display_hashtags');
 			return $find;
 		}
 		

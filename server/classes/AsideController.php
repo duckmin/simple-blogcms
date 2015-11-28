@@ -16,9 +16,11 @@
 		
 		public function getPopularHashtagFullCountArray(){
 			$all_hashtags = $this->mongo_getter->getAllDistinctHashtags();
+			
 			$count_holder = array();
 			foreach( $all_hashtags as $hashtag ){
-				$count = $this->mongo_getter->getPostsWithHashtagCount( $hashtag );
+			    $lower_hashtag = strtolower( $hashtag );
+				$count = $this->mongo_getter->getPostsWithHashtagCount( $lower_hashtag );
 				$count_holder[$hashtag] = $count;
 			}
 			arsort($count_holder);
@@ -50,7 +52,7 @@
 		public function getMostPopularHashtagsLinksBox(){
 			$cache_key = self::POPULAR_HASHTAG_CACHE_KEY;
 			$cache = new CacheController( CACHE_DIR, $cache_key );
-			if( $cache->urlInCache() && !$cache->cacheMinutesOverLimit( LONG_PAGE_CACHE_MINS ) ){ //-5 so list is generated everytime for testing  
+			if( $cache->urlInCache() && !$cache->cacheMinutesOverLimit( /*LONG_PAGE_CACHE_MINS*/ -5 ) ){ //-5 so list is generated everytime for testing  
 				echo "popular hashtags cached<br>";  //debug remove later 	
 				return $cache->pullUrlContentFromCache();
 		   }else{

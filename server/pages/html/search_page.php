@@ -18,8 +18,13 @@
 		$db_getter = new MongoGetter( $db ); 
 		$parsedown = new Parsedown();				
     	$post_views = new PostViews( $parsedown );
-    	$post_controller = new PostController( $db_getter, $post_views );
+    	$post_controller = new PostController( $db_getter, $post_views );	
+		$aside_views = new AsideViews();
+		$aside_controller = new AsideController( $db_getter, $aside_views );
+		
 		$mongo_results = $post_controller->getSearchPagePostsAfterTime( $time, $search ); //false if no result set
+		$hashtags_of_past_year_list = $aside_controller->getPastYearsHashtagsLinksBox();
+		$popular_hashtags_list = $aside_controller->getMostPopularHashtagsLinksBox();
 	}catch( MongoException $e ){
 		//echo $e->getMessage();
 		//Mongo error, go to 404 page		
@@ -30,8 +35,8 @@
 	if( $mongo_results ){
 		$safe_search = htmlspecialchars($search, ENT_QUOTES);
 		$template = file_get_contents( TEMPLATE_DIR."/base_page.txt" );
-		$title = "search '".$safe_search." - ".$_SERVER['HTTP_HOST'];		
-		$desc	= 	$_SERVER['HTTP_HOST']." - browse search '".$safe_search;
+		$title = $_SERVER['HTTP_HOST']." | search '$safe_search'";		
+		$desc = $_SERVER['HTTP_HOST']." - browse search '".$safe_search;
 		//need to special chars anything using $search param that gets inserted into HTML
 		$tmplt_data = array();
 		$tmplt_data["title"] = $title;
@@ -42,6 +47,7 @@
 		$tmplt_data["search_value"] = $safe_search;		
 		$tmplt_data["header"] = "<li class=\"current-cat\" ><a href=\"/search/$safe_search/\">&quot;$safe_search&quot;</a></li>";
 		$tmplt_data["body"] = $mongo_results;
+		$tmplt_data["aside_content"] = $popular_hashtags_list.$hashtags_of_past_year_list;
 		
 		$full_page = TemplateBinder::bindTemplate( $template, $tmplt_data );
 		echo $full_page;

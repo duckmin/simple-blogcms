@@ -39,8 +39,8 @@
 
 	if( $mongo_results ){
     	$template = file_get_contents( TEMPLATE_DIR."/base_page.txt" );
-    	$title = "Main page - ".$_SERVER['HTTP_HOST'];		
-    	$desc= $_SERVER['HTTP_HOST']." - browse ";
+    	$title = $_SERVER['HTTP_HOST'];		
+    	$desc= $_SERVER['HTTP_HOST']." | Front Page";
         $scripts = "";
 		
 		$tmplt_data = array();

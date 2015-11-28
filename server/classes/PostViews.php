@@ -60,7 +60,7 @@
 				if( $post_type === "markdown" ){
 					preg_match_all( "/#{1}([A-z0-9]+)/", $post_item["text"], $hash_matches );
 					if( isset($hash_matches[1]) ){ 
-						$tmp = array_map("strtolower", $hash_matches[1]);  //lower case al hashes found in block
+						$tmp = $hash_matches[1];
 						foreach( $tmp as $hsh ){  //check each found hash to see if it has already been added if not add it
 							if( !in_array($hsh, $hashes) ){
 					 	 		array_push( $hashes, $hsh );
@@ -170,7 +170,7 @@
 			}
 			$structure["time_stamp"] = $structure["lastModified"]->sec * 1000; //for js accurrate UTC conversion
 			$structure["base"] = BASE_URL;
-			$structure["hashtag_links"] = $this->generateHashtagsLinksForPreview( $row["hashtags"] );
+			$structure["hashtag_links"] = $this->generateHashtagsLinksForPreview( $row["display_hashtags"] );
 			return TemplateBinder::bindTemplate( $template, $structure );	
 		}
 		
@@ -185,7 +185,8 @@
 			sort( $hashtag_array );
 			$hash_links = "";
 			foreach( $hashtag_array as $hashtag ){ 
-				$hash_links .= "<span><a href=\"/hashtag/$hashtag\">#$hashtag</a></span>";
+				$lower_hash = strtolower($hashtag);
+				$hash_links .= "<span><a href=\"/hashtag/$lower_hash\">#$hashtag</a></span>";
 			}
 			return $hash_links;
 		}	

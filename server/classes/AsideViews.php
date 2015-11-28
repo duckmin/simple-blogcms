@@ -6,7 +6,8 @@
 		public function formatHashtagList( $label, $hashtag_array ){
 			$list = "<li>$label</li>";
 			foreach( $hashtag_array as $hashtag ){
-				$list .= "<li><a href=\"/hashtag/$hashtag\">#$hashtag</a></li>";
+				$lower_hashtag = strtolower( $hashtag );
+				$list .= "<li><a href=\"/hashtag/$lower_hashtag\">#$hashtag</a></li>";
 			}
 			return "<ul>$list</ul>";
 		}

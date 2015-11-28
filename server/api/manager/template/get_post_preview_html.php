@@ -13,7 +13,8 @@
 	$single["post_data"] = $template_data;
 	$single["author"] = $_SESSION['user'];
 	$single["description"] = $form_data["description"];
-	$single["hashtags"] = $post_view->extractHashtagsFromPostData( $template_data );
+	$single["display_hashtags"] = $post_view->extractHashtagsFromPostData( $template_data );
+	$single["hashtags"] = array_map("strtolower", $single["display_hashtags"]);
 	$single["preview_text"] = $post_view->getPreviewTextFromMarkdown( $template_data );
 	
 	echo $post_view->makePostHtmlFromData( $single, $post_template );

@@ -21,7 +21,12 @@
 		$db_getter = new MongoGetter( $db );
 		$post_views = new PostViews( new Parsedown() );
 		$non_hyphenated_title = $post_views->convertPostTitleHyphensToSpaces( $title );
+		$aside_views = new AsideViews();
+		$aside_controller = new AsideController( $db_getter, $aside_views );
+		
 		$single_post_data = $db_getter->getSingleRowFromDate( $non_hyphenated_title, $start, $end ); //NULL if not found
+		$hashtags_of_past_year_list = $aside_controller->getPastYearsHashtagsLinksBox();
+		$popular_hashtags_list = $aside_controller->getMostPopularHashtagsLinksBox();
 	}catch( MongoException $e ){
 		//echo $e->getMessage();
 		//Mongo error, go to 404 page		
@@ -37,7 +42,7 @@
 		$scripts = "<script src='/scripts/page_actions/main_analytics.js'></script>";
 		$scripts .= "<script src='/scripts/page_actions/post_actions.js' ></script>";
 		
-		$tmplt_data["title"] = $single_post_data["title"]." - ".$_SERVER['HTTP_HOST'];
+		$tmplt_data["title"] = $_SERVER['HTTP_HOST']." | ".$single_post_data["title"];
 		$tmplt_data["description"] = $single_post_data["description"];
 		$tmplt_data["styles"] = "";
 		$tmplt_data["scripts"] = $scripts;
@@ -46,6 +51,7 @@
 		$tmplt_data["search_value"] = "";
 		$tmplt_data["body"] = $post_views->makePostHtmlFromData( $single_post_data, $post_template );
 		$tmplt_data["extra_posts"] = true; //include ul where we append recent posts and related hashtags 
+		$tmplt_data["aside_content"] = $popular_hashtags_list.$hashtags_of_past_year_list;
 	
 		$full_page = TemplateBinder::bindTemplate( $page_template, $tmplt_data );
 		echo $full_page;

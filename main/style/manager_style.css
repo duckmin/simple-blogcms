@@ -677,7 +677,7 @@ ul.login-bar > li:hover{
 
 section[data-tab="posts"] #post-space{
 	border-top:1px dotted black;
-	height:100vh;
+	height:75vh;
 	overflow-y:auto;
 	overflow-x:hidden;
 }
