@@ -56,7 +56,7 @@
 		$blogdown = new Parsedown();
 		$post_views = new PostViews( $blogdown );
 		$post_hashtags = $post_views->extractHashtagsFromPostData( $post_data );  //any #hash in markdown block will get saved so it can be searched on
-		$search_hashtags = array_map("strtolower", $post_hashtags); //lower case al hashes so they can be used to search with but not dislay
+		$search_hashtags = array_unique ( array_map("strtolower", $post_hashtags) ); //lower case al hashes so they can be used to search with but not dislay
 		$preview_text = $post_views->getPreviewTextFromMarkdown( $post_data ); //takes all paragraphs from markdown blocks of post_data and returns a 150 word string for use in preview
 		
 		/*  need to thunk about this more this would inc hashtags every edit not what we want
