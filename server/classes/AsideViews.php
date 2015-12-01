@@ -11,6 +11,14 @@
 			}
 			return "<ul>$list</ul>";
 		}
+		
+		public function formatHashtagCountList( $label, $hashtag_array ){
+			$list = "<li>$label</li>";
+			foreach( $hashtag_array as $hashtag=>$count ){
+				$list .= "<li>#$hashtag&nbsp;<span>$count</span></li>";
+			}
+			return "<ul class=\"most-used-hashtags\" >$list</ul>";
+		}
 	}
 	
 ?>

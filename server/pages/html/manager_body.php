@@ -88,26 +88,36 @@
 		</ul>
 		
 		
-		<ul class="template" id="template" ></ul>
-		
-		<div class='tmplt-forum-container' id='save-preview-popup' >
-			<h5>Category:</h5>
+		<div class="tmplt-holder" >
+			<ul class="template" id="template" ></ul>
 			
-			<h5>Title:</h5>
-			<input type="text" name="title" >
-			
-			<h5>Description:</h5>
-			<textarea name="description" ></textarea>
-
-			<ul class="button-list" >
-				<li data-templateaction="preview-post" >
-					Preview Post
-				</li>
-				<li data-templateaction="cancel-template" class="red-button" >
-					Cancel
-				</li>
-			</ul>
-		</div>
+			<div class='tmplt-forum-container' id='save-preview-popup' >
+				<h5>Category:</h5>
+				
+				<h5>Title:</h5>
+				<input type="text" name="title" >
+				
+				<h5>Description:</h5>
+				<textarea name="description" ></textarea>
+	
+				<ul class="button-list" >
+					<li data-templateaction="preview-post" >
+						Preview Post
+					</li>
+					<li data-templateaction="cancel-template" class="red-button" >
+						Cancel
+					</li>
+				</ul>
+			</div>
+		</div><!--
+		--><?php
+			$db = MongoConnection();
+			$db_getter = new MongoGetter( $db ); 
+    		$aside_views = new AsideViews();
+			$aside_controller = new AsideController( $db_getter, $aside_views );
+			$hash_list = $aside_controller->getAllHashtagsCountForManager();
+			echo $hash_list;
+		?>
 	</section>
 	
 	<section data-tab='preview' >	
@@ -165,36 +175,6 @@
 		</form>
 		<div id="resource-folders" ></div><div id="pic-files" ></div>
 	</section>
-	
-	<!--section class="clearfix" data-tab='analytics' >
-		<ul class="inline-list form-list" data-templateaction="date-picker">
-			<li>
-				<span>start</span>
-				<input data-datepick="" type="text" value='<?php  echo date( "m/d/Y", strtotime("-1 week") ); ?>' name="start_date">
-			</li>	
-			<li>
-				<span>end</span>
-				<input data-datepick="" type="text" value='<?php  echo date( "m/d/Y" ); ?>' name="end_date">
-			</li>
-			<li>
-				<script>
-					document.write( "<input type='hidden' name='url' value='/' >" );
-				</script>	
-			</li>
-		</ul>
-		<div class="left" >
-			<ul class="multi-replace" >
-		
-			</ul>
-		</div>
-		<div class="right">
-			<div id='views-graph'>
-			</div>
-		</div>
-	</section-->
-	
-	
-	
 </div>
 
 <div class='dark-shade hide' id="picture-popup" >
