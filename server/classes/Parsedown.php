@@ -36,7 +36,7 @@ class Parsedown {
 			}, $block );
 			
 			//add links @ http://link.com | link text |    <a href="http://link.com">link text</a>
-			$block = preg_replace_callback( "#@\s*((http|https)://(www.|)[A-z0-9]+.[A-z\.]{2,5}[%A-z0-9\/+]+(\?{1}[&A-z0-9=%]+|))\s*\|\s*([!?A-z0-9\s]+)\|#", function($m){
+			$block = preg_replace_callback( "#@\s*((http|https)://(www.|)[A-z0-9-]+.[A-z\.]{2,5}[%A-z0-9\/+-]+(\?{1}[&A-z0-9=%]+|))\s*\|\s*([!?A-z0-9\s]+)\|#", function($m){
 				//echo var_dump( $m );
 				$link_text = trim($m[5]);
 				return "<a href=\"$m[1]\" target=\"_blank\" >$link_text</a>";

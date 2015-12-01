@@ -497,7 +497,16 @@
 				vals = form_class.getValues();
 				return vals.created;
 			}
-		}
+		},
+		"getMorePosts":function(e){
+		    var target = e.currentTarget,
+			last_post_timestamp = posts_action.getLastShownPostTimeStamp();
+			
+			posts_action.loadTablePage( last_post_timestamp, function(){
+	          target.style.visibility = "hidden";
+	          target.removeEventListener("click", posts_action.getMorePosts );
+			});
+		 }
 	};
 	
 	posts_action.loadTablePage = function( timestamp, callback ){
@@ -529,11 +538,7 @@
 						var next = createElement('nav',{
                      text:"More Posts",
                      events:{
-								"click":function(){
-									this.remove(); //remove button when clicked 
-									var last_post_timestamp = posts_action.getLastShownPostTimeStamp();
-									posts_action.loadTablePage( last_post_timestamp );
-								}
+								"click":posts_action.getMorePosts
 							}						
 						});
 						post_space.appendChild(next);

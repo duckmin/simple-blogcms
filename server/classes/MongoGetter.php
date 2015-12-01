@@ -68,6 +68,17 @@
 			return $cursor;
 		}
 		
+		public function getHomePagePostsFromSearchAfterDate( $after, $search ){		
+			$start_d = new MongoDate( $after );
+			$count = AMOUNT_ON_MAIN_PAGE+1; //get one extra so we can tell if there is a next page
+			$collection = $this->db->posts;		
+			$q = array( '$text'=>array( '$search'=>$search ), "lastModified"=>array( '$lt'=>$start_d ) );
+			$cursor = $collection->find( $q )
+			->limit($count)
+			->sort( array( 'lastModified' => -1 ) );
+			return $cursor;
+		}
+		
 		/*  
 		OLD PAGINATION CODE NOT CURRENTLY USED KEEP FOR REFERENCE 
 		//used for manager tab search query - get_post_info.php

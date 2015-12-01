@@ -680,6 +680,7 @@ section[data-tab="posts"] #post-space{
 	height:75vh;
 	overflow-y:auto;
 	overflow-x:hidden;
+	position:relative;
 }
 
 section[data-tab="posts"] #post-space > article:first-of-type{
