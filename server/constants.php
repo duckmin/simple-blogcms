@@ -10,7 +10,8 @@ define("INDEX_PATH", SERVER_PATH."/../main");
 //these values can be changed according to your environment, and to affect some page behaviors 
 
 //mongo DB name project uses
-define("MONGO_DB_NAME", "simple_blog");
+//define("MONGO_DB_NAME", "simple_blog");
+define("MONGO_DB_NAME", "coolcaptain_new");
 
 //string used to connect to mongo instance, example: "mongodb:///tmp/mongodb-27017.sock"
 define("MONGO_CONNECTION_STRING", "");
@@ -39,13 +40,13 @@ $GLOBALS["upload_vars"] = array(
 $GLOBALS["upload_vars"]["allowed_extensions"] = array_merge ( $GLOBALS["upload_vars"]["allowed_image_extensions"], $GLOBALS["upload_vars"]["allowed_audio_extensions"] );
 
 //# of posts that show up per page
-define("AMOUNT_ON_MAIN_PAGE", 2);
+define("AMOUNT_ON_MAIN_PAGE", 4);
 
 //# of post previews that show up underneath post when viewing post url 
 define("AMOUNT_OF_NEXT_POSTS", 4);
 
 //# of posts that show up on the "posts" tab in the manager
-define("AMOUNT_ON_MANAGER_TAB", 1);
+define("AMOUNT_ON_MANAGER_TAB", 4);
 
 //minutes until cache file expires
 //caching is only used in file ./server/pages/html/date_blog.php,  removing the caching logic and keeping the mongo/display logic in this file can remove this feature

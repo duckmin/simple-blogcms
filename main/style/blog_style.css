@@ -206,6 +206,10 @@ article.post > img, article.preview > img{
 	display:block;
 }
 
+article.post > img + img {
+    margin-top:1.5rem;
+}
+
 .main article.post p{
 	/*max-width:90%;
 	margin:0 auto 10px auto;*/

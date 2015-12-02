@@ -29,7 +29,7 @@
 			</form>
 			<ul>
 				<!-- add hard coded <li> inline here -->
-				{{ header }}<li><a href="#">Link 1</a></li><li><a href="#">Link 2</a></li>
+				{{ header }}<li><a href="#">Sample</a></li><li><a href="#">Sample2</a></li>
 			</ul>
 		</header>
 		<section class='main'>		

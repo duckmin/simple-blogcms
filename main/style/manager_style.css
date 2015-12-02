@@ -61,10 +61,6 @@ form ul.folders > li {
 	/*padding:4px 10px 10px 10px;*/
 }
 
-#template > li:nth-child(1){
-	border-top:1px solid black;
-}
-
 #template > li > ul {
 	position:absolute;
 	top:4px;
@@ -109,34 +105,43 @@ form ul.folders > li {
 
 /* for save post form */
 [data-tab='template'] > div > div.tmplt-forum-container {
-	border-top:1px solid black;
 	border-right:1px solid black;
 }
 
 [data-tab='template'] > div.tmplt-holder, [data-tab='template'] > ul.most-used-hashtags {
 	display:inline-block;
-	vertical-align:top;
+	
 	margin-top:10px;
 }
 
 [data-tab='template'] > div.tmplt-holder {
 	width:85%;
+	vertical-align:bottom;
+	max-height: 75vh;
+	overflow-y:auto;
+	border-top:1px solid black;
 }
 
-[data-tab='template'] > ul.most-used-hashtags {
+ul.most-used-hashtags {
 	width:calc( 15% - 10px );
 	list-style-type:none;
 	padding-left:10px;
 	overflow-y:auto;
 	overflow-x:auto;
 	max-height:500px;
+	vertical-align:top;
+	font-size:0.8em;
 }
 
-[data-tab='template'] > ul.most-used-hashtags > li > span {
+ul.most-used-hashtags > li > span {
 	font-weight:700;
 	font-size:0.7em;
 	color:navy;
 	text-decoration:underline;
+}
+
+ul.most-used-hashtags > li > span:nth-child(1) {
+	text-decoration:none;
 }
 
 [data-tab='template'] > ul.most-used-hashtags > li:first-child{
@@ -145,7 +150,7 @@ form ul.folders > li {
 }
 
 #template > li:last-child {
-	border-bottom:none;
+	/*border-bottom:none;*/
 }
 
 #thumbnail-space > img {
@@ -261,7 +266,7 @@ section[data-tab='analytics'] > ul.inline-list {
 }
 
 section[data-tab='posts'] > ul.inline-list {
-	margin:2rem 0 2rem 0;
+	margin:10px 0;
 }
 
 section[data-tab='posts'] > ul.button-list {
