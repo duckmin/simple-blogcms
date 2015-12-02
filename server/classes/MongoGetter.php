@@ -24,9 +24,9 @@
 			$this->db = $this->mongo_conn->$db_name;
 		}
 		
-		public function getHomePagePostsAfterDate( $after ){ //only select info for previews
+		public function getHomePagePostsAfterDate( $after, $amount = AMOUNT_ON_MAIN_PAGE ){ //only select info for previews
 			$start_d = new MongoDate( $after );
-			$count = AMOUNT_ON_MAIN_PAGE+1; //get one extra so we can tell if there is a next page
+			$count = $amount+1; //get one extra so we can tell if there is a next page
 			$collection = $this->db->posts;				
 			$cursor = $collection->find( array( "lastModified"=>array( '$lt'=>$start_d ) ), array() )
 			->limit($count)
@@ -68,9 +68,9 @@
 			return $cursor;
 		}
 		
-		public function getHomePagePostsFromSearchAfterDate( $after, $search ){		
+		public function getHomePagePostsFromSearchAfterDate( $after, $search, $amount = AMOUNT_ON_MAIN_PAGE ){		
 			$start_d = new MongoDate( $after );
-			$count = AMOUNT_ON_MAIN_PAGE+1; //get one extra so we can tell if there is a next page
+			$count = $amount+1; //get one extra so we can tell if there is a next page
 			$collection = $this->db->posts;		
 			$q = array( '$text'=>array( '$search'=>$search ), "lastModified"=>array( '$lt'=>$start_d ) );
 			$cursor = $collection->find( $q )

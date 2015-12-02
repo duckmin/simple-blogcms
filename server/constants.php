@@ -46,7 +46,7 @@ define("AMOUNT_ON_MAIN_PAGE", 4);
 define("AMOUNT_OF_NEXT_POSTS", 4);
 
 //# of posts that show up on the "posts" tab in the manager
-define("AMOUNT_ON_MANAGER_TAB", 4);
+define("AMOUNT_POSTS_MANAGER_TAB", 5);
 
 //minutes until cache file expires
 //caching is only used in file ./server/pages/html/date_blog.php,  removing the caching logic and keeping the mongo/display logic in this file can remove this feature
@@ -55,6 +55,9 @@ define("MAX_PAGE_CACHE_MINS", -5);//turned off for dev turn on for prod to reaso
 //minutes until cache file expires (long version)
 //3 days this is used for costly DB operations that do not need to be constantly updated
 define("LONG_PAGE_CACHE_MINS", (3*24*60) );
+
+//1 day
+define("MEDIUM_PAGE_CACHE_MINS", (1*24*60) );
 
 //max # of characters in post title 
 define("MAX_TITLE_LENGTH", 500);

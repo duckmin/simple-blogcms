@@ -11,13 +11,13 @@
 			$db_getter = new MongoGetter( $db );
 			if( isset( $_APIVALS["search"] ) ){
 			    $search = $_APIVALS["search"];
-			    $cursor = $db_getter->getHomePagePostsFromSearchAfterDate( $time_stamp, $search ); 
+			    $cursor = $db_getter->getHomePagePostsFromSearchAfterDate( $time_stamp, $search, AMOUNT_POSTS_MANAGER_TAB ); 
 			}else{
-			    $cursor = $db_getter->getHomePagePostsAfterDate( $time_stamp );
+			    $cursor = $db_getter->getHomePagePostsAfterDate( $time_stamp, AMOUNT_POSTS_MANAGER_TAB );
 			}
 			$posts = iterator_to_array( $cursor );
 			$data = array();
-			if( count( $posts ) > AMOUNT_ON_MAIN_PAGE ){
+			if( count( $posts ) > AMOUNT_POSTS_MANAGER_TAB ){
 				array_pop( $posts );  //if we have one extra remove it ( one extra is given because same query used for pagination on other pages, deos not matter here so just remove it 
 				$data["next"] = true;
 			}else{

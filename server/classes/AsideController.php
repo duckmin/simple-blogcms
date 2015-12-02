@@ -74,7 +74,7 @@
 		public function getAllHashtagsCountForManager(){
 			$cache_key = self::MANAGER_HASHTAG_CACHE_KEY;
 			$cache = new CacheController( CACHE_DIR, $cache_key );
-			if( $cache->urlInCache() && !$cache->cacheMinutesOverLimit( /*LONG_PAGE_CACHE_MINS*/ -5 ) ){ //-5 so list is generated everytime for testing  
+			if( $cache->urlInCache() && !$cache->cacheMinutesOverLimit( /*MEDIUM_PAGE_CACHE_MINS*/ -5 ) ){ //-5 so list is generated everytime for testing  
 				//echo self::MANAGER_HASHTAG_CACHE_KEY." cached<br>";  //debug remove later 	
 				return $cache->pullUrlContentFromCache();
 		   }else{
