@@ -270,11 +270,15 @@ function imageOver( element ){
 	parent_li = element.nearestParent( "li" );
 	parent_li.style.position = "relative";
 	var left = element.clientWidth+element.offsetLeft,
-	top = element.clientHeight+element.offsetTop,
+	pic_height = 100,
 	pic = createElement("img",{
 		"data-imgpreview":"",
 		"src":src
-	});
+	}),
+	main_height = document.querySelector("#pic-files").clientHeight,  //is position:relative
+	space_below_parent = main_height - (parent_li.offsetTop + parent_li.clientHeight),  
+	top = ( space_below_parent > pic_height )? element.clientHeight+element.offsetTop : (pic_height) * -1; //if less than 105 align from top
+		
 	pic.style.position = "absolute";
 	pic.style.left = left+"px";
 	pic.style.top =  top+"px";
@@ -286,7 +290,6 @@ function imageOver( element ){
 function imageOut( element ){
 	var parent_li = element.nearestParent( "li" ),
 	img = parent_li.querySelectorAll( "[data-imgpreview]" );
-	console.log( img );
 	img.each( function( pic ){ pic.remove() });
 	removeInlineStyle( parent_li, 'position' );
 }

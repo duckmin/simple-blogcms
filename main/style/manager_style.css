@@ -120,6 +120,7 @@ form ul.folders > li {
 	max-height: 75vh;
 	overflow-y:auto;
 	border-top:1px solid black;
+	position:relative;
 }
 
 ul.most-used-hashtags {
@@ -231,6 +232,7 @@ section[data-tab='pictures'] > div:nth-of-type(2){
 	border-right:none;
 	/* so border between 2 divs is not 2px wide, they overlap */
 	margin-left:-1px;
+	position:relative;
 }
 
 section[data-tab='template'] > ul:first-child{
@@ -704,7 +706,7 @@ ul.login-bar > li:hover{
 }
 
 /* The element to apply the animation to */
-.highlight-edit {
+.highlight-edit, div.tmplt-forum-container.highlight-edit {
     animation-name: editFade;
     animation-duration: 1.5s;
 } 

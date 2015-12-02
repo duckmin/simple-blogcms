@@ -351,8 +351,20 @@
 			"additem":function(elm){
 				elm.addEvent( "click", function(e){
 					var action = elm.getAttribute("data-action"),
-					template_item = templatetype[ action ]();
-					gEBI("template").appendChild( template_item );
+					template_item = templatetype[ action ](),
+					template = gEBI("template"),
+					//template_scroll_container = template.nearestParentClass("tmplt-holder"),
+					//template_h = template_scroll_container.clientHeight,
+					appended = template.appendChild( template_item ),
+					//appended_offset_top = appended.offsetTop,
+					//scroll_to = ( appended_offset_top - template_h ) - appended_offset_top.clientHeight,
+					tmplt_formcontainer = appended.querySelector("div.tmplt-forum-container");
+					tmplt_formcontainer.addClass("highlight-edit");
+					//console.log(appended_offset_top);
+					//template_scroll_container.scrollTop = scroll_to;
+               
+               //animation ends in 1.5secs remove class after	            
+	            setTimeout(function(){ tmplt_formcontainer.removeClass("highlight-edit"); },1500)
 				})
 			},
 			"preview-post":function(elm){
@@ -687,7 +699,15 @@
     				
     				gEBI("template").removeChildren().appendChild(frag);
     				post_data_formclass.bindValues(resp);
+    				
+    				tab_actions.template = function( panel, tab ){  //make a new acrtion when template is switched to we scroll to top of template just once then delete 
+						var tmplt_holder = panel.querySelector(".tmplt-holder");
+		    			tmplt_holder.scrollTop = 0;
+		    			delete tab_actions.template;
+					}	
+    				
     				window.location.hash = "#template";
+    				
     			}else{
     				showAlertMessage( "No Data For Post", false );
     			}

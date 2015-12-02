@@ -47,13 +47,7 @@ addEvent( window, "load", function(){
 			//loadTablePage(); //tab_manager.js
 			posts_action.loadTablePage( Date.now() );
 			this.posts = managerExtraActions.posts_tab_action;
-		},
-		"analytics":function( panel, tab ){
-			var unique_url_ul = panel.querySelector("div.left > ul");			
-			getUniqueUrlPage( unique_url_ul ); //manager/analytics_graphs.js
-			getGraphPage();
-			delete this.analytics;	
-		}	
+		}
 	}		
 	window.tabset = new TabSet( document.body, tab_actions );
 	tabset.init();

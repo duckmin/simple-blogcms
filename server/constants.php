@@ -10,8 +10,8 @@ define("INDEX_PATH", SERVER_PATH."/../main");
 //these values can be changed according to your environment, and to affect some page behaviors 
 
 //mongo DB name project uses
-//define("MONGO_DB_NAME", "simple_blog");
-define("MONGO_DB_NAME", "coolcaptain_new");
+define("MONGO_DB_NAME", "simple_blog");
+//define("MONGO_DB_NAME", "coolcaptain_new");
 
 //string used to connect to mongo instance, example: "mongodb:///tmp/mongodb-27017.sock"
 define("MONGO_CONNECTION_STRING", "");
