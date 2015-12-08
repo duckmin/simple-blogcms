@@ -19,7 +19,7 @@
 	$time = ( isset($_GET['after']) )? $_GET['after'] : time();
 	
 	try{
-	    $db = MongoConnection();
+	   $db = MongoConnection();
 		$db_getter = new MongoGetter( $db ); 
 		$parsedown = new Parsedown();				
     	$post_views = new PostViews( $parsedown );	
@@ -30,6 +30,7 @@
 		$mongo_results = $post_controller->getHomePagePostsByTime( $time ); //false if no result set
 		$hashtags_of_past_year_list = $aside_controller->getPastYearsHashtagsLinksBox();
 		$popular_hashtags_list = $aside_controller->getMostPopularHashtagsLinksBox();
+		$GLOBALS['db_aside_content'] = $db_aside_content = $popular_hashtags_list.$hashtags_of_past_year_list;  //made global so 404 can tell whether this has been created or not (if we go to 404)
 	}catch( MongoException $e ){
 		//echo $e->getMessage();
 		//Mongo error, go to 404 page		
@@ -52,7 +53,7 @@
 		$tmplt_data["search_value"] = "";		
 		$tmplt_data["header"] = "";
 		$tmplt_data["body"] = $mongo_results;
-		$tmplt_data["aside_content"] = $popular_hashtags_list.$hashtags_of_past_year_list;
+		$tmplt_data["aside_content"] = $db_aside_content;
 		
 		$full_page = TemplateBinder::bindTemplate( $template, $tmplt_data );	
 		$cache->saveUrlContentToCache( $full_page ); //save page to cache

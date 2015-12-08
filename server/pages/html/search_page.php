@@ -25,6 +25,7 @@
 		$mongo_results = $post_controller->getSearchPagePostsAfterTime( $time, $search ); //false if no result set
 		$hashtags_of_past_year_list = $aside_controller->getPastYearsHashtagsLinksBox();
 		$popular_hashtags_list = $aside_controller->getMostPopularHashtagsLinksBox();
+		$GLOBALS['db_aside_content'] = $db_aside_content = $popular_hashtags_list.$hashtags_of_past_year_list;
 	}catch( MongoException $e ){
 		//echo $e->getMessage();
 		//Mongo error, go to 404 page		
@@ -47,7 +48,7 @@
 		$tmplt_data["search_value"] = $safe_search;		
 		$tmplt_data["header"] = "<li class=\"current-cat\" ><a href=\"/search/$safe_search/\">&quot;$safe_search&quot;</a></li>";
 		$tmplt_data["body"] = $mongo_results;
-		$tmplt_data["aside_content"] = $popular_hashtags_list.$hashtags_of_past_year_list;
+		$tmplt_data["aside_content"] = $db_aside_content;
 		
 		$full_page = TemplateBinder::bindTemplate( $template, $tmplt_data );
 		echo $full_page;
