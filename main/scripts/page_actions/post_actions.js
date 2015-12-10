@@ -20,7 +20,7 @@ function articleAtBottom(){
 }
 
 function loadNextPostPreview(){
-	var ts = document.querySelector("section.main > article > p:first-of-type > time[data-ts]").getAttribute("data-ts"),
+	var ts = document.querySelector("section.main > article > header > p:first-of-type > time[data-ts]").getAttribute("data-ts"),
 	html_area = gEBI("next-posts"),
 	send = {ts:ts};
 	

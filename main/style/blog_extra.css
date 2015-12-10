@@ -17,6 +17,8 @@ section.main {
 aside > ul {
 	list-style-type:none;
 	margin-bottom:1rem;
+	border-bottom: 2px solid lightgray;
+	padding-bottom: 0.25em;
 }
 
 aside > ul > li {
@@ -32,7 +34,7 @@ aside > ul > li > a {
 }
 
 aside > ul > li > a > span {
-    color:gray;
+    color:#B2B2B2;
     font-size:0.8em;
 	
 }

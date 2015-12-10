@@ -1,13 +1,17 @@
 <article class="preview">
-	<p class="title" >
-		<a class="title" href="{{ post_url }}">{{ title }}</a>
-	</p>
-	<p class="post-time" ><b>by: {{ author }}</b>&nbsp;&nbsp;<time data-ts="{{ time_stamp }}" >{{ created }}</time></p>
+	<header>
+		<h1><b>
+			<a href="{{ post_url }}">{{ title }}</a>
+		</b></h1>
+		<p class="post-time" ><b>by: {{ author }}</b>&nbsp;&nbsp;<time data-ts="{{ time_stamp }}" >{{ created }}</time></p>
+	</header>
 	##has_inner
 	<a class="title" href="{{ post_url }}">
 		{{ inner }}
 	</a>
 	has_inner##
 	<p class="preview-text" >{{ preview_text }}</p>
-	<div class="hashtags">{{ hashtag_links }}</div>
+	<footer>
+		<div class="hashtags">{{ hashtag_links }}</div>
+	</footer>
 </article>
