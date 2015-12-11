@@ -7,7 +7,7 @@ var resources_templates = {
 		"<span>{{ base_name }}</span>"+
 	"</li>",
 	
-	"image":"<li class='file' data-thumbkey='{{ thumbname }}' >"+
+	"image":"<li class='file' >"+
 		"<img src='/style/resources/image.png' title='Add Picture to Template' data-picturepath='{{ server_path }}' onclick='resources_action.pictureClick(this)' onmouseover='imageOver(this)' onmouseout='imageOut(this)' />"+
 		"<img src='/style/resources/action_delete.png' title='Delete Resource' data-filepath='{{ server_path }}' onclick='resources_action.deleteResource(this)' />"+		
 		"<span>{{ resource_name }}</span>"+

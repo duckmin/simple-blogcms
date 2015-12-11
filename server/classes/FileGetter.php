@@ -35,23 +35,22 @@
 			);
 		}
 		
+		/* NOT USED KEEP FOR REFERENCE 
 		public static function getImageThumbNameByPath( $relative_path ){  //use file name and time modifed to created a unique key for the file to be used as the key for in mongo thumbnail storage
 			$file_path = INDEX_PATH.$relative_path;
 			$file_info = new SplFileInfo( $file_path );
-            $last_modified = $file_info->getMTime (); //this will not change unless file is overwritten
+         $last_modified = $file_info->getMTime (); //this will not change unless file is overwritten
 			$path_info = pathinfo($relative_path);
-            $extension = $path_info["extension"];
-            $file_name = $path_info["filename"];
-            $thumb_name = $file_name."-".md5( $last_modified ).".".$extension;
-            return $thumb_name;
-		}
+         $extension = $path_info["extension"];
+         $file_name = $path_info["filename"];
+         $thumb_name = $file_name."-".md5( $last_modified ).".".$extension;
+         return $thumb_name;
+		}*/
 		
 		public static function getResourceInfo( $type, $resource_path, $server_path, $resource_name ){
-            $thumb_name = self::getImageThumbNameByPath($server_path);
 			return array(
 				"type"=>$type,
 				"data"=>array(
-					"thumbname"=>$thumb_name,
 					"server_path"=>$server_path,
 					"resource_path"=>$resource_path,
 					"resource_name"=>$resource_name
