@@ -658,7 +658,10 @@
     			controller.callApi( "ManagerPostsDelete_article_by_id", send, function(d){
     				var resp = JSON.parse( d);
     				if( resp.result ){
-    					loadTablePage();
+    					var table_container = element.nearestParent("div"),
+    					deleted_article = table_container.previousElementSibling;
+    					table_container.remove();
+    					deleted_article.remove();
     				}
     				showAlertMessage( resp.message, resp.result );
     			})
