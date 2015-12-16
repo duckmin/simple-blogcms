@@ -179,7 +179,6 @@
 
 <div class='dark-shade hide' id="picture-popup" >
 	<div class='fixed-box save-preview-popup form' >
-		<input type="hidden" name="thumbkey" >
 		<input type="hidden" name="picture_path" >
 		<ul class="button-list" >
 			<li data-templateaction="add-pictue-to-template" >

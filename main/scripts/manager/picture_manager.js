@@ -7,15 +7,15 @@ var resources_templates = {
 		"<span>{{ base_name }}</span>"+
 	"</li>",
 	
-	"image":"<li class='file' >"+
-		"<img src='/style/resources/image.png' title='Add Picture to Template' data-picturepath='{{ server_path }}' onclick='resources_action.pictureClick(this)' onmouseover='imageOver(this)' onmouseout='imageOut(this)' />"+
-		"<img src='/style/resources/action_delete.png' title='Delete Resource' data-filepath='{{ server_path }}' onclick='resources_action.deleteResource(this)' />"+		
+	"image":"<li class='file' data-filepath='{{ server_path }}' >"+
+		"<img src='/style/resources/image.png' title='Add Picture to Template' onclick='resources_action.pictureClick(this)' onmouseover='imageOver(this)' onmouseout='imageOut(this)' />"+
+		"<img src='/style/resources/action_delete.png' title='Delete Resource' onclick='resources_action.deleteResource(this)' />"+		
 		"<span>{{ resource_name }}</span>"+
 	"</li>",
 	
-	"audio":"<li class='file' >"+
-		"<img src='/style/resources/audio.png' title='Add Audio to Template' data-audiopath='{{ server_path }}' onclick='audioClick(this)' />"+
-		"<img src='/style/resources/action_delete.png' title='Delete Resource' data-filepath='{{ server_path }}' onclick='resources_action.deleteResource(this)' />"+			
+	"audio":"<li class='file' data-filepath='{{ server_path }}' >"+
+		"<img src='/style/resources/audio.png' title='Add Audio to Template' onclick='audioClick(this)' />"+
+		"<img src='/style/resources/action_delete.png' title='Delete Resource' onclick='resources_action.deleteResource(this)' />"+			
 		"<span>{{ resource_name }}</span>"+
 	"</li>"
 }
@@ -104,7 +104,7 @@ resources_action.deleteResource = function( elm ){
 	var message = "Are You Sure You Want to Delete This Resource?";
 	showConfirm( message, false, elm, function(element){ //calback function fired if yes is selected
 		var parent_li = element.nearestParent("li"),
-		file_path = element.getAttribute( 'data-filepath' ),//path from file from /main root	
+		file_path = parent_li.getAttribute( 'data-filepath' ),//path from file from /main root	
 		send={ "file_path":file_path };
 		if( parent_li.hasAttribute("data-thumbkey") ){
 			//if this is an image we send the thumbname to the service so the thumbnail can get deleted using the name as a key
@@ -129,19 +129,19 @@ resources_action.deleteResource = function( elm ){
 
 resources_action.pictureClick = function( element ){
 	//brings up a popup with the option to either add to template or add as a thumbnail
-	var path = element.getAttribute( 'data-picturepath' ),
-	parent_li = element.nearestParent('li'),
-	thumbkey = parent_li.getAttribute("data-thumbkey"),
+	var parent_li = element.nearestParent('li'),
+	path = parent_li.getAttribute( 'data-filepath' ),
 	picture_popup = gEBI("picture-popup"),
 	popup_form_class = new FormClass( picture_popup ),
-	vals = { thumbkey:thumbkey, picture_path:path };
+	vals = { picture_path:path };
 	popup_form_class.bindValues( vals );
 	picture_popup.removeClass("hide");
 	box_action.centerFixedBox( picture_popup.querySelector("div.fixed-box") );
 }
 
 function audioClick( element ){
-	var path = element.getAttribute( 'data-audiopath' );
+	var parent_li = element.nearestParent('li'),
+	path = parent_li.getAttribute( 'data-filepath' );
 	window.location.hash = "#template";
 	template_item = templatetype[ "audio" ]( path );
 	gEBI("template").appendChild( template_item );
@@ -266,8 +266,8 @@ function addFolderAction( e ){
 }
 
 function imageOver( element ){
-	var src = element.getAttribute( "data-picturepath" ),
-	parent_li = element.nearestParent( "li" );
+	var parent_li = element.nearestParent( "li" );
+	src = parent_li.getAttribute( 'data-filepath' ),
 	parent_li.style.position = "relative";
 	var left = element.clientWidth+element.offsetLeft,
 	pic_height = 100,
