@@ -11,6 +11,10 @@ body,ul,div,section,a,aside,article,h1,h2,h3,h4,h5,h6,p,pre,span,li,label,input,
 	padding:0;
 }
 
+.wrapper {
+	margin-bottom:2rem;
+}
+
 .button-list > li{
 	display:inline-block;
 	padding:3px;
@@ -180,7 +184,8 @@ body,ul,div,section,a,aside,article,h1,h2,h3,h4,h5,h6,p,pre,span,li,label,input,
        
 	.wrapper {
 		width:1000px;
-		 margin:auto;
+		margin-left:auto;
+		margin-right:auto;
 	}
 } 
 

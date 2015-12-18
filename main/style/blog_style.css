@@ -96,21 +96,26 @@ article.preview{
 	overflow:hidden;
 }
 
+article.preview > *:first-child + * {
+	margin-top:1rem;
+}
+
 article > header > p.title {
     font-size: 1.5em;
     font-weight: 100;
 }
 
 article.preview > footer {
-	margin-top:0.7rem;
+	margin-top:0.5rem;
 }
 
 article.preview > p.preview-text {
 	 font-size: 1.2em;
     color:dimgray;
+    margin-top:0.5em;
 }
 
-article.preview > p.preview-text, article.preview > img {
+article.preview > img {
 	 margin-top:0.5rem
 }
 
@@ -139,11 +144,16 @@ article.preview a {
 
 .main > article:last-of-type{
 	margin-bottom:0rem;
+	border-bottom:none;
 }
 
 .main article.post > form {
 	display:none;
 }
+
+.main article.post > header {
+	margin-top:0rem;
+} 
 
 .main article.post > header + * {
 	margin-top:1rem;
@@ -155,6 +165,14 @@ article.preview a {
 	line-height:1.2em;
 	padding-bottom:0;
 	color:#1128A5;
+}
+
+.main article.post > header > h1 {
+	color:black;
+}	
+
+.main article.preview > header {
+	/*margin-top:0.5rem;*/
 }
 
 .main article.preview > header > h1 {
@@ -198,10 +216,6 @@ article.post h1, article.post h2{
 article.post > embed {
 	width:500px;
 	height:22px;	
-}
-
-article.preview img{
-	margin-top:0.5rem;
 }
 
 article.post > img, article.preview img{
@@ -293,10 +307,11 @@ blockquote {
 .main > nav {
 	width:100%;
 	border:1px solid lightgray;
-	/*margin-top:2rem;*/
+	margin-top:1rem;
 	padding:0.25rem 0;
 	text-align:center;
 	background-color:azure;
+	border-top-width:2px;
 }
 
 .wrapper > section.main:last-of-type {
