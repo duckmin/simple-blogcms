@@ -83,7 +83,7 @@
 					
 				case "image":
 					$src = strip_tags( $post_data_array[ "src" ] );
-					$alt_val = strip_tags( $post_data_array[ "alt" ] );
+					$alt_val = ( isset($post_data_array[ "alt" ]) )? strip_tags( $post_data_array[ "alt" ] ) : "";
 					$alt = ( $alt_val !== "" )? $alt_val : "Image Failed to Load";
 					if( $this->lazy_load_imgs){ 
 					//lazy loading images option is for blog.php when blog_scroll_actions.js is loaded on page to load images when post is in view

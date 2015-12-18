@@ -188,7 +188,7 @@ body,ul,div,section,a,aside,article,h1,h2,h3,h4,h5,h6,p,pre,span,li,label,input,
 /*1000px width and below*/		  
 @media only screen and (max-width: 1000px) {
 	body{
-		font-size:80%;
+		font-size:85%;
 	}
 	
 	.wrapper {
@@ -199,13 +199,13 @@ body,ul,div,section,a,aside,article,h1,h2,h3,h4,h5,h6,p,pre,span,li,label,input,
 /* 750px and below */
 @media only screen and (max-width: 750px) {
 	body{
-		font-size:60%;
+		font-size:75%;
 	}
 }  
 
 /* 400px and below */
 @media only screen and (max-width: 400px) {
 	body{
-		font-size:45%;
+		font-size:60%;
 	}
 }  

@@ -42,8 +42,8 @@ main > header > form > input[name="search"] {
 	max-width:9em;
 }
 
-main > header > h1, header > ul, section.main > *{
-    
+main > header > h1 {
+    color:#1128A5;
 }
 
 main > header > ul > li{
@@ -57,7 +57,7 @@ main > header > ul > li:first-child{
 	
 }
 
-main > header > ul > li > a {
+main > header > ul > li > a, main > header > h1 > a {
 	color:inherit;
 }
 
@@ -80,10 +80,10 @@ main.wrapper > * { /* only blog pages have main.wrapper manager user div.wrapper
 }
 
 article.post, article.preview{
-	border-top:2px solid lightgray;
-	background-color:white;
+	border-bottom:2px solid lightgray;
+	/*background-color:white;*/
 	overflow:hidden;
-	padding-top:0.5rem;
+	padding-top:1rem;
 	padding-bottom:1rem;
 }
 
@@ -106,7 +106,7 @@ article.preview > footer {
 }
 
 article.preview > p.preview-text {
-	 font-size: 1em;
+	 font-size: 1.2em;
     color:dimgray;
 }
 
@@ -154,13 +154,14 @@ article.preview a {
 	margin-top:0px;
 	line-height:1.2em;
 	padding-bottom:0;
+	color:#1128A5;
 }
 
 .main article.preview > header > h1 {
 	font-size:2em;
 }
 
-.main article.post > header > h1 a {
+.main article > header > h1 a {
 	color:inherit;
 }
 
@@ -299,7 +300,7 @@ blockquote {
 }
 
 .wrapper > section.main:last-of-type {
-	margin-bottom:2rem !important;
+	/*margin-bottom:2rem !important;*/
 }
 
 .main > nav > a {
