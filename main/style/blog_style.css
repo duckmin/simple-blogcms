@@ -43,12 +43,11 @@ main > header > form > input[name="search"] {
 }
 
 main > header > h1 {
-    color:#1128A5;
+    color:#0066ff;
 }
 
 main > header > ul > li{
 	color:tomato;
-	font-size:1.3em;
 	display:inline-block;
 	margin-right:0.5em;
 }
@@ -97,7 +96,7 @@ article.preview{
 }
 
 article.preview > *:first-child + * {
-	margin-top:1rem;
+	margin-top:0.5rem;
 }
 
 article > header > p.title {
@@ -134,7 +133,7 @@ article.preview a {
 }
 
 .hashtags > span > a {
-    color:indigo;
+    color:#0066ff;
 }
 
 .main > article:first-of-type{
@@ -164,7 +163,7 @@ article.preview a {
 	margin-top:0px;
 	line-height:1.2em;
 	padding-bottom:0;
-	color:#1128A5;
+	/*color:#1128A5;*/
 }
 
 .main article.post > header > h1 {
@@ -181,11 +180,11 @@ article.preview a {
 
 .main article > header > h1 a {
 	color:inherit;
+	text-decoration:none;	
 }
 
-.main article > header > h1 a {
-	text-decoration:none;
-	
+article.preview > header > h1 a:hover, article.preview > a:hover + header a {
+	text-decoration:underline;
 }
 
 .main article > header > p.post-time {
@@ -233,6 +232,10 @@ article.post > img + img {
 	font-weight:100;
 	line-height:1.5em;
 }
+
+article.post a {
+	color:#0066ff;
+}	
 
 .main article.post b{	
 	font-weight:600;

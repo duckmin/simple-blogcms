@@ -36,10 +36,10 @@
 			{{ body }}
 			##extra_posts
 			<div class="extra-posts-block" id="next-posts">
-				<h3>Next Posts:</h3>
+				<h3>Next Posts</h3>
 			</div>
 			<div class="extra-posts-block" id="related-hashtags">
-				<h3>Related Hashtags:</h3>
+				<h3>Related Hashtags</h3>
 			</div>
 		   extra_posts##
 		</section><!--
