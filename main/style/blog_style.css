@@ -82,8 +82,10 @@ article.post, article.preview{
 	border-bottom:2px solid lightgray;
 	/*background-color:white;*/
 	overflow:hidden;
-	padding-top:1rem;
-	padding-bottom:1rem;
+	padding-top:3em;
+	padding-bottom:3em;
+	padding-left:1em;
+    padding-right:1em;
 }
 
 article.post {
@@ -105,13 +107,12 @@ article > header > p.title {
 }
 
 article.preview > footer {
-	margin-top:0.5rem;
+
 }
 
 article.preview > p.preview-text {
-	 font-size: 1.2em;
+	font-size: 1.2em;
     color:dimgray;
-    margin-top:0.5em;
 }
 
 article.preview > img {
@@ -154,10 +155,6 @@ article.preview a {
 	margin-top:0rem;
 } 
 
-.main article.post > header + * {
-	margin-top:1rem;
-} 
-
 .main article > header > h1 {
 	font-size:2.2em;
 	margin-top:0px;
@@ -171,7 +168,7 @@ article.preview a {
 }	
 
 .main article.preview > header {
-	/*margin-top:0.5rem;*/
+	margin-top:1em;
 }
 
 .main article.preview > header > h1 {
@@ -247,8 +244,11 @@ article.post a {
 	margin-left:0.9em;
 }
 
-article.post > * {
-	margin-top:0.5rem;
+article > header ~ * {
+	margin-top:1rem;
+}
+
+article > * {
 	display:block;
 }
 
@@ -310,7 +310,7 @@ blockquote {
 .main > nav {
 	width:100%;
 	border:1px solid lightgray;
-	margin-top:1rem;
+	margin-top:0rem;
 	padding:0.25rem 0;
 	text-align:center;
 	background-color:azure;
