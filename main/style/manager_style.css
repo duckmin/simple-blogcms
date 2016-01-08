@@ -53,21 +53,23 @@ form ul.folders > li {
 	list-style-type:none;
 }
 
-#template > li  {
+ul.template > li  {
 	position:relative;
 	background-color:white;
-	border-bottom:1px solid black;
-	border-right:1px solid black;
 	/*padding:4px 10px 10px 10px;*/
 }
 
-#template > li > ul {
+ul.template > li:first-child > div.tmplt-forum-container {
+	border-top:none;
+}
+
+ul.template > li > ul {
 	position:absolute;
 	top:4px;
 	right:4px;
 }
 
-#template > li > ul > li {
+ul.template > li > ul > li {
 	display:inline-block;
 	height:16px;
 	width:16px;
@@ -77,12 +79,14 @@ form ul.folders > li {
 	border-radius:3px;
 }
 
-#template > li > ul > li:hover{
+ul.template > li > ul > li:hover{
 	background-color:yellow;
 	cursor:pointer;
 }
 
 .tmplt-forum-container{
+	border-top:1px solid black;
+	border-right:1px solid black;
 	padding-bottom:10px;
 	background-color: lemonchiffon;
 }
@@ -108,7 +112,7 @@ form ul.folders > li {
 	border-right:1px solid black;
 }
 
-[data-tab='template'] > div.tmplt-holder, [data-tab='template'] > ul.most-used-hashtags {
+[data-tab='template'] > div.tmplt-holder, [data-tab='template'] > aside {
 	display:inline-block;
 	
 	margin-top:10px;
@@ -119,19 +123,30 @@ form ul.folders > li {
 	vertical-align:bottom;
 	max-height: 75vh;
 	overflow-y:auto;
-	border-top:1px solid black;
 	position:relative;
+	border-top:1px solid black;
+}
+
+[data-tab='template'] > aside {
+	width:calc( 15% - 10px );
+	overflow-y:auto;
+	overflow-x:auto;
+	padding-left:10px;
+	vertical-align:top;
+}
+
+ul.most-used-hashtags, ul#document-tabs {	
+	list-style-type:none;	
+	font-size:0.8em;
+}
+
+ul#document-tabs {
+	margin-bottom:1.5em;
+	padding-top:3px;
 }
 
 ul.most-used-hashtags {
-	width:calc( 15% - 10px );
-	list-style-type:none;
-	padding-left:10px;
-	overflow-y:auto;
-	overflow-x:auto;
 	max-height:500px;
-	vertical-align:top;
-	font-size:0.8em;
 }
 
 ul.most-used-hashtags > li > span {
@@ -145,19 +160,32 @@ ul.most-used-hashtags > li > span:nth-child(1) {
 	text-decoration:none;
 }
 
-[data-tab='template'] > ul.most-used-hashtags > li:first-child{
+[data-tab='template'] ul.most-used-hashtags > li:first-child{
 	font-weight:700;
 	font-size: 0.85em;
 }
 
-#template > li:last-child {
-	/*border-bottom:none;*/
+#documents-panel > div.doc-box:first-of-type ~ div {
+	display:none;
 }
 
-#thumbnail-space > img {
-	margin-top:0px;
-	height:auto;
-	border:none;
+ul#document-tabs > li {
+	margin-bottom:7px;
+}
+
+ul#document-tabs > li > span {
+	padding:3px;
+	cursor:pointer;
+}
+
+ul#document-tabs > li:first-child > span, ul#document-tabs > li > span:hover {
+	background-color:black;
+	color:white;
+	border-radius:3px;
+}
+
+#template > li:last-child {
+	/*border-bottom:none;*/
 }
 
 .tmplt-forum-container textarea{
@@ -255,8 +283,12 @@ section[data-tab='preview'], section[data-tab='posts'], section[data-tab='analyt
 }
 
 section[data-tab='preview'] section.main > article:first-of-type {
-    border-top: 2px solid tomato;
-    margin: 2rem 0;
+    border-top: 2px solid lightgray;
+    margin-top: 2rem;
+}
+
+section[data-tab='preview'] section.main > article:last-of-type {
+    border-bottom: 2px solid lightgray;
 }
 
 section[data-tab='analytics']{
@@ -511,45 +543,6 @@ td.date {
 .list-nav li:hover{
 	cursor:pointer;
 	color:green;
-}
-
-/*for multi select*/
-select[multiple]{
-	display:none;	
-}
-
-td ul.multi-replace{
-	margin:auto;
-}
-
-ul.multi-replace{
-	max-height:100px;
-	width:200px;
-	overflow-y:auto;
-	border:1px solid black;
-	margin-top:15px;
-	list-style-type:none;
-	border-radius:3px;
-}
-
-ul.multi-replace > li{
-	border-top:1px solid black;
-	text-align:center;
-	padding:2px 0;
-	background-color:white;
-}
-
-ul.multi-replace > li:first-child{
-	border-top:none;
-}
-   
-ul.multi-replace > li.selected-multi{
-	background-color:blue;
-	color:white;
-}
-
-ul.multi-replace > li:hover{
-	cursor:pointer;
 }
 
 /*resources manager file uploads when multiple files*/

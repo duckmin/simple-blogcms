@@ -6,6 +6,7 @@ window.managerExtraActions = {
 		})
 	},
 	"posts_tab_action":function( tab, panel ){
+	    /* EDIT MODE HAS BEEN REMOVED FIND OTHER WAY TO HIGHLIGHT 
 	    if( edit_mode.active() ){
 	        var posts_tab_being_edited = gEBI(edit_mode.id_in_edit);
 	        if( posts_tab_being_edited !== null ){
@@ -17,7 +18,7 @@ window.managerExtraActions = {
                 //animation ends in 1.5secs remove class after	            
 	            setTimeout(function(){ posts_tab_being_edited.removeClass("highlight-edit"); },1500)
 	        }   
-	    }  
+	    } */ 
 	}	
 }
 
@@ -46,7 +47,7 @@ addEvent( window, "load", function(){
 			//load table page once then overwrite this funtion and check for a post being edited and scroll to it 
 			//loadTablePage(); //tab_manager.js
 			posts_action.loadTablePage( Date.now() );
-			this.posts = managerExtraActions.posts_tab_action;
+			delete this.posts;
 		}
 	}		
 	window.tabset = new TabSet( document.body, tab_actions );

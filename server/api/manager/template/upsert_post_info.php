@@ -6,9 +6,10 @@
 	$logged_in = ManagerActions::isLoggedIn();	
 	//if not logged in all validations will skip and go straight to message
 	
-	if( $valid_inputs && $logged_in && isset( $_APIVALS["procedure"] ) ){  //if all required fields are set set up vars
+	if( $valid_inputs && $logged_in ){  //if all required fields are set set up vars
 		$json = $_APIVALS;
-		$procedure = (int)$_APIVALS["procedure"];
+		//$procedure = (int)$_APIVALS["procedure"];
+		$new_document = ( array_key_exists("id", $json) && $json["id"] === "" )? true : false;
 
 		$title = trim( strip_tags( $json["title"] ) );
 		$desc = trim( strip_tags( $json["description"] ) );
@@ -41,14 +42,12 @@
 		$message = "Description longer than ".MAX_DESC_LENGTH." characters";
 	}
 	
-	if( isset( $procedure ) ){
-		$post_data = $json["post_data"];
-		$post_data_length = count( $post_data );
-		
-		if( $valid_inputs && $post_data_length <= 0 ){
-			$valid_inputs = false;
-			$message = "Template is empty";
-		}
+	$post_data = $json["post_data"];
+	$post_data_length = count( $post_data );
+	
+	if( $valid_inputs && $post_data_length <= 0 ){
+		$valid_inputs = false;
+		$message = "Template is empty";
 	}
 	
 	if( $valid_inputs ){
@@ -58,18 +57,6 @@
 		$post_hashtags = $post_views->extractHashtagsFromPostData( $post_data );  //any #hash in markdown block will get saved so it can be searched on
 		$search_hashtags = array_unique ( array_map("strtolower", $post_hashtags) ); //lower case al hashes so they can be used to search with but not dislay
 		$preview_text = $post_views->getPreviewTextFromMarkdown( $post_data ); //takes all paragraphs from markdown blocks of post_data and returns a 150 word string for use in preview
-		
-		/*  need to thunk about this more this would inc hashtags every edit not what we want
-		foreach($hashtags as $hashtag ){
-			$db_name = MONGO_DB_NAME;
-			$write_re = $db->$db_name->hashtags->update( 
-				array("hashtag"=>$hashtag ), 
-				array( '$inc'=>array('count'=>1) ), //increment 'count' by one so we can gauge most used hashtags
-				array('upsert'=>true) 
-			);
-			$su = ( $write_re['n'] === 1 )? true : false;	
-		}	
-		*/	
 		
 		try {
 			
@@ -81,7 +68,7 @@
 
 			
 			//procedure 1 create new listing with post_data
-			if( $procedure === 1 ){
+			if( $new_document ){
 				$mongo_id = new MongoId();			
 				$document = array( 
 					'_id'=>$mongo_id,					
@@ -101,7 +88,7 @@
 			}
 			
 			//procedure2 update listings meta data
-			if( $procedure === 2 && isset( $json["id"] ) ){
+			if( !$new_document && $json["id"] !== "" ){  //if id is not blank we are updating existing doc
 				$mongo_id = new MongoId( $json["id"] ); 
 				$update_array = array( 
 					'$set'=> array( 
@@ -109,7 +96,7 @@
 						"description"=>$desc,
 						'post_data'=> $post_data, 
 						'hashtags'=>$search_hashtags,
-			   		    'display_hashtags'=>$post_hashtags,
+			   		'display_hashtags'=>$post_hashtags,
 						'preview_text'=>$preview_text
 					) 
 				);	

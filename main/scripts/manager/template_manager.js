@@ -245,7 +245,7 @@
 	}
 	
 	//controls save button after previewing template
-	window.edit_mode = {
+	/*window.edit_mode = {
 		"edit_mode":false,
 		"id_in_edit":"",
 		"getEditForm":function(){
@@ -275,8 +275,9 @@
 			return ( this.edit_mode === false && this.id_in_edit === "" )?
 			false : true;
 		}
-	}
+	}*/
 	
+	/* moved to controller
 	window.getPostDataFromTemplate = function(){
 		var posttypes = gEBI("template").querySelectorAll("li[data-posttype]"),
 		holder = [];
@@ -289,9 +290,11 @@
 			});
 		}
 		return holder
-	}
+	}*/
 	
 	var templateaction = {};
+	
+	/* moved to tmplt controller
 	
 	templateaction.previewPost = function(){
 		var template_data = getPostDataFromTemplate(),
@@ -310,7 +313,9 @@
 		}else{
 			showAlertMessage("Template is Empty", false );
 		}
-	}
+	}*/
+	
+	/* moved to tmplt controller
 	
 	function savePost( save_form ){
 		var post_data = getPostDataFromTemplate(),
@@ -318,7 +323,7 @@
 		values = form_class.getValues();
 		console.log( values );
 		
-		if( post_data.length > 0/*safety check*/ ){
+		if( post_data.length > 0 ){ //safety check
 			values.post_data = post_data;
 			values.procedure = 1;
 			controller.callApi( "ManagerTemplateUpsert_post_info", values, function(d){
@@ -334,7 +339,9 @@
 			showAlertMessage("Template is Empty", false );
 		}
 	}
+	*/
 	
+	/* moved to tmplt controller
 	templateaction.clearTemplateForm = function(){
 		var save_form = gEBI("save-preview-popup"),
 		form_class = new FormClass( save_form );
@@ -343,44 +350,24 @@
 		//	li.removeClass("selected-multi");
 		//} );
 		gEBI('template').removeChildren();
-	}
+	}*/
 	
 	addEvent( window, "load", function(){
 		attributeActions( document.body, "data-templateaction", {
 			
 			"additem":function(elm){
 				elm.addEvent( "click", function(e){
-					var action = elm.getAttribute("data-action"),
-					template_item = templatetype[ action ](),
-					template = gEBI("template"),
-					//template_scroll_container = template.nearestParentClass("tmplt-holder"),
-					//template_h = template_scroll_container.clientHeight,
-					appended = template.appendChild( template_item ),
-					//appended_offset_top = appended.offsetTop,
-					//scroll_to = ( appended_offset_top - template_h ) - appended_offset_top.clientHeight,
-					tmplt_formcontainer = appended.querySelector("div.tmplt-forum-container");
-					tmplt_formcontainer.addClass("highlight-edit");
-					//console.log(appended_offset_top);
-					//template_scroll_container.scrollTop = scroll_to;
-               
-               //animation ends in 1.5secs remove class after	            
-	            setTimeout(function(){ tmplt_formcontainer.removeClass("highlight-edit"); },1500)
-				})
-			},
-			"preview-post":function(elm){
-				elm.addEvent( "click", function(e){
-					templateaction.previewPost();
-				})
-			},
-			"cancel-template":function(elm){
-				elm.addEvent( "click", function(e){
-					var edited = edit_mode.active(),
-					message = ( !edited )? "Are you sure you want to clear the template?" : //not in edit
-					"Post is currently being edited and all changes will be lost if canceled are you sure you want to clear the template?";
-					showConfirm( message, false, gEBI("template"), function(elm){ 
-						( edited )? edit_mode.disable() : false;						
-						templateaction.clearTemplateForm();	
-					} )			
+					var template = template_panel_action.getActiveTemplate();  //defined in template_controller.js
+					if( template !== false ){
+						var action = elm.getAttribute("data-action"),
+						template_item = templatetype[ action ](),
+						appended = template.appendChild( template_item ),
+						tmplt_formcontainer = appended.querySelector("div.tmplt-forum-container");
+						tmplt_formcontainer.addClass("highlight-edit"); 
+		            setTimeout(function(){ tmplt_formcontainer.removeClass("highlight-edit"); },1500)
+	            }else{
+	            	showAlertMessage( "No Document is in View", false );
+	            }
 				})
 			},
 			"add-pictue-to-template":function(elm){
@@ -390,10 +377,16 @@
 					vals = popup_form_class.getValues(),
 					path = vals.picture_path,
 					template_item = templatetype[ "image" ]( path );
-					gEBI("template").appendChild( template_item );
+					
+					var template = template_panel_action.getActiveTemplate();  //defined in template_controller.js
 					picture_popup.addClass("hide");
-					window.location.hash = "#template";
-					popup_form_class.clearForm();
+					if( template !== false ){
+						template.appendChild( template_item );
+						window.location.hash = "#template";
+						popup_form_class.clearForm();
+					}else{
+						showAlertMessage("No Active Template", false );
+					}
 				})
 			},
 			"close-popup":function(elm){
@@ -412,14 +405,6 @@
 					}
 				})
 			},
-			/*"select-post-filter":function(elm){
-				elm.addEvent( "click", function(e){
-					POSTS_TABLE_PAGENUM = 1;
-					this.parentElement.querySelector("input[type='radio']").checked = true;
-					this.nearestParent("ul").querySelector("input[name='search']").value = ""; //blank out seach so its not used in loadTablePage
-					loadTablePage();
-				})
-			},*/
 			"post-search-input":function(elm){
 				elm.addEvent( "keyup", function(e){
                searcher.searchAction();
@@ -462,18 +447,16 @@
 	"<table class='manage-table' >"+
 	"<thead>"+
     	"<tr>"+
-    	    "<th>Hashtags</th>"+
     		"<th>Created</th>"+
     		"<th>Actions</th>"+
     	"</tr>"+
 	"</thead>"+
 	"<tbody>"+
     "<tr data-postid='{{ id }}' >"+	
-    	"<td class='categories' ><ul></ul></td>"+
     	"<td class='date' >{{ created }}<br> By: <b>{{ author }}</b></td>"+
     	"<td>"+
     		"<input type='hidden' name='id' value='{{ id }}' />"+
-    		"<img src='/style/resources/pencil.png' title='Edit Post' onclick='editPostAction(this)' />"+
+    		"<img src='/style/resources/pencil.png' title='Edit Post' onclick='posts_action.editPostAction(this)' />"+
     		"<img src='/style/resources/chart.gif' title='View Analytics' onclick='getAnalyticsGraph(this)' >"+
     		"<img src='/style/resources/clock.png' title='Make most recent post (move to top of the)' onclick='postMoveToTop(this)' />"+
     		"<img src='/style/resources/action_delete.png' title='Delete Post' onclick='deletePostAction(this)' />"+
@@ -562,78 +545,6 @@
 		})
 	}
 	
-	/* NOT USED ANYMORE KEEP AROUND FOR NOW FOR REFERENCE
-	window.loadTablePage = function( callback ){
-		var cb = callback || function(){},
-		section = document.querySelector('section[data-tab=posts]'),
-		post_space = section.querySelector('#post-space'),
-		category_selection = section.querySelector('ul.inline-list'),
-		nav_body = documentFragment(),
-		cat_form_class = new FormClass( category_selection ),
-		//get value of the radio filter and add to URL so mongo can sort					
-		cat_form_values = cat_form_class.getValues();
-		cat_value = cat_form_values.blog_grid_sort;	
-		//if search is set append this to the URL and cat will be "",  the get_post_info service knows when search isset to bring back search results
-		//and the cat must be blank to use categories from the post_info and not the URL
-		//var search_str = ( cat_form_values.search.length > 0 )? "&search="+cat_form_values.search : "";	
-		var send = {p:POSTS_TABLE_PAGENUM};
-		if(cat_form_values.search.length > 0){ send.search = cat_form_values.search }
-		
-		controller.callApi( 'ManagerPostsGet_posts_page_info', send, function(d){
-			if( d.length > 0 ){
-				var json = JSON.parse( d );
-				cb(json); //run callback (only used for search)
-				if( json.result === true ){
-					var post_data = json.data.posts,
-					inside_main = "";
-					post_data.forEach( function( single_row ){
-						inside_main += single_row.post_html;
-						inside_main += bindMustacheString( edit_table_template, single_row.post_data );
-					})
-					post_space.innerHTML = inside_main;
-					
-					if( json.data.prev===true ){
-						var prev = createElement('nav',{
-                            text:"Page "+( POSTS_TABLE_PAGENUM - 1 ),
-                            events:{
-								"click":function(){
-									POSTS_TABLE_PAGENUM -= 1;
-									loadTablePage();
-								}
-							}						
-						});
-						post_space.appendChild(prev);
-					}
-					
-					//append current page marker
-					var current = createElement('nav',{
-					    "class":"current",
-					    text:"Current Page "+POSTS_TABLE_PAGENUM
-					});
-					post_space.appendChild(current);
-					
-					if( json.data.next===true ){
-						var next = createElement('nav',{
-                            text:"Page "+( POSTS_TABLE_PAGENUM + 1 ),
-                            events:{
-								"click":function(){
-									POSTS_TABLE_PAGENUM += 1;
-									loadTablePage();
-								}
-							}						
-						});
-						post_space.appendChild(next);
-					}
-					
-					window.scroll(0, document.querySelector("ul.tab-top").offsetTop );
-				}else{
-					showAlertMessage( json.message, json.result );
-				}
-			}
-		})
-	}
-	*/
-	
 	var table_actions = {
 		getTrValues:function( element ){
 			var tr=element.nearestParent("tr"),
@@ -651,10 +562,12 @@
 		var message = "Are you sure you want to delete this post?";
 		showConfirm( message, false, element, function(elm){ //calback function fired if yes is selected
 			var form_values=table_actions.getTrValues( element ),
-			send={ "id":form_values.id };
+			post_id = form_values.id,
+			is_in_edit_view = template_panel_action.isPostBeingEdited( post_id ),
+			send={ "id":post_id };
 			//make sure we are not deleting post being edited
-			if( edit_mode.id_in_edit !== form_values.id ){
-    			
+			if( !is_in_edit_view ){
+			
     			controller.callApi( "ManagerPostsDelete_article_by_id", send, function(d){
     				var resp = JSON.parse( d);
     				if( resp.result ){
@@ -666,10 +579,51 @@
     				showAlertMessage( resp.message, resp.result );
     			})
 		    }else{
-		        showAlertMessage( "This post is currently being edited can not delete, please disable edit mode before removing this post", false );
+		        showAlertMessage( "This post is currently being edited can not delete, remove from editing template before removing this post", false );
 		    }
 		})	
 	}
+	
+	posts_action.editPostAction = function(element){
+		var form_values = table_actions.getTrValues( element ),
+		post_id = form_values.id,
+		send = { id:post_id },
+		is_in_edit_view = template_panel_action.isPostBeingEdited( post_id );  //if this exists then no need to ajax 
+
+		if( is_in_edit_view ){
+			showAlertMessage( "Post Already being Edited", false );
+			return;
+		}		
+		
+    	controller.callApi( "ManagerPostsGet_article_data_by_id", send, function(d){
+    		if( d !== "" ){
+	    		var resp = JSON.parse( d );
+	    		bind = {
+					id:form_values.id,
+					title:resp.title,
+					description:resp.description
+				},
+				form = bindMustacheString( doc_form_template, bind );  //defined in template_controller.js
+				var panels = template_panel_action.addNewDocumentForm(form, resp.title, false), //template_controller.js
+				post_data = resp.post_data,
+				frag = documentFragment();
+				panels.tab.setAttribute("data-postid", form_values.id );  //so we can identify if post is being edited to prevent double clicking edit button 
+	 			post_data.forEach(function( post ){
+	 				var post_type = post["data-posttype"],
+	 				li = templatetype[ post_type ](),
+	 				form_class = new FormClass( li );
+	 				form_class.bindValues( post );
+	 				frag.appendChild( li );
+	 			});
+	 			template_panel_action.getActiveTemplate().appendChild(frag); //template_controller.js
+	 			window.location.hash = "#template";
+ 			}else{
+ 				showAlertMessage( "No Data For Post", false );
+ 			}
+    	});
+	}
+
+	/* replaced with new version keep for reference 
 	
 	window.editPostAction = function( element ){
 		var form_values=table_actions.getTrValues( element );
@@ -718,6 +672,7 @@
         }
 	
 	}
+	*/
 	
 	window.postMoveToTop = function( element ){
 		var message = "Are you sure you wish to renew the date on this post,  renewing date will move this post to the top of all categories it is a part of and can not be reversed";		
@@ -735,6 +690,7 @@
 		})	
 	}
 	
+	/* NOT USED SAVE NEW POST AND SAVE EDITED POST IS NOW ONE FUNCTION 
 	window.saveEditedPostAction = function(){
 		var post_data = getPostDataFromTemplate(),
 		save_form = gEBI("save-preview-popup"),
@@ -785,6 +741,7 @@
 			showAlertMessage("Template is Empty", false );
 		}
 	}
+	*/
 	
 	//ANALYTICS RELATED CODE ISOLATED BELOW
 	Chart.defaults.global.animation = false; //turn off chartjs animation of charts 

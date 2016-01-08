@@ -21,6 +21,7 @@
 	<script src="scripts/manager/alert_boxes.js" ></script>
 	<script src="scripts/manager/picture_manager.js" ></script>
 	<script src="scripts/manager/template_manager.js" ></script>
+	<script src="scripts/manager/template_controller.js" ></script>
 	<script src="scripts/extender_new_tabs.js" ></script>
 	<script src="scripts/multiple_select_replace.js" ></script>
 	<script src="scripts/manager/main_manager.js" ></script>
@@ -40,11 +41,13 @@
 		<li data-tab='preview' style="display:none" >Preview</li>
 		<li data-tab='pictures' >Resources</li>
 		<li data-tab='posts' >Posts</li>
-		<!--li data-tab='analytics'  >Analytics</li-->
 	</ul>
 	
 	<section data-tab='template' >
 	    <ul class="button-list" >
+			<li data-newtemplateaction="add-new-document-template" >
+				<img title="new post" src="style/resources/new-document.png" >			
+			</li>
 			<li class="drop" >
 				<img src="style/resources/expand.png" />
 				Template Item
@@ -78,46 +81,25 @@
 			<li data-templateaction="show-markdown-help" >
 				Markdown Help			
 			</li>
-			<li class="hide" id="edit-mode-form" >
-				<input class="hide" type="checkbox" name="edit_mode" />
-				<input type="hidden" name="id_in_edit" /> 
-				<img src="style/resources/pencil.png" />
-				Edit Mode
-				<img src="style/resources/arrow-31-16.png" />		
-			</li>
 		</ul>
 		
 		
-		<div class="tmplt-holder" >
-			<ul class="template" id="template" ></ul>
-			
-			<div class='tmplt-forum-container' id='save-preview-popup' >
-				<h5>Category:</h5>
-				
-				<h5>Title:</h5>
-				<input type="text" name="title" >
-				
-				<h5>Description:</h5>
-				<textarea name="description" ></textarea>
-	
-				<ul class="button-list" >
-					<li data-templateaction="preview-post" >
-						Preview Post
-					</li>
-					<li data-templateaction="cancel-template" class="red-button" >
-						Cancel
-					</li>
-				</ul>
-			</div>
+		<div class="tmplt-holder" id="documents-panel" >
+
 		</div><!--
-		--><?php
-			$db = MongoConnection();
-			$db_getter = new MongoGetter( $db ); 
-    		$aside_views = new AsideViews();
-			$aside_controller = new AsideController( $db_getter, $aside_views );
-			$hash_list = $aside_controller->getAllHashtagsCountForManager();
-			echo $hash_list;
-		?>
+		--><aside>
+			<ul class="document-tabs" id="document-tabs" >
+						
+			</ul>
+			<?php
+				$db = MongoConnection();
+				$db_getter = new MongoGetter( $db ); 
+	    		$aside_views = new AsideViews();
+				$aside_controller = new AsideController( $db_getter, $aside_views );
+				$hash_list = $aside_controller->getAllHashtagsCountForManager();
+				echo $hash_list;
+			?>
+		</aside>
 	</section>
 	
 	<section data-tab='preview' >	
@@ -125,7 +107,7 @@
 		
 		</section>
 		<ul class="button-list" >
-			<li data-templateaction="save-new-post" >
+			<li data-newtemplateaction="save-post" >
 				Save
 			</li>
 		</ul>		
