@@ -72,7 +72,7 @@ template_panel_action.addNewDocumentForm = function(form_response, title, new_do
 	form.setAttribute("data-documentid", now);
 	var panel = document.getElementById("documents-panel").prepend(form);
 	template_bind_action.bindFormEvents(panel); //set all events
-	li.innerHTML = "<span>"+title+"</span>";
+	li.innerHTML = title;
 	li.setAttribute("data-documentid", now);
 	if( new_document === true ){
 		li.setAttribute("data-new", "");
@@ -143,6 +143,18 @@ addEvent( window, "load", function(){
 		},
 		"save-post":function(elm){
 			elm.addEvent( "click", preview_panel_action.savePost )
+		},
+		"hashtag":function(elm){
+			elm.addEvent( "click", function(e){
+                var target = e.currentTarget,
+                tag = target.getAttribute("data-hashtag"),
+                active = document.activeElement;
+                console.log(active);
+                if( active.nodeName === "TEXTAREA" && active.hasAttribute("name") && active.getAttribute("name") === "text" ){
+                    console.log(active);
+                }
+                alert(tag);			
+			});
 		}
 		
 	})//end attr action func

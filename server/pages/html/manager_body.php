@@ -114,18 +114,11 @@
 	</section>
 	
 	<section data-tab='posts' >
-		<ul class="inline-list form-list" >
-			<!--li>
-				<input type='radio' name='blog_grid_sort' value='' checked="" />
-				<span data-templateaction="select-post-filter" >all</span>
-			</li-->				
+		<ul class="inline-list form-list" >		
 			<li>
-			    <input type='radio' name='blog_grid_sort' value='' checked="" >
 			    <input type="text" name="search" placeholder="search all posts" data-templateaction="post-search-input" value="" >
 			</li>	
-			<li>
-				<img title="Remove Search" data-templateaction="reset-search" src="/style/resources/action_delete.png">			
-			</li>
+			<li title="Reset Search" data-templateaction="reset-search" >X</li>
 		</ul>
 		<div id='post-space' data-templateaction="post-scroll" class='main'>
 		</div>

@@ -443,8 +443,7 @@
 //POSTS TAB EDIT FUNCS -----------------------------------------------------------------------------------------------------
 
 	window.POSTS_TABLE_PAGENUM = 1;
-	var edit_table_template="<div>"+
-	"<table class='manage-table' >"+
+	var edit_table_template="<div><table class='manage-table' >"+
 	"<thead>"+
     	"<tr>"+
     		"<th>Created</th>"+
@@ -498,7 +497,7 @@
 			last_post_timestamp = posts_action.getLastShownPostTimeStamp();
 			
 			posts_action.loadTablePage( last_post_timestamp, function(){
-	          target.style.visibility = "hidden";
+	          target.style.display = "none";
 	          target.removeEventListener("click", posts_action.getMorePosts );
 			});
 		 }

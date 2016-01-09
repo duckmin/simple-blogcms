@@ -1,6 +1,30 @@
 /*
 TEST PHASE, COOL FUNCS TO TEST NOT READY FOR PRIME TIME YET
 */
+
+//thank you http://stackoverflow.com/questions/11076975/insert-text-into-textarea-at-cursor-position-javascript
+//http://stackoverflow.com/users/187676/erik-aigner
+HTMLTextAreaElement.prototype.insertAtCaret = function (text) {
+  text = text || '';
+  if (document.selection) {
+    // IE
+    this.focus();
+    var sel = document.selection.createRange();
+    sel.text = text;
+  } else if (this.selectionStart || this.selectionStart === 0) {
+    // Others
+    var startPos = this.selectionStart;
+    var endPos = this.selectionEnd;
+    this.value = this.value.substring(0, startPos) +
+      text +
+      this.value.substring(endPos, this.value.length);
+    this.selectionStart = startPos + text.length;
+    this.selectionEnd = startPos + text.length;
+  } else {
+    this.value += text;
+  }
+};
+
 //WHEN ELEMENT WITH SCROLLBAR
 function atBottomScroll( element, callback ){   
     
@@ -294,99 +318,6 @@ function gEBI(id)
 	    }	
 	}
 	
-	//use element.nextElementSibling instead ( IE9 + )
-	/*element_proto.nextElement=function(){
-		var next_elem=false;
-		current=this
-		while( next_elem===false ){
-			current=current.nextSibling;
-			if( isHTMLElement( current ) ){
-				return current;
-			}else{
-				if( current===null ){
-					throw new Error( "node has no next sibling element" );
-				}
-			}
-		}
-	}*/
-	
-	//use element.previousElementSibling instead ( IE9 + )		
-	/*element_proto.prevElement=function(){
-		var prev_elem=false;
-		current=this
-		while( prev_elem===false ){
-			current=current.previousSibling;
-			if( isHTMLElement( current ) ){
-				return current;
-			}else{
-				if( current===null ){
-					throw new Error( "node has no previous sibling element" );
-				}
-			}
-		}
-	}*/
-	
-	//use element.firstElementCild instead ( IE9 + )	
-	/*element_proto.firstChildElement=function(){
-        var children=this.childNodes,
-        L=children.length;
-        if( L>0 ){
-            var first_index=0,
-            first=children[ first_index ];
-            while( !isHTMLElement( first ) ){
-                first_index+=1;
-                if( first_index<L ){
-                    first=children[ first_index ];
-                }else{
-                    throw new Error( "element has no child HTML Elements" );
-                }
-            }
-            return first
-        }else{
-            throw new Error( "node has no children can not find first child element" );
-        }
-    }*/
-   
-   	//use element.lastElementCild instead ( IE9 + )
-    /*element_proto.lastChildElement=function(){
-        var children=this.childNodes,
-        L=children.length;
-        if( L>0 ){
-            var last_index=L-1,
-            last=children[ last_index ];
-            while( !isHTMLElement( last ) ){
-                last_index-=1;
-                if( last_index>=0 ){
-                    last=children[ last_index ];
-                }else{
-                    throw new Error( "element has no child HTML Elements" );
-                }
-            }
-            return last
-        }else{
-            throw new Error( "node has no children can not find last child element" );
-        }
-    }*/
-	
-	/*element_proto.nearestParent=function( type ){
-		var match=false,
-	    current_parent=this;
-	    while( match===false ){
-			var current_parent=current_parent.parentElement;
-			if( current_parent.nodeName.toLowerCase()===type.toLowerCase() )
-			{
-				match=current_parent;
-				break;
-			}else{
-				if( current_parent.nodeName==='BODY' )
-				{
-					throw new Error( ' no '+type+' was not found to be parent of selected '+this.nodeName.toLowerCase() );
-				}
-			}
-	    }
-	    return match
-	}*/
-	
 	element_proto.nearestParent=function( type ){
 		var current_parent = this.parentElement;
 		if( current_parent === null || current_parent.nodeName.toLowerCase() === type.toLowerCase() ){
@@ -398,26 +329,6 @@ function gEBI(id)
 		}
 		
 	}
-	
-	/*element_proto.nearestParentClass=function( class_name ){
-        var match=false,
-        current_parent=this;
-        while( match===false ){
-            var current_parent=current_parent.parentElement;
-            if( current_parent.hasClass( class_name ) )
-            {
-                match=current_parent;
-                break;
-            }else{
-                if( current_parent.nodeName==='BODY' )
-                {
-                    var e=' no parent element with class '+class_name+' was found for node '+this.nodeName.toLowerCase();
-                    throw new Error( e );
-                }
-            }
-        }
-        return match
-    }*/
     
     element_proto.nearestParentClass=function( class_name ){
 		var current_parent = this.parentElement;

@@ -2,6 +2,11 @@
 	margin-bottom:20px;
 }
 
+li[data-tab="posts"].selected {
+    background-color: #f8f8f8;
+    border-bottom-color: #f8f8f8;
+}
+
 ul.folders {
 	padding-left:10px;
 }
@@ -79,6 +84,10 @@ ul.template > li > ul > li {
 	border-radius:3px;
 }
 
+ul.template > li:last-child > div.tmplt-forum-container {
+    border-bottom:1px solid black;
+}
+
 ul.template > li > ul > li:hover{
 	background-color:yellow;
 	cursor:pointer;
@@ -89,6 +98,10 @@ ul.template > li > ul > li:hover{
 	border-right:1px solid black;
 	padding-bottom:10px;
 	background-color: lemonchiffon;
+}
+
+div.tmplt-forum-container[data-location='meta-form'] {
+    border-top:none;
 }
 
 .tmplt-forum-container h5, .tmplt-forum-container h6 {
@@ -121,9 +134,12 @@ ul.template > li > ul > li:hover{
 [data-tab='template'] > div.tmplt-holder {
 	width:85%;
 	vertical-align:bottom;
-	max-height: 75vh;
-	overflow-y:auto;
 	position:relative;
+}
+
+div.doc-box {
+    max-height: 75vh;
+	overflow-y:auto;
 	border-top:1px solid black;
 }
 
@@ -142,11 +158,12 @@ ul.most-used-hashtags, ul#document-tabs {
 
 ul#document-tabs {
 	margin-bottom:1.5em;
-	padding-top:3px;
+	padding-top:4px;
 }
 
 ul.most-used-hashtags {
 	max-height:500px;
+	margin-bottom:10px;
 }
 
 ul.most-used-hashtags > li > span {
@@ -169,19 +186,27 @@ ul.most-used-hashtags > li > span:nth-child(1) {
 	display:none;
 }
 
-ul#document-tabs > li {
-	margin-bottom:7px;
-}
-
 ul#document-tabs > li > span {
 	padding:3px;
 	cursor:pointer;
 }
 
-ul#document-tabs > li:first-child > span, ul#document-tabs > li > span:hover {
-	background-color:black;
-	color:white;
+ul#document-tabs > li {
+    text-align:center;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-right:10px;
+    border:1px solid lightblue;
+    margin-bottom:3px;
+    cursor:pointer;
+    padding:2px;
+}
+
+ul#document-tabs > li:first-child, ul#document-tabs > li:hover {
+	background-image: linear-gradient(to bottom, #68EEF0 0%, #CAFCFC 86%);
 	border-radius:3px;
+	border:1px solid black;
+	
 }
 
 #template > li:last-child {
@@ -299,8 +324,34 @@ section[data-tab='analytics'] > ul.inline-list {
 	margin:10px;
 }
 
+section[data-tab="posts"] #post-space{
+	border-color: lightgray;
+    border-style: ridge;
+    border-width: 2px;
+    height: 75vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0 1rem;
+    position: relative;
+}
+
+section[data-tab="posts"] #post-space > article:first-of-type{
+	border-top:none;
+} 
+
 section[data-tab='posts'] > ul.inline-list {
-	margin:10px 0;
+	margin:2rem 0;
+	text-align:center;
+	
+}
+
+ul.form-list > li > input[name='search'] {
+    border:1px solid black;
+    padding:0 5px;
+    font-size:1.5em;
+    font-weight: 500;
+    box-sizing:border-box;
+    border-radius:3px;
 }
 
 section[data-tab='posts'] > ul.button-list {
@@ -340,7 +391,17 @@ ul.form-list > li {
 }
 
 section[data-tab='posts'] ul.form-list > li {
-	vertical-align: baseline;
+	vertical-align: middle;
+}
+
+section[data-tab='posts'] ul.form-list > li:last-of-type {
+    font-size: 1.4em;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+section[data-tab='posts'] ul.form-list > li:last-of-type:hover {
+    cursor:pointer;
 }
 
 section[data-tab='posts'] ul.form-list > li > span {
@@ -363,37 +424,6 @@ section[data-tab='posts'] ul.form-list > li > span {
    padding:5px 10px;
    font-weight: 700; 
    margin-right:5px;
-}
-
-ul.form-list > li > input[type='radio'] {
-    display:none;
-}
-
-ul.form-list > li > input[type='radio']:checked + span, section[data-tab='posts'] ul.form-list > li > span:hover {
-    background-color: black;
-    border-radius:4px;
-    color:white;
-    cursor: pointer;
-}
-
-ul.form-list > li > input[name='search']{
-    font-size:1.0em;
-    font-weight: 700;
-    
-    border:none;
-    border-radius:4px;
-    border-color:white;
-    border-width:7px;
-    border-style:solid;
-}
-
-ul.form-list > li > input[type='radio']:checked + input[name='search'] {
-    border-color:black;
-    padding:0 5px;
-}
-
-ul.form-list > li > input[type='text'] {
-   
 }
 
 section[data-tab="template"] {
@@ -425,7 +455,7 @@ section[data-tab='template'] .save-preview-popup{
 /*no shadow on posts tab so table can align underneath*/
 section[data-tab='posts'] article.post {
     box-shadow:none;   
-    border:2px solid tomato;
+    border:2px solid lightgray;
     border-left:none;
     border-right:none;
     margin-top:4rem;
@@ -454,22 +484,27 @@ div#post-space > article:last-of-type{
 }
 
 .main > nav {
-	margin-top:2rem;
-	border-top:1px dotted black !important;
+	margin-top:2rem !important;
+	border-top:1px solid lightgray !important;
+	margin-bottom:1rem;
+}
+
+section[data-tab="posts"] .main > div {
+    position: relative;
+    top: -2px;
 }
 
 .manage-table, .popup-table {
 	border-collapse:collapse;
 	border:1px solid black;
-	border-top:none;
 	background-color: lightgoldenrodyellow;
+	
 }
 
 .manage-table + canvas {
 	display:block;
 	margin-top:1rem;
 }
-
 
 .manage-table tr td{
 	text-align: left;
@@ -704,17 +739,7 @@ ul.login-bar > li:hover{
     animation-duration: 1.5s;
 } 
 
-section[data-tab="posts"] #post-space{
-	border-top:1px dotted black;
-	height:75vh;
-	overflow-y:auto;
-	overflow-x:hidden;
-	position:relative;
-}
 
-section[data-tab="posts"] #post-space > article:first-of-type{
-	border-top:none;
-} 
 
 
 	

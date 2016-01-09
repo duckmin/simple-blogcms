@@ -15,7 +15,7 @@
 		public function formatHashtagCountList( $label, $hashtag_array ){
 			$list = "<li>$label</li>";
 			foreach( $hashtag_array as $hashtag=>$count ){
-				$list .= "<li><span>#</span>$hashtag&nbsp;<span>$count</span></li>";
+				$list .= "<li data-hashtag=\"$hashtag\" data-newtemplateaction=\"hashtag\" ><span>#</span>$hashtag&nbsp;<span>$count</span></li>";
 			}
 			return "<ul class=\"most-used-hashtags\" >$list</ul>";
 		}
