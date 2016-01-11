@@ -17,7 +17,7 @@
 			foreach( $hashtag_array as $hashtag=>$count ){
 				$list .= "<li data-hashtag=\"$hashtag\" data-newtemplateaction=\"hashtag\" ><span>#</span>$hashtag&nbsp;<span>$count</span></li>";
 			}
-			return "<ul class=\"most-used-hashtags\" >$list</ul>";
+			return "<ul title=\"Click Hashtag to Add to Currently Selected Markdown\" class=\"most-used-hashtags\" >$list</ul>";
 		}
 	}
 	

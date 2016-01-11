@@ -166,6 +166,15 @@ ul.most-used-hashtags {
 	margin-bottom:10px;
 }
 
+ul.most-used-hashtags > li {
+    cursor:pointer;
+    margin-top:3px;
+}
+
+ul.most-used-hashtags > li:hover {
+    text-decoration: underline;
+}
+
 ul.most-used-hashtags > li > span {
 	font-weight:700;
 	font-size:0.7em;

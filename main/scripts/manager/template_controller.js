@@ -124,6 +124,8 @@ preview_panel_action.savePost = function(){
 						var new_post_in_preview_tab = document.querySelector("#preview > article.post:first-of-type");//post in preview tab has the edited HTML we need
 						old_post_in_posts_tab.innerHTML = new_post_in_preview_tab.innerHTML; 
 						window.location.hash = "#posts";	
+					}else{
+					    window.location.hash = "#template";	
 					}
 				}
 				template_panel_action.removeDocument(form_panel);
@@ -145,15 +147,19 @@ addEvent( window, "load", function(){
 			elm.addEvent( "click", preview_panel_action.savePost )
 		},
 		"hashtag":function(elm){
+			elm.addEvent( "mousedown", function(e){
+                e.preventDefault(); //prevent focus	
+			});
+			
 			elm.addEvent( "click", function(e){
                 var target = e.currentTarget,
                 tag = target.getAttribute("data-hashtag"),
                 active = document.activeElement;
-                console.log(active);
                 if( active.nodeName === "TEXTAREA" && active.hasAttribute("name") && active.getAttribute("name") === "text" ){
                     console.log(active);
-                }
-                alert(tag);			
+                    tag = "#"+tag;
+                    active.insertAtCaret(tag)
+                }	
 			});
 		}
 		
