@@ -45,22 +45,41 @@ template_panel_action.getPostDataFromTemplate = function(){
 	}
 	return holder
 }
-	
-template_panel_action.switchDocument = function(e){
-	var li = e.currentTarget,
-	tab_id = li.getAttribute("data-documentid"),
+
+template_panel_action.activateDocument = function(li){
+	var tab_id = li.getAttribute("data-documentid"),
 	document_panel = document.getElementById("documents-panel"),
 	document_tab = document_panel.querySelector("div.doc-box[data-documentid='"+tab_id+"']");
 	document_panel.prepend( document_tab );
-	document.getElementById("document-tabs").prepend( li )
+	this.highlightDocumentInView(li);
+}
+	
+template_panel_action.switchDocument = function(e){
+	var li = e.currentTarget;
+	this.activateDocument(li);
 }
 
 template_panel_action.removeDocument = function(panel){
 	var tab_id = panel.getAttribute("data-documentid"),
 	switcher_panel = document.getElementById("document-tabs");
-	switcher = switcher_panel.querySelector("li[data-documentid='"+tab_id+"']");
+	switcher = switcher_panel.querySelector("li[data-documentid='"+tab_id+"']"),
+	doc_before = switcher.previousElementSibling,
+	doc_after = switcher.nextElementSibling;
+	//after removing doc look to see which doc to make current 
+	if(doc_before !== null){
+		this.activateDocument(doc_before);
+	}else if(doc_after !== null){
+		this.activateDocument(doc_after);
+	}
 	panel.remove();
 	switcher.remove();
+}
+
+template_panel_action.highlightDocumentInView = function(tab){
+	var tabs = document.getElementById("document-tabs"),
+	selected = tabs.querySelector("li.selected");
+	if( selected !== null ){ selected.removeClass("selected") };
+	tab.addClass("selected");
 }
 
 template_panel_action.addNewDocumentForm = function(form_response, title, new_document){
@@ -78,7 +97,8 @@ template_panel_action.addNewDocumentForm = function(form_response, title, new_do
 		li.setAttribute("data-new", "");
 	}
 	li.addEvent( "click", this.switchDocument.bind(this) );
-	var tab = document.getElementById("document-tabs").prepend(li);
+	var tab = document.getElementById("document-tabs").appendChild(li);
+	this.highlightDocumentInView(tab);
 	return {
 		panel:panel,
 		tab:tab

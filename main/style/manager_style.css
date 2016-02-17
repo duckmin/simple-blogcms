@@ -205,13 +205,13 @@ ul#document-tabs > li {
     overflow: hidden;
     white-space: nowrap;
     margin-right:10px;
-    border:1px solid lightblue;
+    border:1px solid #05e5f5;
     margin-bottom:3px;
     cursor:pointer;
     padding:2px;
 }
 
-ul#document-tabs > li:first-child, ul#document-tabs > li:hover {
+ul#document-tabs > li.selected, ul#document-tabs > li:hover {
 	background-image: linear-gradient(to bottom, #68EEF0 0%, #CAFCFC 86%);
 	border-radius:3px;
 	border:1px solid black;
