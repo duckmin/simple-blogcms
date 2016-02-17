@@ -1,46 +1,45 @@
-function TabSet( tab_holder, config ){
-		this.tab_holder = tab_holder;
-		this.config = config || {};
+
+function TabSet( container ){
+		this.container = container;		
 }
 
-TabSet.prototype.switchTab = function( tabname ){		
-	var selected_li = null, selected_section = null;		
-	this.tab_holder.querySelectorAll('[data-tab]').each(function( element ) {
-		if( element.getAttribute( "data-tab" ) === tabname ){
-			element.addClass("selected");
-			( element.nodeName === "SECTION" )? selected_section = element : false;
-			( element.nodeName === "LI" )? selected_li = element : false;		
-		}else{
-			( element.hasClass("selected") )? element.removeClass("selected") : false;			
-		}
-	})
-	
-	if ( selected_section !== null && selected_li !== null ) {
-		if( this.config.hasOwnProperty( tabname ) && typeof this.config[ tabname ] === "function" ){
-			this.config[ tabname ]( selected_section, selected_li );
-		}
+TabSet.prototype.switchtab = function(){
+	var hash = window.location.hash.substr(1),
+	selected_li = document.querySelector("li[data-tab].selected"),
+	selected_section = document.querySelector("section[data-tab].selected"),
+	li = document.querySelector("li[data-tab='"+hash+"']"),
+	section = document.querySelector("section[data-tab='"+hash+"']");
+	if( selected_li !== null ){ selected_li.className = ""; }
+	if( selected_section !== null ){ selected_section.className = ""; }
+	if( li !== null && section !== null ){
+		li.className = "selected";
+		section.className = "selected";
+		//fire tabshow event on tab
+		section.dispatchEvent( tabshow_event );
 	}else{
-		console.log('missing elements');	
+		var message = "missing a matching element with the attribute data-tab='"+hash+"'";
+		throw new Error(message);
 	}
 }
 
-TabSet.prototype.init = function(){ //call on window load event
-	var self = this;
+TabSet.prototype.init = function(){
+	var tabs = this.container.querySelectorAll("li[data-tab]");
+	for( var i = 0, L = tabs.length; i < L; i+=1 ){
+		tabs[i].addEventListener('click', function(e){  
+			var hash = this.getAttribute("data-tab");
+			window.location.hash = hash;
+		}, false);
+	}
 	
-	this.tab_holder.querySelectorAll('li[data-tab]').each(function( li ) {	
-		li.addEvent("click", function( e ) {
-			window.location.hash = "#"+li.getAttribute( "data-tab" );
-		})
-	})
+	//register the tabshow event
+	window.tabshow_event = new Event('tabshow');
+	window.addEventListener('hashchange', this.switchtab, false);
+	//switch to first tab
 	
-	addEvent( window, "hashchange", function(){
-		self.switchTab( window.location.hash.substr(1) );
-	})
-	
-	if( window.location.hash === "" ){ 
-		var first_item_hashname = this.tab_holder.querySelector('li[data-tab]').getAttribute( "data-tab" );			
-		window.location.hash = "#"+first_item_hashname;
+	if( window.location.hash.length > 0 ){
+		this.switchtab();
 	}else{
-		this.switchTab( window.location.hash.substr(1) );		
+		var first_tab_hash = tabs[0].getAttribute("data-tab");
+		window.location.hash = first_tab_hash;
 	}
 }
