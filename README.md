@@ -55,10 +55,8 @@ BlogCms is an appication that revolves around an authenticated UI interface that
 - On manager console, just click around on every icon and read the messages to find out what they do!
 
 - Admin post editing interface
-![template](tmp_pics/template.png?d=1)
-
-- View of a post
-![view of post](tmp_pics/post.png)
-
+- ![template](tmp_pics/template.png?d=1)
+- View of post
+- ![view of post](tmp_pics/post.png)
 - Admin manage resources interface
-![resources](tmp_pics/resources.png)
+- ![resources](tmp_pics/resources.png)
