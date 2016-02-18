@@ -45,6 +45,7 @@ BlogCms is an appication that revolves around an authenticated UI interface that
 ##Things to note
 - create_user.php script inserts an admin UI interface user and password into database,  If you wish to remove a user or modify a user property it must be done manually at the database level, I would suggest deleting user row directly from console and re creating user
 - make sure permissions on the /blogcms/main/pics/ folder and sub folders give full permissions to the user server is running as
+- #hashtags used in posts are case sensitive, #HashTag is not treated the same as #hashTAG,  mindfulness must be used when using a popular hashtag in your post
 - If you wish to change the look and feel of the blog /blogcms/main/style/blog.css is where most of the styles for the main pages are located and can be changed **carefully** 
 - most HTML used to construct pages is located in /blogcms/server/templates/ these can be edited with care to add classes or extra content
 - **some javascript running on BlogCMS uses query selectors so changing of HTML structure could affect javascript**, make minor changes then check for errors
