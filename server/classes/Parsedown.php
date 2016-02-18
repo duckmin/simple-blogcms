@@ -20,6 +20,13 @@ class Parsedown {
 	private function addEmbelishments( $block ){
 			$block = trim($block);
 			
+			//look for regular URLs in text and replace
+			$block = preg_replace_callback( "#(?<!@|@\s|@\s{2})http(s|)://[^\s]+#", function($m){
+				$url = $m[0];
+				$url = filter_var($url, FILTER_SANITIZE_URL);
+				return ( filter_var($url, FILTER_VALIDATE_URL) !== false )? "<a href=\"$url\" target=\"_blank\">$url</a>" : $m[0];
+			}, $block );
+						
 			//add <b></b>
 			$block = preg_replace_callback( "/[*]{2}(.+?)[*]{2}/", function($m){
 				return "<b>$m[1]</b>";
@@ -36,7 +43,7 @@ class Parsedown {
 			}, $block );
 			
 			//add links @ http://link.com | link text |    <a href="http://link.com">link text</a>
-			$block = preg_replace_callback( "#@\s*((http|https)://([A-z0-9-]+.|www.|)[A-z0-9-]+.[A-z\.]{2,5}[%A-z0-9\/+-.]+(\?{1}[&A-z0-9=%]+|))\s*\|\s*([!?A-z0-9\s]+)\|#", function($m){
+			$block = preg_replace_callback( "#@\s{0,2}((http|https)://([A-z0-9-]+.|www.|)[A-z0-9-]+.[A-z\.]{2,5}[%A-z0-9\/+-.]+(\?{1}[&A-z0-9=%]+|))\s*\|\s*([!?A-z0-9\s]+)\|#", function($m){
 				//echo var_dump( $m );
 				$link_text = trim($m[5]);
 				return "<a href=\"$m[1]\" target=\"_blank\" >$link_text</a>";

@@ -25,22 +25,6 @@ include_once $server."/configs.php";
 	}*/
 	////echo  var_dump( filter_var($_SERVER['REMOTE_ADDR'], FILTER_VALIDATE_IP) );
 	
-	
-	//FOR USE WITH THE GD PHP LIB
-	/*$src = INDEX_PATH."/pics/amazon/dove.jpg";
-	$img_info = getimagesize($src);
-	echo var_dump($img_info);
-	$width = $img_info[0];
-	$height = $img_info[1];
-	$aspect_width = 50;
-	$aspect_height = round( $height / $width * $aspect_width );
-	//imagescale ( $img , $aspect_width, $aspect_height );
-	$img_p = imagecreatetruecolor( $aspect_width, $aspect_height ); //frame for img to be copied into
-	$img = imagecreatefromjpeg( $src );
-	imagecopyresampled($img_p, $img, 0, 0, 0, 0, $aspect_width, $aspect_height, $width, $height);
-	imagejpeg($img_p, INDEX_PATH."/pics/amazon/dove-t.jpg", 100); //save resized img canvas to new src
-	*/
-	
 	/*$initial_date = "2015-4-02";
 	$s1 = strtotime($initial_date);
 	$md = new MongoDate( $s1 );
@@ -52,13 +36,5 @@ include_once $server."/configs.php";
 	
 	//tsst
 	
-	class Constants {
-		const URL = "HTTP";
-		//public static $url = dirname(__FILE__);
-	}		
-
-	define( "SERVER_PATHo", dirname(__FILE__) );
-define( "INDEX_PATHo", SERVER_PATHo."/../main" );
 	
-	echo INDEX_PATHo;
 ?>
