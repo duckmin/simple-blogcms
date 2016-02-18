@@ -1,4 +1,7 @@
 #blogcms (simple version)
+
+![home page shot](tmp_pics/blog_screenshot.png)
+
 BlogCms is a high performing, fully responsive, and searchable content management system.
 BlogCms is an appication that revolves around an authenticated UI interface that is used to build and manage individual posts. Posts can be grouped by realted #hashtags.  The UI is very easy to use, from the manager you can 
 - create postings with any combination of images, embedded videos, audio files, and blogdown
