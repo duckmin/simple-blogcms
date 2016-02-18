@@ -53,3 +53,12 @@ BlogCms is an appication that revolves around an authenticated UI interface that
 - most HTML used to construct pages is located in /blogcms/server/templates/ these can be edited with care to add classes or extra content
 - **some javascript running on BlogCMS uses query selectors so changing of HTML structure could affect javascript**, make minor changes then check for errors
 - On manager console, just click around on every icon and read the messages to find out what they do!
+
+Admin post editing interface
+![template](tmp_pics/template.png)
+
+View of a post
+![view of post](tmp_pics/post.png)
+
+Admin manage resources interface
+![resources](tmp_pics/resources.png)
