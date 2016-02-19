@@ -106,8 +106,8 @@ template_panel_action.addNewDocumentForm = function(form_response, title, new_do
 }
 
 template_panel_action.addNewDocument = function(e){
-	var new_docs = document.getElementById("document-tabs").querySelectorAll("[data-new]").length + 1,
-	label = "New Document "+new_docs,
+	/* Remove new document # labels, not very useful *///var new_docs = document.getElementById("document-tabs").querySelectorAll("[data-new]").length + 1,
+	var label = "Unsaved Document",
 	bind = {
 		id:"",
 		title:"",

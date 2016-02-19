@@ -22,8 +22,7 @@ class Parsedown {
 			
 			//look for regular URLs in text and replace
 			$block = preg_replace_callback( "#(?<!@|@\s|@\s{2})http(s|)://[^\s]+#", function($m){
-				$url = $m[0];
-				$url = filter_var($url, FILTER_SANITIZE_URL);
+				$url = filter_var($m[0], FILTER_SANITIZE_URL);
 				return ( filter_var($url, FILTER_VALIDATE_URL) !== false )? "<a href=\"$url\" target=\"_blank\">$url</a>" : $m[0];
 			}, $block );
 						
@@ -43,10 +42,11 @@ class Parsedown {
 			}, $block );
 			
 			//add links @ http://link.com | link text |    <a href="http://link.com">link text</a>
-			$block = preg_replace_callback( "#@\s{0,2}((http|https)://([A-z0-9-]+.|www.|)[A-z0-9-]+.[A-z\.]{2,5}[%A-z0-9\/+-.]+(\?{1}[&A-z0-9=%]+|))\s*\|\s*([!?A-z0-9\s]+)\|#", function($m){
-				//echo var_dump( $m );
-				$link_text = trim($m[5]);
-				return "<a href=\"$m[1]\" target=\"_blank\" >$link_text</a>";
+			//$block = preg_replace_callback( "#@\s{0,2}(http(s|)://[^\s]+)\s{0,2}\|\s{0,2}([!?A-z0-9\s]+)\|#", function($m){
+			$block = preg_replace_callback( "#@\s{0,2}(http(|s)://[^\s]+)\s*([A-z0-9!?-\s]+)\s{0,1}\|#", function($m){
+				$url = filter_var($m[1], FILTER_SANITIZE_URL);
+				$link_text = trim($m[3]);
+				return ( filter_var($url, FILTER_VALIDATE_URL) !== false && strlen($link_text) > 0 )? "<a href=\"$url\" target=\"_blank\">$link_text</a>" : $m[0];
 			}, $block );
 			
 			//turn all hashtags into links for hashtag pages

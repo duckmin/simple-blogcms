@@ -177,15 +177,15 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>@ http://link.com | link text |</td>
+                    <td>@ http://link.com link text |</td>
                     <td><a href="http://link.com">link text</a></td>                 
                 </tr> 
                 
                 <tr>
                     <td>#HashTag</td>
                     <td>
-                        <p>use hashtags to categorize posts into #hashtag</p>
-                        <a href="/hashtag/HashTag">HashTag</a>
+                        <p>(use hashtags to categorize posts into #hashtag)</p>
+                        <a href="/hashtag/HashTag">#HashTag</a>
                     </td>                 
                 </tr> 
                 <tr>
@@ -231,7 +231,7 @@
 ! Headings must be on their own line with a space underneath
 
 #BlogDown as a simple way to markup blog posts.
-@ http://google.com | links | can be created in any block. **bold**,
+@ http://google.com my link | can be created in any block. **bold**,
 ~~strike ~~ and __italics__ can be used anywhere or **~~__combination__~~**!.
 
 !!!! Blog down is simple yet flexible
@@ -243,7 +243,7 @@ must put a line of space between each seperate block.
 
 - each list **item** is a - then a space then text
 - must be kept on its own line
-- @ http://google.com | links | **bold** ~~__anything__~~ is #accepted
+- @ http://google.com links | **bold** ~~__anything__~~ is #accepted
 </textarea>
                     </td>               
                 </tr>
@@ -254,7 +254,7 @@ must put a line of space between each seperate block.
                                 <h1>Headings must be on their own line with a space underneath</h1>
                                 
                                 <p><a href="/hashtag/blogdown">#BlogDown</a> as a simple way to markup blog posts.
-                                <a href="http://google.com">links</a> can be created in any block. <b>bold</b>,
+                                <a href="http://google.com">my link</a> can be created in any block. <b>bold</b>,
                                 <s>strike</s> and <em>italics</em> can be used anywhere or <b><s><em>combination</em></s></b>!.</p>
                                 
                                 <h4>Blog down is simple yet flexible</h4>
@@ -267,7 +267,7 @@ must put a line of space between each seperate block.
                                 <ul>
                                     <li>each list <b>item</b> is a - then a space then text</li>
                                     <li>must be kept on its own line</li>
-                                    <li><a href="http://google.com">links</a> <b>bold</b> <s><em>anything</em></s> is <a href="/hashtag/accepted">accepted</a></li>
+                                    <li><a href="http://google.com">links</a> <b>bold</b> <s><em>anything</em></s> is <a href="/hashtag/accepted">#accepted</a></li>
                                 </ul>
                             </article>
                     </td>               
