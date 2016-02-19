@@ -41,9 +41,8 @@ class Parsedown {
 				return "<s>$m[1]</s>";
 			}, $block );
 			
-			//add links @ http://link.com | link text |    <a href="http://link.com">link text</a>
-			//$block = preg_replace_callback( "#@\s{0,2}(http(s|)://[^\s]+)\s{0,2}\|\s{0,2}([!?A-z0-9\s]+)\|#", function($m){
-			$block = preg_replace_callback( "#@\s{0,2}(http(|s)://[^\s]+)\s*([A-z0-9!?-\s]+)\s{0,1}\|#", function($m){
+			//add links @ http://link.com link text |    <a href="http://link.com">link text</a>
+			$block = preg_replace_callback( "#@\s{0,2}(http(|s)://[^\s]+)\s*([A-z0-9!?-\s]+)\|#", function($m){
 				$url = filter_var($m[1], FILTER_SANITIZE_URL);
 				$link_text = trim($m[3]);
 				return ( filter_var($url, FILTER_VALIDATE_URL) !== false && strlen($link_text) > 0 )? "<a href=\"$url\" target=\"_blank\">$link_text</a>" : $m[0];
