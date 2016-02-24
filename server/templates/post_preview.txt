@@ -1,4 +1,4 @@
-<article class="preview">
+<article class="preview" id="{{ id }}" >
 	##has_inner
 	<a class="title" href="{{ post_url }}">
 		{{ inner }}

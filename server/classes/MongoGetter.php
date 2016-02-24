@@ -156,12 +156,21 @@
 			return $cursor;
 		}
 		
-		//query used on post page to get posts with hashtags in common with post in view 
-		public function getRecentRelatedHashTags( $id, $hashtags ){
-			$mongo_id = new MongoId( $id );
+		//query used on post page to get posts with hashtags in common with post in view, and have no repaets of the post in view or any posts from the 'next posts' block 
+		public function getRecentRelatedHashTags( $page_ids, $hashtags ){
+			$find = array(
+				'$nor'=>array(),
+				'hashtags'=>array( '$in'=>$hashtags )
+			);
+			
+			//arrange all ids into $nor query
+			foreach($page_ids as $id ){
+				$id_obj = new MongoId( $id );
+				array_push( $find['$nor'] ,array('_id'=>$id_obj));
+			}
+			
 			$collection = $this->db->posts;
 			$fields = $this->preview_fields;
-			$find = array( '_id'=>array( '$ne'=>$mongo_id ), 'hashtags'=>array( '$in'=>$hashtags ) );
 			$cursor = $collection->find( $find, $fields )
 			->limit( AMOUNT_OF_NEXT_POSTS )
 			->sort( array( 'lastModified' => -1 ) );
