@@ -141,10 +141,16 @@ resources_action.pictureClick = function( element ){
 
 function audioClick( element ){
 	var parent_li = element.nearestParent('li'),
+	active_timeplate = template_panel_action.getActiveTemplate(),
 	path = parent_li.getAttribute( 'data-filepath' );
-	window.location.hash = "#template";
-	template_item = templatetype[ "audio" ]( path );
-	gEBI("template").appendChild( template_item );
+	
+	if( active_timeplate !== false ){
+		window.location.hash = "#template";
+		template_item = templatetype[ "audio" ]( path );
+		active_timeplate.appendChild( template_item );
+	}else{
+		showAlertMessage( "Please create a template for this audio to be added to", false );
+	}
 }
 
 function newFolder( element ){
