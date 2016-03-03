@@ -34,6 +34,10 @@
 				$file = '/server/pages/manager.php';
 				break;
 				
+			case "thumb":
+				$file = '/server/pages/thumb.php';
+				break;
+				
 			case "logout":
 				$file = '/server/pages/logout.php';
 				break;

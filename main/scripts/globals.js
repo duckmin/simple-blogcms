@@ -107,7 +107,7 @@ function getAlertMessageIcon( bool ){
 /*
     @elm audio element
 */
-makeFlashAudioEmbed = function(elm){
+function makeFlashAudioEmbed(elm){
    	var src = elm.src,
    	flash_vars = 'config={"autoPlay":false,"autoBuffering":false,"showFullScreenButton":false,"showMenu":false,"videoFile":"'+src+'","loop":false,"autoRewind":true}',
    	embed = createElement("embed", {
@@ -123,6 +123,10 @@ makeFlashAudioEmbed = function(elm){
    	}),
    	audio = elm.parentElement;
     audio.replaceWith(embed);				
+}
+
+function handleMissingThumbnail(elm){
+	elm.src = "/style/resources/no-thumbnail.png";
 }
 
 
