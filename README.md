@@ -15,7 +15,7 @@ BlogCms is an appication that revolves around an authenticated UI interface that
 
 ##Getting Started
 - Install apache, php, mongo db
-- php must have "Mongo" module
+- php must have PHP-common (bundle of commmon modules), "Mongo" and "GD"(for thumbnails) modules
 - Clone project into folder
 - change your apache conf documentroot to be the "<path_to_blogcms>/main" ( same directory of index.php ) folder of the project 
 - this application routes all urls through "index.php" file using apaches mod rewrite rules. Your vhost container should **atleast** have the following rules. 
