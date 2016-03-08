@@ -93,6 +93,13 @@ ul.template > li > ul > li:hover{
 	cursor:pointer;
 }
 
+div.doc-box > ul.button-list {
+	text-align:center;
+	padding:10px 0;
+	background-color: lemonchiffon;
+	border-right:1px solid black;
+}
+
 .tmplt-forum-container{
 	border-top:1px solid black;
 	border-right:1px solid black;

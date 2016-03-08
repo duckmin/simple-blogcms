@@ -1,6 +1,12 @@
 
 var doc_form_template = "<div class='doc-box'>"+	
 	"<ul class='template' data-location='template' ></ul><!-- template items will be appended to this box -->"+	
+	"<ul class='button-list' >"+
+		"<li title='Add Markdown' data-action='markdown' data-templateaction='additem' ><img src='style/resources/document-text.png'></li>"+
+		"<li title='Add Image' data-action='image' data-templateaction='additem' ><img src='style/resources/camera.png'></li>"+
+		"<li title='Add Video Embed' data-action='video' data-templateaction='additem' ><img src='style/resources/movie.png'></li>"+
+		"<li title='Add Audio' data-action='audio' data-templateaction='additem' ><img src='style/resources/audio.png'></li>"+
+	"</ul>"+
 	"<div class='tmplt-forum-container' data-location='meta-form' >"+
 		"<input type='hidden' name='id' value='{{ id }}' >"+
 		"<h5>Title:</h5>"+
@@ -223,7 +229,22 @@ template_bind_action.removePost = function(e){
 //template_panel_action.removeDocument(panel)
 template_bind_action.bindFormEvents = function( form_panel ){
 	attributeActions( form_panel, "data-templateaction", {
-			
+		
+		"additem":function(elm){
+			elm.addEvent( "click", function(e){
+				var template = template_panel_action.getActiveTemplate();  //defined in template_controller.js
+				if( template !== false ){
+					var action = elm.getAttribute("data-action"),
+					template_item = templatetype[ action ](),
+					appended = template.appendChild( template_item ),
+					tmplt_formcontainer = appended.querySelector("div.tmplt-forum-container");
+					tmplt_formcontainer.addClass("highlight-edit"); 
+	            setTimeout(function(){ tmplt_formcontainer.removeClass("highlight-edit"); },1500)
+            }else{
+            	showAlertMessage( "No Document is in View", false );
+            }
+			})
+		},	
 		"preview-post":function(elm){
 			elm.addEvent( "click", template_bind_action.previewPost );
 		},

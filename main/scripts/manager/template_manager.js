@@ -74,14 +74,6 @@
 		})
 	}
 	
-	function addLink( e ){
-		var element = e.srcElement||e.currentTarget;
-		var container = element.nearestParent('div'),
-		textarea = container.querySelectorAll('textarea[name=text]')[0],
-		value = textarea.value;
-		textarea.value = value + " [](http://)";
-	}
-	
 	function previewImage( e ){
 		var element= e.srcElement||e.currentTarget;
 		var container=element.nearestParent('div'),
@@ -149,17 +141,6 @@
 				}),
 				"input":createElement('textarea',{
 					"name":"text"
-				}),
-				"button":createElement('ul',{
-					"class":"button-list",
-					"child":multiFragment({
-						"preview":createElement('li',{
-							"text":"Add Link",
-							"events":{
-								"click":addLink
-							}
-						})
-					})
 				})
 			}))
 		},
@@ -249,21 +230,6 @@
 	addEvent( window, "load", function(){
 		attributeActions( document.body, "data-templateaction", {
 			
-			"additem":function(elm){
-				elm.addEvent( "click", function(e){
-					var template = template_panel_action.getActiveTemplate();  //defined in template_controller.js
-					if( template !== false ){
-						var action = elm.getAttribute("data-action"),
-						template_item = templatetype[ action ](),
-						appended = template.appendChild( template_item ),
-						tmplt_formcontainer = appended.querySelector("div.tmplt-forum-container");
-						tmplt_formcontainer.addClass("highlight-edit"); 
-		            setTimeout(function(){ tmplt_formcontainer.removeClass("highlight-edit"); },1500)
-	            }else{
-	            	showAlertMessage( "No Document is in View", false );
-	            }
-				})
-			},
 			"add-pictue-to-template":function(elm){
 				elm.addEvent( "click", function(e){
 					picture_popup = gEBI("picture-popup"),

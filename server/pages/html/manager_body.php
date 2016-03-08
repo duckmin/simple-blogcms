@@ -48,7 +48,7 @@
 			<li data-newtemplateaction="add-new-document-template" >
 				<img title="new post" src="style/resources/new-document.png" >			
 			</li>
-			<li class="drop" >
+			<!--li class="drop" >
 				<img src="style/resources/expand.png" />
 				Template Item
 				<ul>
@@ -77,7 +77,7 @@
 						</span>
 					</li>
 				</ul>
-			</li>
+			</li-->
 			<li data-templateaction="show-markdown-help" >
 				Markdown Help			
 			</li>
