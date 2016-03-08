@@ -4,7 +4,8 @@
 //these are avail to every script that passing through the framework routing system 
 /*DO NOT CHANGE*/
 define("SERVER_PATH", dirname(__FILE__));
-define("INDEX_PATH", SERVER_PATH."/../main");
+define("INDEX_PATH", realpath(SERVER_PATH."/../main"));
+define("RESOURCE_PATH", INDEX_PATH."/pics");
 /* END DO NOT CHANGE */
 
 //these values can be changed according to your environment, and to affect some page behaviors 

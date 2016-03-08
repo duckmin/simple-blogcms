@@ -6,7 +6,7 @@
 		private static $quality = 35;
       private static $png_quality = 4;
       private static $thumbnail_width = 100; //this is px width of thumbnail   
-		private static $thumbnail_max_height = 100;     
+		private static $thumbnail_max_height = 100; 
        
       public static function getThumbNameFromPath( $image_path ){
       	$thumb_file_name = preg_replace ( "/\//", "-", $image_path );
@@ -26,6 +26,12 @@
   		public static function createThumbFromExistingImage( $image_path ){
   			
 			$full_img_path = realpath(INDEX_PATH."/$image_path");
+			
+			//do a check to make sure the given image resolves to the RESOURCE_PATH directory
+			if(strpos( $full_img_path, RESOURCE_PATH ) !== 0 ){
+				exit;
+			}
+			
 			$thumb_path = self::getThumbNameFromPath( $image_path );
 			$img_info = getimagesize($full_img_path);
 			$mime_type = $img_info["mime"];
