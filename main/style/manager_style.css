@@ -61,6 +61,7 @@ form ul.folders > li {
 ul.template > li  {
 	position:relative;
 	background-color:white;
+	list-style-type: none;
 	/*padding:4px 10px 10px 10px;*/
 }
 
@@ -96,8 +97,8 @@ ul.template > li > ul > li:hover{
 div.doc-box > ul.button-list {
 	text-align:center;
 	padding:10px 0;
-	background-color: lemonchiffon;
 	border-right:1px solid black;
+	background-color: mistyrose;
 }
 
 .tmplt-forum-container{
@@ -109,6 +110,7 @@ div.doc-box > ul.button-list {
 
 div.tmplt-forum-container[data-location='meta-form'] {
     border-top:none;
+    background-color: mistyrose;
 }
 
 .tmplt-forum-container h5, .tmplt-forum-container h6 {
@@ -145,8 +147,7 @@ div.tmplt-forum-container[data-location='meta-form'] {
 }
 
 div.doc-box {
-    max-height: 75vh;
-	overflow-y:auto;
+    
 	border-top:1px solid black;
 }
 
