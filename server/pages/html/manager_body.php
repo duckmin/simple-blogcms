@@ -166,9 +166,9 @@
 	</div>
 </div>
 
-<div class='dark-shade hide' id="blogdown-popup" >
+<div class='dark-shade hide' id="blogdown-popup" data-templateaction="shade-click" >
 	<div class='save-preview-popup' >
-		<table class="popup-table" >
+		<table class="popup-table" data-templateaction="stop-propagation" >
             <thead>
                 <tr>
                     <th>You Type</th>

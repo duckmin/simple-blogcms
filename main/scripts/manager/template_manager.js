@@ -255,6 +255,19 @@
 					parent_shade.addClass('hide');
 				})
 			},
+			"shade-click":function(elm){
+				elm.addEvent( "click", function(e){
+					e.stopPropagation();
+					e.currentTarget.addClass('hide');
+					//var parent_shade = elm.nearestParentClass("dark-shade");
+					//parent_shade.addClass('hide');
+				})
+			},
+			"stop-propagation":function(elm){
+				elm.addEvent( "click", function(e){
+					e.stopPropagation();					
+				})
+			},
 			"save-new-post":function(elm){
 				elm.addEvent( "click", function(e){
 					if( !edit_mode.active() ){
