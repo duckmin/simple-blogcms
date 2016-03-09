@@ -20,18 +20,23 @@
 </head>
 
 <body>
-	<main class='wrapper' >
-		<header>
+	<header>
+		<div>
 			<h1><a href="{{ base }}">Duckmins BlogCMS</a></h1>
-			<form method="GET" action="{{ base }}/submit-search/" >						
-				<input type="text" name="search" placeholder="search" value="{{ search_value }}" />
-				<input type="submit" value="" />
-			</form>
 			<ul>
-				<!-- add hard coded <li> inline here -->
-				{{ header }}<li><a href="#">Sample</a></li><li><a href="#">Sample2</a></li>
+				{{ header }}<li class="search-hover" >
+					<span>search</span>
+					<div>
+						<form method="GET" action="{{ base }}/submit-search/" >						
+							<input type="text" name="search" placeholder="search" value="{{ search_value }}" >
+							<input type="submit" value="" >
+						</form>
+					</div>
+				</li><!-- add hard coded <li> inline here --><li><a href="#">Sample</a></li><li><a href="#">Sample2</a></li>
 			</ul>
-		</header>
+		</div>
+	</header>
+	<main class='wrapper' >
 		<section class='main'>		
 			{{ body }}
 			##extra_posts

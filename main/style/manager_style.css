@@ -2,7 +2,7 @@
 	margin-bottom:20px;
 }
 
-li[data-tab="posts"].selected {
+li[data-tab="posts"].selected, li[data-tab='template'].selected {
     background-color: #f8f8f8;
     border-bottom-color: #f8f8f8;
 }
@@ -86,7 +86,7 @@ ul.template > li > ul > li {
 }
 
 ul.template > li:last-child > div.tmplt-forum-container {
-    border-bottom:1px solid black;
+    border-bottom:1px dotted black;
 }
 
 ul.template > li > ul > li:hover{
@@ -96,16 +96,20 @@ ul.template > li > ul > li:hover{
 
 div.doc-box > ul.button-list {
 	text-align:center;
-	padding:10px 0;
-	border-right:1px solid black;
+	padding:1.5rem 0 0 0;
+	border:1px dotted black;
+	border-bottom:none;
+	border-top:none;
 	background-color: mistyrose;
 }
 
 .tmplt-forum-container{
-	border-top:1px solid black;
-	border-right:1px solid black;
-	padding-bottom:10px;
-	background-color: lemonchiffon;
+	border:1px dotted black;
+	border-top:none;
+	/*border-right:1px dotted black;*/
+	padding:1.5rem 0;
+	/*background-color: lemonchiffon;*/
+	background-color: #f8f8f8;
 }
 
 div.tmplt-forum-container[data-location='meta-form'] {
@@ -148,7 +152,7 @@ div.tmplt-forum-container[data-location='meta-form'] {
 
 div.doc-box {
     
-	border-top:1px solid black;
+	border-top:1px dotted black;
 }
 
 [data-tab='template'] > aside {
@@ -166,7 +170,6 @@ ul.most-used-hashtags, ul#document-tabs {
 
 ul#document-tabs {
 	margin-bottom:1.5em;
-	padding-top:4px;
 }
 
 ul.most-used-hashtags {
@@ -213,7 +216,7 @@ ul#document-tabs > li {
     overflow: hidden;
     white-space: nowrap;
     margin-right:10px;
-    border:1px solid #05e5f5;
+    border:1px solid #f8f8f8;
     margin-bottom:3px;
     cursor:pointer;
     padding:2px;
@@ -318,7 +321,7 @@ section[data-tab='preview'] ul.button-list {
 	margin:1rem 0;
 }
 
-section[data-tab='preview'], section[data-tab='posts'], section[data-tab='analytics']{
+section[data-tab='preview'], section[data-tab='posts'], section[data-tab='template']{
 	border-left:none;
 	border-right:none;
 	border-bottom:none;
@@ -333,8 +336,8 @@ section[data-tab='preview'] section.main > article:last-of-type {
     border-bottom: 2px solid lightgray;
 }
 
-section[data-tab='analytics']{
-	background-color:white;
+section[data-tab='template']{
+	background-color: #F8F8F8;
 }
 
 section[data-tab='analytics'] > ul.inline-list {

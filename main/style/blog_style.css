@@ -2,73 +2,108 @@ body, header > form > input[name="search"], header > form > input[type="submit"]
 	background-color: #F8F8F8;
 }
 
-main > header{
+body > header{
+	border-bottom: 2px solid lightgray;
+}
+
+body > header > div {
 	
 }
 
-main > header h1 {
+body > header h1 {
 	font-family: "Century Gothic",CenturyGothic,AppleGothic,sans-serif;
-	font-size:4em;
+	font-size:2em;
 	font-weight:100;
 	color:navy;
+	color:#0066ff;
+	text-align:center;
 }
 
-main > header > ul {
-	margin-top:0px;
+body > header > div > ul {
+	margin-top: 1rem;
 	font-size:1.2em;
 	list-style-type:none;
-	border-bottom: 2px solid tomato;
 }
 
-main > header > form > input[type="submit"] {
+body > header > div form > input[type="submit"] {
 	background-image: url("resources/search.png");
 	background-repeat: no-repeat;
 	width:16px;
 	border:none;
 	background-position: center center;
+	background-color:#f8f8f8;
 }
 
 input[type="submit"]:hover{
 	cursor:pointer;
 }
 
-main > header > form > input[name="search"] {
+body > header > div form > input[name="search"] {
 	border:none;
-	border-bottom:2px solid tomato;
-	font-size:1.2em;
+	/*border-bottom:2px solid tomato;*/
+	/*font-size:1.2em;*/
 	color:tomato;
 	text-align:right;
 	padding-right:5px;
 	max-width:9em;
+	font-size:inherit;
+	background-color:#f8f8f8;
 }
 
-main > header > h1 {
-    color:#0066ff;
+.search-hover {
+	position:relative;
+	cursor:pointer;
 }
 
-main > header > ul > li{
+.search-hover > span {
+	color: navy;
+	background-image: url("resources/search.png");
+   background-position: right center;
+   background-repeat: no-repeat;
+   padding-right:20px;
+}
+
+.search-hover > div {
+	position:absolute;
+	width:calc( 9em + 21px ); /* 16px wide submit button & 5px padding */
+	border:2px solid lightgray;
+	border-top-color:#f8f8f8;
+	display:none;
+	padding:10px;
+	background-color:#f8f8f8;
+}
+
+.search-hover:hover > div {
+	display:block;
+}
+
+.search-hover > div > form > * {
+	display:inline-block;
+}
+
+body > header > div > ul > li{
 	color:tomato;
 	display:inline-block;
 	margin-right:0.5em;
 }
 
-main > header > ul > li:first-child{
+body > header > div > ul > li:first-child{
 	
 }
 
-main > header > ul > li > a, main > header > h1 > a {
+body > header > div > ul > li > a, main > header > h1 > a {
 	color:inherit;
 }
 
-main > header > ul > li.current-cat, header > ul > li:hover {
+body > header > div > ul > li.current-cat, header > ul > li:hover {
 	color:navy;
 }
 
-main > header > ul > li > form input.gray-text{
+body > header > div > ul > li > form input.gray-text{
 	color:lightgray;
 }
 
-main > header a{
+body > header a{
 	text-decoration:none;
 }
 
@@ -370,7 +405,7 @@ blockquote {
 		
 	}
 	
-	main.wrapper > * { 
+	main.wrapper > *, body > header { 
 		margin-left:0.5rem;
 		margin-right:0.5rem;
 	}
