@@ -60,9 +60,29 @@ form ul.folders > li {
 
 ul.template > li  {
 	position:relative;
-	background-color:white;
 	list-style-type: none;
 	/*padding:4px 10px 10px 10px;*/
+}
+
+li[data-posttype] {
+	background-repeat: no-repeat;
+	background-position: 10px 4px;
+}
+
+li[data-posttype='markdown'] {
+    background-image: url("resources/markdown-doc.png");
+}
+
+li[data-posttype='image'] {
+    background-image: url("resources/camera-icon.png");
+}
+
+li[data-posttype='video'] {
+    background-image: url("resources/media-icon.png");
+}
+
+li[data-posttype='audio'] {
+    background-image: url("resources/music-icon.png");
 }
 
 ul.template > li:first-child > div.tmplt-forum-container {
@@ -106,10 +126,7 @@ div.doc-box > ul.button-list {
 .tmplt-forum-container{
 	border:1px dotted black;
 	border-top:none;
-	/*border-right:1px dotted black;*/
 	padding:1.5rem 0;
-	/*background-color: lemonchiffon;*/
-	background-color: #f8f8f8;
 }
 
 div.tmplt-forum-container[data-location='meta-form'] {

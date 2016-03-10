@@ -2,10 +2,10 @@
 var doc_form_template = "<div class='doc-box'>"+	
 	"<ul class='template' data-location='template' ></ul><!-- template items will be appended to this box -->"+	
 	"<ul class='button-list' >"+
-		"<li title='Add Markdown' data-action='markdown' data-templateaction='additem' ><img src='style/resources/document-text.png'></li>"+
-		"<li title='Add Image' data-action='image' data-templateaction='additem' ><img src='style/resources/camera.png'></li>"+
-		"<li title='Add Video Embed' data-action='video' data-templateaction='additem' ><img src='style/resources/movie.png'></li>"+
-		"<li title='Add Audio' data-action='audio' data-templateaction='additem' ><img src='style/resources/audio.png'></li>"+
+		"<li title='Add Markdown' data-action='markdown' data-templateaction='additem' ><img src='style/resources/markdown-doc.png'></li>"+
+		"<li title='Add Image' data-action='image' data-templateaction='additem' ><img src='style/resources/camera-icon.png'></li>"+
+		"<li title='Add Video Embed' data-action='video' data-templateaction='additem' ><img src='style/resources/media-icon.png'></li>"+
+		"<li title='Add Audio' data-action='audio' data-templateaction='additem' ><img src='style/resources/music-icon.png'></li>"+
 	"</ul>"+
 	"<div class='tmplt-forum-container' data-location='meta-form' >"+
 		"<input type='hidden' name='id' value='{{ id }}' >"+
