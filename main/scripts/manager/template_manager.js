@@ -136,31 +136,25 @@
 	window.templatetype = {
 		"markdown":function( text ){
 			return post( "markdown", multiFragment({
-				"heading":createElement('h5',{
-					"text":"Markdown"
-				}),
 				"input":createElement('textarea',{
-					"name":"text"
+					"name":"text",
+					"placeholder":"MarkDown"
 				})
 			}))
 		},
 		"image":function( src ){
 			return post( "image", multiFragment({
-					"heading":createElement('h5',{
-						"text":"Image Embed"
-					}),
 					"input":createElement('input',{
 						"name":"src",
 						"type":"text",
-						"value":src||""
-					}),
-					"subheading":createElement('h6',{
-						"text":"Alt ( text that appears if image does not load )"
+						"value":src||"",
+						"placeholder":"Image Source"
 					}),
 					"alt_input":createElement('input',{
 						"name":"alt",
 						"type":"text",
-						"value":""
+						"value":"",
+						"placeholder":"Alt (text that appears if image does not load)"
 					}),
 					"button":createElement('ul',{
 						"class":"button-list",
@@ -178,13 +172,11 @@
 		},
 		"audio":function( src ){
 			return post( "audio", multiFragment({
-					"heading":createElement('h5',{
-						"text":"Audio Embed"
-					}),
 					"input":createElement('input',{
 						"name":"src",
 						"type":"text",
-						"value":src||""
+						"value":src||"",
+						"placeholder":"Audio Source"
 					}),
 					"button":createElement('ul',{
 						"class":"button-list",
@@ -202,12 +194,10 @@
 		},
 		"video":function(){
 			return post("video", multiFragment({
-					"heading":createElement('h5',{
-						"text":"Video Embed"
-					}),
 					"input":createElement('input',{
 						"name":"src",
-						"type":"text"
+						"type":"text",
+						"placeholder":"Video Embed Url"
 					}),
 					"button":createElement('ul',{
 						"class":"button-list",

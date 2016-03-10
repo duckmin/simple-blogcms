@@ -126,7 +126,11 @@ div.doc-box > ul.button-list {
 .tmplt-forum-container{
 	border:1px dotted black;
 	border-top:none;
-	padding:1.5rem 0;
+	padding:46px 0 1.5rem 0;
+}
+
+li[data-posttype='image'] div.tmplt-forum-container input[name='src'] {
+	margin-bottom: 1rem;
 }
 
 div.tmplt-forum-container[data-location='meta-form'] {
@@ -157,8 +161,7 @@ div.tmplt-forum-container[data-location='meta-form'] {
 
 [data-tab='template'] > div.tmplt-holder, [data-tab='template'] > aside {
 	display:inline-block;
-	
-	margin-top:10px;
+	margin-top: 1rem;
 }
 
 [data-tab='template'] > div.tmplt-holder {
@@ -326,7 +329,7 @@ section[data-tab='pictures'] > div:nth-of-type(2){
 }
 
 section[data-tab='template'] > ul:first-child{
-	margin-top:10px;
+	margin-top:1rem;
 }
 
 section[data-tab='preview'], section[data-tab='posts']{
