@@ -47,11 +47,57 @@ var sort_control = {
     }
 }
 
+var page_action = {};
+
+page_action.searchToggle = function(e){
+	var parent = this.parentElement; //parent li
+	if( parent.hasClass("show") ){
+		parent.removeClass("show");
+	}else{
+		parent.addClass("show");
+	}
+}
+
+page_action.navBarToggleInactive = function(e){
+	console.log('www');
+	var nav = document.querySelector("body > nav"),
+	offset_top = nav.offsetTop,
+	page_y = e.pageY;
+	if( page_y >= offset_top ){
+		nav.addClass("fixed");
+		nav.setAttribute("data-scroll", offset_top );
+		var nav_height = nav.clientHeight;
+		nav.nextElementSibling.style.paddingTop = nav_height+"px";
+		window.removeEventListener( "scroll", page_action.navBarToggleInactive );
+		window.addEventListener( "scroll", page_action.navBarToggleActive );
+	}
+}
+
+page_action.navBarToggleActive = function(e){
+	var nav = document.querySelector("body > nav"),
+	offset_top = nav.offsetTop,
+	page_y = e.pageY,
+	nav_scroll_num = nav.getAttribute("data-scroll");
+	if( page_y <= nav_scroll_num ){
+		nav.removeClass("fixed");
+		nav.nextElementSibling.style.paddingTop = "0px";
+		nav.removeAttribute("data-scroll");
+		window.removeEventListener( "scroll", page_action.navBarToggleActive );
+		window.addEventListener( "scroll", page_action.navBarToggleInactive );
+	}
+}
+
 addEvent( window, "load", function(){
-	//attributeActions( document.body, "data-blogaction", {
-		
-	//});
 	
+	attributeActions( document.body, "data-everyaction", {
+		"search":function(elm){
+			elm.addEventListener("click", page_action.searchToggle);
+		}
+	});
+	
+	
+   window.addEventListener("scroll", page_action.navBarToggleInactive );
+
 	//take the data-ts (UTC) attribute of every artical and convert to local time
 	convertTimeStamps( document.querySelector(".main") );
 })

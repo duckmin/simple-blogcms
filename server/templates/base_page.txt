@@ -21,21 +21,21 @@
 
 <body>
 	<header>
-		<div>
-			<h1><a href="{{ base }}">Duckmins BlogCMS</a></h1>
-			<ul>
-				{{ header }}<li class="search-hover" >
-					<span></span>
-					<div>
-						<form method="GET" action="{{ base }}/submit-search/" >						
-							<input type="text" name="search" placeholder="search" value="{{ search_value }}" >
-							<input type="submit" value="" >
-						</form>
-					</div>
-				</li><!-- add hard coded <li> inline here --><li><a href="#">Sample</a></li><li><a href="#">Sample2</a></li>
-			</ul>
-		</div>
+		<h1><a href="{{ base }}">Duckmins BlogCMS</a></h1>
 	</header>
+	<nav>
+		<ul>
+			<li class="search-hover" >
+				<span data-everyaction="search" ></span>
+				<div>
+					<form method="GET" action="{{ base }}/submit-search/" >						
+						<input type="text" name="search" placeholder="search" value="{{ search_value }}" >
+						<input type="submit" value="" >
+					</form>
+				</div>
+			</li>{{ header }}<!-- add hard coded <li> inline here --><li><a href="#">Sample</a></li><li><a href="#">Sample2</a></li>
+		</ul>	
+	</nav>
 	<main class='wrapper' >
 		<section class='main'>		
 			{{ body }}

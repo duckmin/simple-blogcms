@@ -1,53 +1,69 @@
-body, header > form > input[name="search"], header > form > input[type="submit"] {
+body {
 	background-color: #F8F8F8;
 }
 
-body > header{
-	border-bottom: 2px solid lightgray;
+body > header, body > nav {
+	background-color: #252525;
 }
 
-body > header > div {
-	
+body > nav{
+	padding:0.25rem 0;
+}
+
+body > nav.fixed{
+	display:block;
+	position:fixed;
+	top:0;
+	left:0;
+	right:0;
 }
 
 body > header h1 {
 	font-family: "Century Gothic",CenturyGothic,AppleGothic,sans-serif;
 	font-size:2em;
 	font-weight:100;
-	color:navy;
-	color:#0066ff;
+	color:powderblue;
 	text-align:center;
+	font-weight:700;
 }
 
-body > header > div > ul {
-	margin-top: 1rem;
+body > header h1 > a {
+	color:inherit;
+}	
+
+body > header {
+	padding-top:1rem;
+	padding-bottom:0.75rem;
+}
+
+body > nav > ul {
 	font-size:1.2em;
 	list-style-type:none;
 }
 
-body > header > div form > input[type="submit"] {
+.search-hover form > input[type="submit"] {
 	background-image: url("resources/search.png");
 	background-repeat: no-repeat;
 	width:16px;
 	border:none;
 	background-position: center center;
-	background-color:#f8f8f8;
+	background-color:#252525;
 }
 
 input[type="submit"]:hover{
 	cursor:pointer;
 }
 
-body > header > div form > input[name="search"] {
+.search-hover form > input[name="search"] {
 	border:none;
 	/*border-bottom:2px solid tomato;*/
 	/*font-size:1.2em;*/
-	color:tomato;
+	color:#fff;
 	text-align:right;
 	padding-right:5px;
 	max-width:9em;
 	font-size:inherit;
-	background-color:#f8f8f8;
+	background-color:#252525;
 }
 
 .search-hover {
@@ -58,7 +74,7 @@ body > header > div form > input[name="search"] {
 .search-hover > span {
 	color: navy;
 	background-image: url("resources/search.png");
-   background-position: right center;
+   background-position: center center;
    background-repeat: no-repeat;
    padding-right:20px;
 }
@@ -66,32 +82,34 @@ body > header > div form > input[name="search"] {
 .search-hover > div {
 	position:absolute;
 	width:calc( 9em + 21px ); /* 16px wide submit button & 5px padding */
-	border:2px solid lightgray;
-	border-top-color:#f8f8f8;
 	display:none;
 	padding:10px;
-	background-color:#f8f8f8;
+	background-color:#252525;
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
 }
 
-.search-hover:hover > div {
+.search-hover.show > div {
 	display:block;
+	margin-top:0.25rem;
 }
 
 .search-hover > div > form > * {
 	display:inline-block;
 }
 
-body > header > div > ul > li{
-	color:tomato;
+body > nav > ul > li{
+	color:#fff;
 	display:inline-block;
-	margin-right:0.5em;
+	margin-right:1rem;
+	font-weight:700;
 }
 
-body > header > div > ul > li:first-child{
+body > nav > ul > li:first-child{
 	
 }
 
-body > header > div > ul > li > a, main > header > h1 > a {
+body > nav > ul > li > a, main > header > h1 > a {
 	color:inherit;
 }
 
@@ -103,7 +121,7 @@ body > header > div > ul > li > form input.gray-text{
 	color:lightgray;
 }
 
-body > header a{
+body > nav a, body > header a{
 	text-decoration:none;
 }
 
@@ -356,6 +374,7 @@ blockquote {
 	text-align:center;
 	background-color:azure;
 	border-top-width:2px;
+	border-bottom-width:2px;
 }
 
 .wrapper > section.main:last-of-type {
@@ -405,7 +424,7 @@ blockquote {
 		
 	}
 	
-	main.wrapper > *, body > header { 
+	main.wrapper > *, body > nav > ul { 
 		margin-left:0.5rem;
 		margin-right:0.5rem;
 	}

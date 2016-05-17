@@ -182,7 +182,7 @@ body,ul,div,section,a,aside,article,h1,h2,h3,h4,h5,h6,p,pre,span,li,label,input,
 /*at or above 1000px screen width*/		  
 @media only screen and (min-width: 1000px) {
        
-	.wrapper, body > header > div {
+	.wrapper, body > nav > ul {
 		width:1000px;
 		margin-left:auto;
 		margin-right:auto;
