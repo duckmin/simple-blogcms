@@ -59,7 +59,6 @@ page_action.searchToggle = function(e){
 }
 
 page_action.navBarToggleInactive = function(e){
-	console.log('www');
 	var nav = document.querySelector("body > nav"),
 	offset_top = nav.offsetTop,
 	page_y = e.pageY;

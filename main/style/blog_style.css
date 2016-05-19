@@ -42,7 +42,7 @@ body > nav > ul {
 }
 
 body > nav > ul > li:first-of-type {
-	margin-left:calc( 1rem + 1em );
+	margin-left:2rem;
 	
 }
 
@@ -170,10 +170,7 @@ article.post, article.preview{
 	border-bottom:2px solid lightgray;
 	/*background-color:white;*/
 	overflow:hidden;
-	padding-top:3em;
-	padding-bottom:3em;
-	padding-left:1em;
-    padding-right:1em;
+   padding:2rem 1rem;
 }
 
 article.post {
@@ -195,7 +192,7 @@ article.preview > div:nth-of-type(1) img{
 }
 
 article.preview > *:first-child + * {
-	margin-top:0.5rem;
+	/*margin-top:0.5rem;*/
 }
 
 article > header > p.title {
@@ -338,7 +335,11 @@ article.post a {
 	margin-left:0.9em;
 }
 
-article header ~ * {
+article.post header ~ * {
+	margin-top:1rem;
+}
+
+article.preview header ~ * {
 	margin-top:0.5rem;
 }
 
@@ -474,7 +475,7 @@ blockquote {
 
     }
     
-    article.preview > div:nth-of-type(1){
+    article.preview > div:nth-of-type(1) img{
         margin-bottom: 1rem;
     }
 	

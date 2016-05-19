@@ -16,7 +16,7 @@ section.main {
 aside > ul {
 	list-style-type:none;
 	border-bottom: 2px solid lightgray;
-	padding: 3em 1em;
+	padding: 2rem 1rem;
 }
 
 aside > ul > li {

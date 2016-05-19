@@ -26,9 +26,6 @@
 	<nav>
 		<ul class="nav">
 			{{ header }}
-			<li class="search-hover menu" >
-				<span>Hashtags</span>
-			</li>
 			<!-- add hard coded <li> inline here -->
 			<li><a href="#">Sample</a></li>
 			<li><a href="#">Sample2</a></li>
