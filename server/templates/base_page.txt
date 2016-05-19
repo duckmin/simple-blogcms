@@ -24,18 +24,32 @@
 		<h1><a href="{{ base }}">Duckmins BlogCMS</a></h1>
 	</header>
 	<nav>
-		<ul>
-			<li class="search-hover" >
-				<span data-everyaction="search" ></span>
+		<ul class="nav">
+			{{ header }}
+			<li class="search-hover menu" >
+				<span>Hashtags</span>
+			</li>
+			<!-- add hard coded <li> inline here -->
+			<li><a href="#">Sample</a></li>
+			<li><a href="#">Sample2</a></li>
+			<li>
+				<span data-everyaction="search-toggle" title="show search" ></span>
+			</li>
+		</ul>
+		<ul class="search hide" >
+			<li>
+				<span data-everyaction="search-toggle" title="hide search" ></span>
+			</li>
+			<li>
 				<div>
 					<form method="GET" action="{{ base }}/submit-search/" >						
 						<input type="text" name="search" placeholder="search" value="{{ search_value }}" >
 						<input type="submit" value="" >
 					</form>
 				</div>
-			</li>{{ header }}<!-- add hard coded <li> inline here --><li><a href="#">Sample</a></li><li><a href="#">Sample2</a></li>
-		</ul>	
-	</nav>
+			</li>
+		</ul>
+	</nav>	
 	<main class='wrapper' >
 		<section class='main'>		
 			{{ body }}

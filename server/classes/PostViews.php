@@ -166,9 +166,11 @@
 			$structure = $this->convertRowValues( $row );
 			if( array_key_exists("post_data", $row) ){  //query will bring back 'post_data' only if image exists,  if post has no image no post data will bein returned row in preview query
 				$img_src = $row["post_data"][0]["src"];
-				$alt = $structure["title"]." preview thumbnail";
-				$structure["has_inner"] = true;
-				$structure["inner"] = "<img alt=\"$alt\" src=\"/thumb$img_src\" onerror=\"handleMissingThumbnail(this)\" >";
+				if( substr($img_src, 0, 1) === "/" ){ //only relative(internally hosted) links can be thumbnailed 
+					$alt = $structure["title"]." preview thumbnail";
+					$structure["has_inner"] = true;
+					$structure["inner"] = "<img alt=\"$alt\" src=\"/thumb$img_src\" onerror=\"handleMissingThumbnail(this)\" >";
+				}
 			}
 			$structure["time_stamp"] = $structure["lastModified"]->sec * 1000; //for js accurrate UTC conversion
 			$structure["base"] = BASE_URL;

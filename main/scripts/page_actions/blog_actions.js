@@ -87,11 +87,28 @@ page_action.navBarToggleActive = function(e){
 	}
 }
 
+page_action.searchBarToggle = function(e){
+	var uls = document.querySelectorAll("body > nav > ul"),
+	menu_bar = uls[0],
+	search_bar = uls[1];
+	
+	if( menu_bar.hasClass("hide") ){
+		menu_bar.removeClass("hide");
+		search_bar.addClass("hide");
+	}else if( search_bar.addClass("hide") ){
+		menu_bar.addClass("hide");
+		search_bar.removeClass("hide");
+	}
+}
+
 addEvent( window, "load", function(){
 	
 	attributeActions( document.body, "data-everyaction", {
 		"search":function(elm){
 			elm.addEventListener("click", page_action.searchToggle);
+		},
+		"search-toggle":function(elm){
+			elm.addEventListener("click", page_action.searchBarToggle);
 		}
 	});
 	

@@ -41,29 +41,55 @@ body > nav > ul {
 	list-style-type:none;
 }
 
-.search-hover form > input[type="submit"] {
+body > nav > ul > li:first-of-type {
+	margin-left:calc( 1rem + 1em );
+	
+}
+
+ul.search form > input[type="submit"] {
 	background-image: url("resources/search.png");
 	background-repeat: no-repeat;
 	width:16px;
 	border:none;
 	background-position: center center;
-	background-color:#252525;
+	background-color:#fff;
+	margin-left:10px;
 }
 
 input[type="submit"]:hover{
 	cursor:pointer;
 }
 
-.search-hover form > input[name="search"] {
+ul.search form > input[name="search"] {
 	border:none;
 	/*border-bottom:2px solid tomato;*/
 	/*font-size:1.2em;*/
-	color:#fff;
 	text-align:right;
 	padding-right:5px;
 	max-width:9em;
 	font-size:inherit;
-	background-color:#252525;
+}
+
+body > nav > ul.hide {
+	display:none;
+}
+
+ul.search > li:first-of-type {
+	margin-right:0.25rem;
+}
+
+ul.search > li:first-of-type > span{
+	background-image: url("resources/x-mark.png");
+	background-repeat: no-repeat;
+	padding-right:20px;
+	background-position: center center;
+	cursor:pointer;
+}
+
+ul.search > li > div {
+	padding:0 10px;
+	background-color:white;
+	border-radius:5px;
 }
 
 .search-hover {
@@ -71,17 +97,16 @@ input[type="submit"]:hover{
 	cursor:pointer;
 }
 
-.search-hover > span {
-	color: navy;
+ul.nav > li:last-of-type > span {
 	background-image: url("resources/search.png");
    background-position: center center;
    background-repeat: no-repeat;
    padding-right:20px;
+   cursor:pointer;
 }
 
 .search-hover > div {
 	position:absolute;
-	width:calc( 9em + 21px ); /* 16px wide submit button & 5px padding */
 	display:none;
 	padding:10px;
 	background-color:#252525;
@@ -89,13 +114,23 @@ input[type="submit"]:hover{
 	border-bottom-right-radius:5px;
 }
 
-.search-hover.show > div {
-	display:block;
-	margin-top:0.25rem;
+.search-hover.search > div {
+	width:calc( 9em + 21px ); /* 16px wide submit button & 5px padding */
 }
 
-.search-hover > div > form > * {
+.search-hover.show > div, .search-hover:hover > div {
+	display:block;
+	padding-top:0.25rem;
+	left:0;
+}
+
+.search-hover.menu > div ul {
+	list-style-type:none;
 	display:inline-block;
+	white-space: nowrap;
+	padding:0 0.25rem;
+	color:#fff;
+	font-weight:700;
 }
 
 body > nav > ul > li{
@@ -304,7 +339,7 @@ article.post a {
 }
 
 article header ~ * {
-	margin-top:1rem;
+	margin-top:0.5rem;
 }
 
 article > * {
@@ -386,6 +421,7 @@ blockquote {
 	text-decoration:none;
 }
 
+
 /*at or above 1000px screen width*/		  
 @media only screen and (min-width: 1000px) {
        
@@ -424,14 +460,15 @@ blockquote {
 		
 	}
 	
-	main.wrapper > *, body > nav > ul { 
+	main.wrapper > * { 
 		margin-left:0.5rem;
 		margin-right:0.5rem;
 	}
 	
-}   
-
-@media only screen and (max-width: 400px) {
+	body > nav > ul > li:first-of-type {
+		margin-left:1.5em;
+	}
+	
 	article.preview > div {
         display: block;
 
@@ -440,4 +477,9 @@ blockquote {
     article.preview > div:nth-of-type(1){
         margin-bottom: 1rem;
     }
+	
+}   
+
+@media only screen and (max-width: 400px) {
+	
 }  

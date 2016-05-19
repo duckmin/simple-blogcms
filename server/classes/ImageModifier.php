@@ -3,10 +3,10 @@
 	//FOR USE WITH THE GD PHP LIB
 	
 	class ImageModifier {
-		private static $quality = 35;
-      private static $png_quality = 4;
-      private static $thumbnail_width = 100; //this is px width of thumbnail   
-		private static $thumbnail_max_height = 100; 
+		private static $quality = 70; //0-100
+      private static $png_quality = 4;  //0-9
+      private static $thumbnail_width = 200; //this is px width of thumbnail   
+		private static $thumbnail_max_height = 200; 
        
       public static function getThumbNameFromPath( $image_path ){
       	$thumb_file_name = preg_replace ( "/\//", "-", $image_path );
