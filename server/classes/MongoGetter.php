@@ -9,6 +9,7 @@
 		private $preview_fields = array( 
 		"_id"=>true, 
 		"title"=>true, 
+		"title_key"=>true,
 		"description"=>true, 
 		"lastModified"=>true, 
 		"author"=>true, 
@@ -136,12 +137,11 @@
 			return $cursor;
 		}
 		
-		public function getSingleRowFromDate( $title, $start, $end ){
-			$title_uncode = urldecode( $title );			
+		public function getSingleRowFromDate( $title_key, $start, $end ){
 			$start_d = new MongoDate( $start );
 			$end_d = new MongoDate( $end );
 			$collection = $this->db->posts;	
-			$cursor = $collection->findOne( array( "title"=>$title_uncode, "lastModified"=>array( '$gte'=>$start_d, '$lte'=>$end_d ) ) );
+			$cursor = $collection->findOne( array( "title_key"=>$title_key, "lastModified"=>array( '$gte'=>$start_d, '$lte'=>$end_d ) ) );
 			return $cursor;
 		}
 		

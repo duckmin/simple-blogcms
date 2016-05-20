@@ -120,6 +120,8 @@
 			return $inner_post;
 		}
 		
+		/*
+		KEPT JUST INCASE NEEDED, DELETE AFTER CONFIRMING NOT NEEDED 5/20/16
 		public function convertPostTitleSpacesToHyphens( $title ){
 			if( preg_match( "/\s/", $title ) ){
 				$title = preg_replace ( "/\s/", "-", $title );
@@ -132,7 +134,19 @@
 				$title = preg_replace ( "/-/", " ", $title );
 			}
 			return $title;
-		}					
+		}
+		*/
+		
+		//used to create 'title_key' field in post which is used to lookup post 
+		public function generateTitleKey( $title ){
+			$title = strtolower( $title );
+			//strip out all non word chars
+			$title =  preg_replace ( "/[^\w\d\s]/", "", $title );
+			//replace spaces with hyphens
+			$title = preg_replace ( "/\s/", "-", $title );
+			$title = trim( $title, "-" ); //remove an accidental left over hyphen 
+			return $title;
+		}						
 		
 		//takes a blog post row from mongo and returns a modifed row with converted values used for URLs
 		public function convertRowValues( $row ){
@@ -146,9 +160,8 @@
 			$row["month"] = $date_of_post["month"];
 			$row["day"] = $date_of_post["day"];
 			$row["year"] = $date_of_post["year"];	
-			$row["safe_title"] = $this->convertPostTitleSpacesToHyphens( $row["title"] );
 			//post_url logic in pages/html/post.php
-			$row["post_url"] = "/".$row["year"]."/".$row["month"]."/".$row["safe_title"];
+			$row["post_url"] = "/".$row["year"]."/".$row["month"]."/".$row["title_key"];
 			return $row;
 		}		
 		

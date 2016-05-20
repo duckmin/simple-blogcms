@@ -32,9 +32,15 @@
 	}
 	
 	//only allow letters nums and spaces in title
-	if( $valid_inputs && preg_match( "/[^A-z0-9\s!:$]/", $title ) ){
+	if( $valid_inputs && preg_match( "/[\"']/", $title ) ){
 		$valid_inputs = false;
-		$message = "Title can only contain letters, numbers, or spaces";
+		$message = "Title can have no quotations";
+	}
+	
+	//make sure title has atleast 2 word or letter char 
+	if( $valid_inputs && strlen( preg_replace( "/[^\w\d]/", "", $title ) ) < 2 ){
+		$valid_inputs = false;
+		$message = "Title must have atleast 2 letter or digit characters";
 	}
 	
 	if( $valid_inputs && $desc_length > MAX_DESC_LENGTH ){
@@ -65,7 +71,7 @@
 			$db = $m->$db_name;
 			$collection = $db->posts;
 			$author = $_SESSION['user'];
-
+			$title_key = $post_views->generateTitleKey($title);
 			
 			//procedure 1 create new listing with post_data
 			if( $new_document ){
@@ -73,6 +79,7 @@
 				$document = array( 
 					'_id'=>$mongo_id,					
 		   	    	'title'=>$title,
+		   	    	'title_key'=>$title_key,
 			   		'description'=>$desc,
 			   		'post_data'=> $post_data,
 			   		'lastModified'=>new MongoDate(),
@@ -93,6 +100,7 @@
 				$update_array = array( 
 					'$set'=> array( 
 						"title"=>$title, 
+						'title_key'=>$title_key,
 						"description"=>$desc,
 						'post_data'=> $post_data, 
 						'hashtags'=>$search_hashtags,

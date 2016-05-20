@@ -10,6 +10,7 @@
 	$single["_id"] ="5428784f7f8b9afe1a779e93";  //just a dummy ID means nothing 
 	$single["lastModified"] = new MongoDate();
 	$single["title"] = $form_data["title"];
+	$single["title_key"] = $post_view->generateTitleKey($form_data["title"]);
 	$single["post_data"] = $template_data;
 	$single["author"] = $_SESSION['user'];
 	$single["description"] = $form_data["description"];

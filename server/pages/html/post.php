@@ -11,7 +11,7 @@
 	$base = BASE_URL;
 	$year = $GLOBALS['url_parts'][0];
 	$month = $GLOBALS['url_parts'][1];
-	$title = $GLOBALS['url_parts'][2];
+	$title_key = $GLOBALS['url_parts'][2];
 	$initial_date = "$year-$month-1";  		
 	$start = strtotime( $initial_date ); //first day of month seconds
 	$end_date = date( "Y-m-t", $start );
@@ -20,11 +20,11 @@
 		$db = MongoConnection();
 		$db_getter = new MongoGetter( $db );
 		$post_views = new PostViews( new Parsedown() );
-		$non_hyphenated_title = $post_views->convertPostTitleHyphensToSpaces( $title );
+		//$non_hyphenated_title = $post_views->convertPostTitleHyphensToSpaces( $title );
 		$aside_views = new AsideViews();
 		$aside_controller = new AsideController( $db_getter, $aside_views );
 		
-		$single_post_data = $db_getter->getSingleRowFromDate( $non_hyphenated_title, $start, $end ); //NULL if not found
+		$single_post_data = $db_getter->getSingleRowFromDate( $title_key, $start, $end ); //NULL if not found
 		$hashtags_of_past_year_list = $aside_controller->getPastYearsHashtagsLinksBox();
 		$popular_hashtags_list = $aside_controller->getMostPopularHashtagsLinksBox();
 		$GLOBALS['db_aside_content'] = $db_aside_content = $popular_hashtags_list.$hashtags_of_past_year_list;
