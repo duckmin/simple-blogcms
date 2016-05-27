@@ -100,6 +100,16 @@ page_action.searchBarToggle = function(e){
 	}
 }
 
+page_action.menuToggle = function(e){
+	var menu = document.querySelector("body > aside");
+	
+	if( menu.hasClass("hide") ){
+		menu.removeClass("hide");
+	}else{
+		menu.addClass("hide");
+	}
+}
+
 addEvent( window, "load", function(){
 	
 	attributeActions( document.body, "data-everyaction", {
@@ -108,6 +118,14 @@ addEvent( window, "load", function(){
 		},
 		"search-toggle":function(elm){
 			elm.addEventListener("click", page_action.searchBarToggle);
+		},
+		"menu-toggle":function(elm){
+			elm.addEventListener("click", page_action.menuToggle);
+		},
+		"menu":function(elm){
+			elm.addEventListener("click", function(e){
+				e.stopPropagation();
+			});
 		}
 	});
 	

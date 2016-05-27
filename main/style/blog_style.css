@@ -105,6 +105,15 @@ ul.nav > li:last-of-type > span {
    cursor:pointer;
 }
 
+ul.nav > li:first-of-type > span {
+	background-image: url("resources/menu_icon.png");
+   background-position: center center;
+   background-repeat: no-repeat;
+   padding-right:20px;
+   cursor:pointer;
+}
+
+
 .search-hover > div {
 	position:absolute;
 	display:none;
@@ -230,6 +239,9 @@ article.preview a {
 .main > article:first-of-type{
 	margin-top:0;
 	border-top:none;
+}
+.main > article.post:first-of-type{
+	padding-bottom:4rem;
 }
 
 .main > article:last-of-type{

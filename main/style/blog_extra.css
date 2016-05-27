@@ -1,44 +1,57 @@
-section.main, aside{
-	display:inline-block;
-	vertical-align:top;
+aside.fixed {
+	position:fixed;
+	top:0;
+	left:0;
+	background-color:rgba(0, 0, 0, 0.5);
+	width:100%;
+	height:100%;
+	margin:0;
+}
+
+aside.fixed > section {
+	background-color:#252525;
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	min-width:250px;
+	overflow-y:auto;
+}
+
+aside.fixed > section > ul {
+	list-style-type:none;
 }
 
 section.main {
-	width:70%;
+
 }
 
-.wrapper > aside {
-	width:calc( 30% - 3rem );
-	/*background-color:white;*/
-	margin-left:0;
-}
-
-aside > ul {
+aside.fixed ul {
 	list-style-type:none;
 	border-bottom: 2px solid lightgray;
-	padding: 2rem 1rem;
+	padding: 2rem 2rem;
 }
 
-aside > ul > li {
-    font-weight:100;
-    color:dimgray;
+aside.fixed ul > li {
+    font-weight:700;
+    color:#fff;
     margin-bottom:0.05rem;
 }
 
-aside > ul > li > a {
+aside.fixed ul > li > a {
     color:inherit;
     text-decoration:none;
 }
 
-aside > ul > li > a > span {
-    color:#B2B2B2;
+aside.fixed ul > li > a > span {
+    color:powderblue;
     font-size:0.8em;
-	
+	 font-weight:100;
 }
 
-aside > ul > li:first-child{
+aside.fixed ul > li:first-child{
 	font-weight:700;
-	color:navy;
+	color:powderblue;
 	font-size:0.8em;
 	margin-bottom:0.25em;
 }

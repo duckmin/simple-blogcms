@@ -25,6 +25,9 @@
 	</header>
 	<nav>
 		<ul class="nav">
+			<li>
+				<span data-everyaction="menu-toggle" title="menu" ></span>
+			</li>
 			{{ header }}
 			<!-- add hard coded <li> inline here -->
 			<li><a href="#">Sample</a></li>
@@ -58,10 +61,13 @@
 				<h3>Related Hashtags</h3>
 			</div>
 		   extra_posts##
-		</section><!--
-		--><aside>
-			{{ aside_content }}
-		</aside>
+		</section>
 	</main>
+	<aside class="fixed hide" data-everyaction="menu-toggle" >
+		<section data-everyaction="menu" >
+		{{ aside_content }}
+		{{ aside_content }}
+		</section>
+	</aside>
 </body>
 </html>
