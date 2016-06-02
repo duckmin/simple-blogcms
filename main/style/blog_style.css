@@ -271,7 +271,6 @@ article.preview a {
 
 .main article.preview header > h1 {
 	font-size:2em;
-	line-height: 0.75em;
 }
 
 .main article header h1 a {
@@ -291,7 +290,7 @@ article.preview header > h1 a:hover, article.preview > a:hover + header a {
 }
 
 .main article.preview header p.post-time {
-	margin-top:0.7rem;
+
 }
 
 
@@ -364,7 +363,6 @@ article > * {
 }
 
 .main article.post h1{
-	line-height:1em;
 	padding-bottom:3px;
 	max-width:90%;
 	/*margin:0 auto 10px auto;*/

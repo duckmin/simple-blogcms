@@ -39,6 +39,10 @@ aside.fixed ul {
 	padding: 2rem 2rem;
 }
 
+aside.fixed ul:last-of-type {
+	border-bottom: none;
+}
+
 aside.fixed ul > li {
     font-weight:700;
     color:#fff;
