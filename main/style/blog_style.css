@@ -97,8 +97,8 @@ ul.search > li > div {
 	cursor:pointer;
 }
 
-ul.nav > li:last-of-type > span {
-	background-image: url("resources/search.png");
+ul.nav > li:nth-of-type(2) > span {
+   background-image: url("resources/search.png");
    background-position: center center;
    background-repeat: no-repeat;
    padding-right:20px;
@@ -286,7 +286,7 @@ article.preview header > h1 a:hover, article.preview > a:hover + header a {
 	text-indent:1em;
 	font-size:0.72em;
 	margin-top:0px;
-	color:lightgray;
+	color:dimgray;
 }
 
 .main article.preview header p.post-time {

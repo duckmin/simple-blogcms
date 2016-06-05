@@ -28,13 +28,13 @@
 			<li>
 				<span data-everyaction="menu-toggle" title="menu" ></span>
 			</li>
+			<li>
+				<span data-everyaction="search-toggle" title="show search" ></span>
+			</li>
 			{{ header }}
 			<!-- add hard coded <li> inline here -->
 			<li><a href="#">Sample</a></li>
 			<li><a href="#">Sample2</a></li>
-			<li>
-				<span data-everyaction="search-toggle" title="show search" ></span>
-			</li>
 		</ul>
 		<ul class="search hide" >
 			<li>
@@ -65,7 +65,7 @@
 	</main>
 	<aside class="fixed hide" data-everyaction="menu-toggle" >
 		<section data-everyaction="menu" >
-		{{ aside_content }}
+		    {{ aside_content }}
 		</section>
 	</aside>
 </body>

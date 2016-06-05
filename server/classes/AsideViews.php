@@ -4,12 +4,12 @@
 	class AsideViews
 	{
 		public function formatHashtagList( $label, $hashtag_array ){
-			$list = "<li>$label</li>";
+			$list = "<h2>$label</h2><ul>";
 			foreach( $hashtag_array as $hashtag ){
 				$lower_hashtag = strtolower( $hashtag );
 				$list .= "<li><a href=\"/hashtag/$lower_hashtag\"><span>#</span>$hashtag</a></li>";
 			}
-			return "<ul>$list</ul>";
+			return "$list</ul>";
 		}
 		
 		public function formatHashtagCountList( $label, $hashtag_array ){
